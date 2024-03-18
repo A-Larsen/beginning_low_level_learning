@@ -218,3 +218,17 @@ mov rdi, 0x172
 == Links
 - https://www.felixcloutier.com/x86/[x86 and amd64 instruction reference]
 - https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html[intel 64 IA-32 architectures Software Developer's Manual]
+== Change a number from little endian to big endian in C
+
+[source, c]
+----
+#include <stdio.h>
+#include <stdlib.h>
+#include <arpa/inet.h>
+
+int
+main(void){
+    unsigned int num = 0x12345678;
+    printf("%x\n", htonl(num));
+}
+----

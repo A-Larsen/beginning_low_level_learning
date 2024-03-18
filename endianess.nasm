@@ -1,6 +1,6 @@
 section .data
     newline_char: db 10
-    codes: db '012345678abcdef' ; what 9?
+    codes: db '012345678abcdef'
     demo1: dq 0x1122334455667788
     demo2: db 0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88
 
