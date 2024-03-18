@@ -190,8 +190,9 @@ syscall instructions implicitly uses rcx. System calls cannot accept more than
 six arguments.
 
 == Direct Addressing Modes
-Immediate::
-    use the specified value
+
+=== Immediate
+use the specified value
 
 ex.
 
@@ -200,16 +201,16 @@ ex.
 mov rdi, 12
 ----
 
-Register::
-    Use teh value in teh specified register
+=== Register
+Use the value in teh specified register
 
 [source, nasm]
 ----
 mov rdi, rcx
 ----
 
-Direct Memory::
-    Use the value at the specified memory address
+=== Direct Memory
+Use the value at the specified memory address
 
 [source, nasm]
 ----
