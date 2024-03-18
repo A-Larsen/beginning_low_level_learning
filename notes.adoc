@@ -142,8 +142,6 @@ Other::
     3. `jae` (jump if above or equal), jle (jump if less or equal) and similar
 
 == Function Calls
-
-
 `Instruction call <address>` is the same as:
 
 [source, nasm]
@@ -152,10 +150,10 @@ push rip
 jmp <address>
 ----
 
-The address is not stored in the stack (for rip contents) is called *return*
+The address now stored in the stack (for rip contents) is called *return*
 *address*.
 
-the first size arguments are rdi, rsi, rdx, rcx, r8, and r9, respectively.
+the first six arguments are rdi, rsi, rdx, rcx, r8, and r9, respectively.
 
 `ret` instruction denotes the function end. same as `pop rip`.
 
