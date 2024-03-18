@@ -183,9 +183,15 @@ pattern of calling a function:
 
 NOTE: some system calls also return values - be careful to read the docs!
 
-== Syscall
+== Syscalls
 syscall instructions implicitly uses rcx. System calls cannot accept more than
 six arguments.
+
+All the syscalls are listed in _/usr/include/nasm/unistd.h_ (or something
+similar), together with their numbers (the value to put in EAX before you call
+int 80h). In ubuntu I found the file in
+_/usr/include/x86_64-linux-gnu/asm/unistd_64.h_.
+
 
 == Different Addressing types
 
@@ -315,6 +321,53 @@ main:
 == Two's complement
 1. Do a logical not to all the bits
 2. add 1
+
+== Instructions
+=== NEG
+The `NEG` instruction applys two complement. It sets the CF falgs to zero if the
+source operand is 0; otherwise it is set to 1.
+
+=== IMUL
+signed multiplication
+
+One-operand form::
+    secound operand is in AL, AX, EAX, or RAX, depending on the
+    size
+
+Two-operand form::
+    With this form the destination operand (the first operand) is multiplied by
+    the source operand
+
+Three-operand form::
+    with `mul a, b, c`, the multiplication of `b` and `c` is
+    stored in `a`
+
+=== MUL
+unsigned multiply
+
+the source operand is located in either AL, AX, or EAX, dending on the size of
+the operand.
+
+=== SUB
+subtract source operand from the destination operand and stores the result in
+the destination operand.
+
+- integer subraction; signed and unsigned
+
+- sets OF flags to indicate an overflow in the signed or unsigned result,
+  respectively.
+
+- The SF flag indicates the sign of the signed result
+
+In 64-bit mode the instruction's default operation size is 32 bits
+
+=== IDIV
+signed divide. Divides the value in AX, DX:AX, or EDX:EAX (dividend) by the
+source operand (divisor) and stores the result in AX (AH:AL), DX:AX, or EDX:EAX
+registers.
+
+- Overflow is indicated withthe #DE (divide error) exception rather than with
+  the CF flag
 
 == Links
 - https://www.felixcloutier.com/x86/[x86 and amd64 instruction reference]
