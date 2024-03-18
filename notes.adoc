@@ -312,6 +312,10 @@ main:
 	syscall
 ----
 
+== Two's complement
+1. Do a logical not to all the bits
+2. add 1
+
 == Links
 - https://www.felixcloutier.com/x86/[x86 and amd64 instruction reference]
 - https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html[intel 64 IA-32 architectures Software Developer's Manual]

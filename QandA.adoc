@@ -1,0 +1,2 @@
+Answer to Question 19::
+    r13 is not cleared before it is used and could return junk values
