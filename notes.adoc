@@ -187,7 +187,7 @@ NOTE: some system calls also return values - be careful to read the docs!
 syscall instructions implicitly uses rcx. System calls cannot accept more than
 six arguments.
 
-== Direct Addressing Modes
+== Different Addressing types
 
 === Immediate
 use the specified value
@@ -226,13 +226,32 @@ Use the value at the specified memory address
 mov rdi, 0x172 ; not 100% sure about this
 ----
 
+=== Base-indexed with scale and discplacement
+Most addressing modes are generalized by this mode. The address here is
+calculated based on the following components:
+
+----
+Address = base + index * scale + displacement
+----
+
+- Base is either immediate or a register
+- Scale can only be immediate equal to 1, 2, 4, or 8
+- Index is immediate or a register 
+- Displacement is always immediate
+
+[source, nasm]
+----
+mov rax, [rbx + 4 * rcx + 9]
+mov rax, [4 * r9]
+mov rdx, [rax + rbx]
+lea rax, [rbx + rbx * 4] ; rax = rbx * 5
+add r8, [9 + rbx * 8 + 7]
+----
+
 == ATT vs. Intel Syntax
 gdb uses ATT syntax by default, but you can change it to intel (nasm's syntax)
 with the command `set disassembly-flavor intel`
 
-== Base-indexed with scale and discplacement
-Most addressing modes are generalized by this mode. The address here is
-calculated based on the following components:
 
 == Change a number from little endian to big endian in C
 
