@@ -1,6 +1,8 @@
 section .data
     newline_char: db 10
     codes: db '012345678abcdef' ; what 9?
+    demo1: dq 0x1122334455667788
+    demo2: db 0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88
 
 section .text
 
@@ -42,7 +44,13 @@ iterate: ; this is still part of print_hex function
     ret
 
 main:
-    mov rdi, 0x1122334455667788
+    ; rdi is our one argument
+
+    mov rdi, [demo1]
+    call print_hex
+    call print_newline
+
+    mov rdi, [demo2]
     call print_hex
     call print_newline
 
