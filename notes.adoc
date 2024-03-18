@@ -196,7 +196,7 @@ ex.
 
 [source, nasm]
 ----
-mov rdi, 12
+mov rax, 10
 ----
 
 === Register
@@ -204,7 +204,18 @@ Use the value in teh specified register
 
 [source, nasm]
 ----
-mov rdi, rcx
+mov rax, rbx
+----
+
+[source, nasm]
+----
+mov rax, [10]; transfers 8 bytes starting at the tenth address into rax
+----
+
+[source, nasm]
+----
+mov r9, 10
+mov rax, [r9] ; take the address from the register
 ----
 
 === Direct Memory
@@ -212,12 +223,17 @@ Use the value at the specified memory address
 
 [source, nasm]
 ----
-mov rdi, 0x172
+mov rdi, 0x172 ; not 100% sure about this
 ----
 
-== Links
-- https://www.felixcloutier.com/x86/[x86 and amd64 instruction reference]
-- https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html[intel 64 IA-32 architectures Software Developer's Manual]
+== ATT vs. Intel Syntax
+gdb uses ATT syntax by default, but you can change it to intel (nasm's syntax)
+with the command `set disassembly-flavor intel`
+
+== Base-indexed with scale and discplacement
+Most addressing modes are generalized by this mode. The address here is
+calculated based on the following components:
+
 == Change a number from little endian to big endian in C
 
 [source, c]
@@ -232,3 +248,51 @@ main(void){
     printf("%x\n", htonl(num));
 }
 ----
+
+== Strings
+To explicitly state the length of a string:
+
+[source, nasm]
+----
+db 27, 'Selling England by the Pound'
+----
+
+== Constant Precomputation
+The math in the code belows is calculated at compile time and turned into a
+constant
+
+[source, nasm]
+----
+lab: db 0
+
+mov rax, lab + 1 + 2 *3 
+----
+
+== Pointers and Differnt Addressing Types
+Pointers are 8 bytes.
+
+you need to specify operation size, when trying to write shomewhere a value
+whose size is not specified.
+
+[source, nasm]
+----
+section .data
+    test: dq -1
+section .bss
+section .text
+	global main
+main:
+   mov byte[test], 1 
+    ;mov [test], 1 ; gives an error
+   mov word[test], 1
+   mov dword[test], 1
+   mov qword[test], 1
+
+	mov  rax, 60
+	mov rdi, 0 
+	syscall
+----
+
+== Links
+- https://www.felixcloutier.com/x86/[x86 and amd64 instruction reference]
+- https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html[intel 64 IA-32 architectures Software Developer's Manual]
