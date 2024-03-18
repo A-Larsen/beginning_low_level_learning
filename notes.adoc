@@ -216,3 +216,7 @@ Use the value at the specified memory address
 ----
 mov rdi, 0x172
 ----
+
+== Links
+- https://www.felixcloutier.com/x86/[x86 and amd64 instruction reference]
+- https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html[intel 64 IA-32 architectures Software Developer's Manual]
