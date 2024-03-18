@@ -188,3 +188,30 @@ NOTE: some system calls also return values - be careful to read the docs!
 == Syscall
 syscall instructions implicitly uses rcx. System calls cannot accept more than
 six arguments.
+
+== Direct Addressing Modes
+Immediate::
+    use the specified value
+
+ex.
+
+[source, nasm]
+----
+mov rdi, 12
+----
+
+Register::
+    Use teh value in teh specified register
+
+[source, nasm]
+----
+mov rdi, rcx
+----
+
+Direct Memory::
+    Use the value at the specified memory address
+
+[source, nasm]
+----
+mov rdi, 0x172
+----
