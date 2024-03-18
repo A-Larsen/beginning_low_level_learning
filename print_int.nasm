@@ -19,6 +19,12 @@ print_int:
     ; round(log(10; num) + 1)
     ;-------------------------------------
 
+    ; or
+
+    ;-------------------------------------
+    ; count the number of times I can divide by 10 before reaching zero
+    ;-------------------------------------
+
     ; make sure to use unsigned math to floor output maybe?
     ; might try this without tail call optimization first
 
