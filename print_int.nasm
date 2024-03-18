@@ -1,5 +1,5 @@
 section .data
-    codes: db '0123456789', 10
+    codes: db '0123456789'
 
 section .text
 
@@ -9,7 +9,7 @@ print_int:
     ; to find the number in each decimal place I could use the formula
 
     ;-------------------------------------
-    ; floor(log(num / 10 ^place); 10)
+    ; floor(mod(num / 10 ^place); 10)
     ;-------------------------------------
 
     ; but I also need to find the numbers width
@@ -19,11 +19,25 @@ print_int:
     ; round(log(10; num) + 1)
     ;-------------------------------------
 
+    ; make sure to use unsigned math to floor output maybe?
+    ; might try this without tail call optimization first
+
+    ; in this case I think I need to perform my own modulo
+    ; dang forgot an easy way to get remander from a division problem
+
+    ; math for creating modulo
+    ;---------------------------------------
+    ; a / b = c
+    ; round(c) * b = d
+    ; a - d = answer
+    ;---------------------------------------
+
     xor rax, rax
     mov rbx, rdi
-    mov rax, 1
+    mov rax, 
+    mul rbx
 
-    imul rbx
+    ;imul rbx
 
     
 
@@ -33,7 +47,7 @@ iterate:
     mov rax, 1 ; 'write' syscall identifier
     mov rdi, 1 ; 'stdout' file descriptor
     mov rsi, codes ; where do we take data from
-    mov rdx, 11 ; the amount of bytes to write
+    mov rdx, 10 ; the amount of bytes to write
     syscall
 
     pop rax
