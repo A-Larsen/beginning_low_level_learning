@@ -1,0 +1,190 @@
+= Low Level learning
+
+== Looking at the opcode table
+Ex.
+
+.SAL/SHL
+[cols="1,1,1,1,1,4"]
+|===
+|----------| Instruction      | Op/En | 64-bit Mode | Compat/Leg Mode | Description
+
+| D0/4     | SAL r/m8, 1      | M1    | Valid       | valid           | Multiply r/m8 by 2, once
+
+| C1 /4 ib | SHL r/m16,imm8   | M1    | Valid       | valid           | Multiply r/m32 by 2, once
+|===
+
+
+This is an example of an opcode table that you might see, In this case I took
+this from the _Intel 64 and IA-32 Architectures software Developer's Manual_.
+"r" stands for a general purpose register, "r/m8" mean a 8 bit register, "r/m16"
+means a 16 bit register. "imm" stands for immediate value (e.g., integer
+constant like 42 or 1335).
+
+== What's the difference between the CF flag and OF flag.
+Carry Flag::
+    bits that are carried over in *UNSIGNED* integer arithmetic
+
+Overflow Flag::
+    bits that are carried over in *SIGNED* integer arithmetic
+
+== What is that D Flag
+The "D" flag determines the size of each element in the stack. It can be
+changed, but changing it can result in an unaligned stack if you are not
+careful.
+
+== L vs H in registers
+"L" is used as a mnemonic lower four bits of the last byte of a register. "H"
+is used as a mnemonic as the upper for bits of the last byte of a register. Not
+always the case, but sometimes holds true. For example, CL, is the last four
+bits of the RCX register.
+
+== Least significant vs Most significant
+less significant bits are further the the right. More signifacant bits are
+further to the right.
+
+== What does the most significant bit mean in numbers?
+It can either be a part of the bit of the number or thing it is trying to
+represent if it is a unsigned number. Or it can represent whether a number is
+"signed" or "unsigned" if it is a signed number.
+
+== Data types
+Quad Word:: 64 bits
+Double Word:: 32 bits
+Word:: 16 bits
+Byte:: 8 bits
+
+== lea vs mov
+lea:: load effective address
+mov:: load value
+
+`lea` loads a pointer to the item you're addressing wheras `mov` loads the
+actual value at that address.
+
+== Getting the address of a "variable"
+I put variable in quotes because there really isn't variables in assembly.
+
+you can put brackets around a variable to get its address.
+
+ex.
+
+[source, nasm]
+----
+lea rsi, [variable]
+----
+
+square brackets represent *indirect addressing*.
+
+== R_X vs E_X vs _X vs _H vs _L
+R_X:: all 64 bits
+E_X:: lower 32 bits
+_X:: lower 16 bits
+_H:: top 4 bits of last byte
+_L:: bottom 4 bits of last byte
+
+== How to get bits in the carry flag
+?
+
+== Main
+One file in your assembly program needs "main" defined. This seems to be defined
+in the `.text` section.
+
+[source, nasm]
+----
+section .text
+global main
+main:
+----
+
+== Labels
+- Labels look like this `<description>:`
+- Local lablels Look like this `.<description>:`
+
+If there is a local label within a global label then the full label name
+could loop like this `main.loop`. Like in this example:
+
+[source, nasm]
+----
+section .text
+global main
+main:
+    .loop
+    ; do somethings
+    jnz .loop
+
+----
+
+== What is the differnce between SAR and SHR?
+SAR sets or clears the most significant bit depending on the sign, While SHR
+just clears the most significant bit.
+
+== Jumping
+
+`cmp` sets the approriate flags. `jl` jumps if rax < 42. `jmp` jumps straight to
+the `ex` label.
+
+[source, nasm]
+----
+    cmp rax, 42
+    jl yes
+    mov rbx, 0
+    jmp ex
+yes:
+    mov rbx, 1
+ex:
+----
+
+Other::
+    1. `ja` (jump if above)/ `jb` (jump if below) for a jump after a comparison
+       of _unsigned numbers with cmp_.
+
+    2. `jg` (Jump if greater) / `jl` (jump if less) for _signed_.
+
+    3. `jae` (jump if above or equal), jle (jump if less or equal) and similar
+
+== Function Calls
+
+
+`Instruction call <address>` is the same as:
+
+[source, nasm]
+----
+push rip
+jmp <address>
+----
+
+The address is not stored in the stack (for rip contents) is called *return*
+*address*.
+
+the first size arguments are rdi, rsi, rdx, rcx, r8, and r9, respectively.
+
+`ret` instruction denotes the function end. same as `pop rip`.
+
+One should not invoke `ret` unless the stack is in exactly the same state as
+when the function started.
+
+
+Callee-saved registers::
+    must be restored by the procedure being called.
+    rbx, rbp, rsp, r12-r15
+
+Caller-saved registers::
+    Should be saved before invoking a function and restored after. All other
+    registers are caller-saved.
+
+pattern of calling a function:
+
+- Save all caller-saved registers you want to survive function call (you can use
+  push for that)
+
+- Store arguments in the relevent register (rdi, rsi, etc).
+
+- Invoke function returns, rax, will hold the return value.
+
+- Restore caller-saved registers stored before the function call.
+
+
+NOTE: some system calls also return values - be careful to read the docs!
+
+== Syscall
+syscall instructions implicitly uses rcx. System calls cannot accept more than
+six arguments.

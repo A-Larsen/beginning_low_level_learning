@@ -1,0 +1,10 @@
+== Beginning Low Level Programming
+
+== building a binary
+
+----
+make PROG=<nasm file without 'nasm' extension>
+----
+
+
+
