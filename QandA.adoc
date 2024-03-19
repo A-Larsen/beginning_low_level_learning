@@ -1,30 +1,30 @@
 == Working through Question 21
- to find the number in each decimal place I could use the formula
+to find the number in each decimal place I could use the formula
 
 ----
  floor(mod(num / 10 ^place); 10)
 ----
 
- but I also need to find the numbers width
- for that I could use the formula
+but I also need to find the numbers width
+for that I could use the formula
 
 ----
  round(log(10; num) + 1)
 ----
 
- or
+or
 
 ----
  count the number of times I can divide by 10 before reaching zero
 ----
 
- make sure to use unsigned math to floor output maybe?
- might try this without tail call optimization first
+make sure to use unsigned math to floor output maybe?
+might try this without tail call optimization first
 
- in this case I think I need to perform my own modulo
- dang forgot an easy way to get remander from a division problem
+in this case I think I need to perform my own modulo
+dang forgot an easy way to get remander from a division problem
 
- math for creating modulo
+math for creating modulo
 
 ----
  a / b = c
