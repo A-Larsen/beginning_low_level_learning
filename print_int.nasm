@@ -17,6 +17,7 @@ print_int: ; function
     mov r9, rdi
     sub r9, rax ; answer in r9
 
+    ; get character
     push rdi
     mov rax, 1 ; 'write' syscall
     mov rdi, 1 ; stdout file description
@@ -37,6 +38,13 @@ print_int: ; function
 
     jnz .loop
 
+    ; print newline
+    mov rax, 1 ; 'write' syscall
+    mov rdi, 1 ; stdout file description
+    lea rsi, 10
+    mov rdx, 1
+    syscall
+
     xor rax, rax ; return rax to it's previous state
     xor rsi, rsi
 
@@ -48,5 +56,5 @@ main:
     call print_int
 
     mov rax, 60
-    xor rsi, rsi
+    xor rdi, rdi
     syscall
