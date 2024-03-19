@@ -1,5 +1,5 @@
 executatble: binary
-	gcc -o $(PROG) $(PROG).o -no-pie
+	gcc -g -o $(PROG) $(PROG).o -no-pie
 
 binary: $(PROG).nasm
 	nasm -f elf64 -g -F dwarf $(PROG).nasm

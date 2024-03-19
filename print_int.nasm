@@ -5,16 +5,31 @@ section .text
 
 global main
 
-main:
+print_int: ; function
+    ; need to keep dividing until rdi is zero
 
-    ; Because the  dividend is RDX:RAX, we need to clear RDX and RAX
+.loop:
     xor rdx, rdx
-    xor rax, rax
 
-    mov rax, 10 ; dividend (top)
-    mov rcx, 5 ; divisor (bottom)
-    div rcx  ; result is stored in RDX:RAX
-    mov rdi, rax ; returning the result as a exit number
+    mov rax, rdi ; dividend (top)
+    mov rdi, 10 ; divisor (bottom)
+    div rdi 
+    mov rdi, rax ; result in rdi
+    cmp rdi, 0
+
+    ; now I'm going to print something off to see if the loop is working correct
+
+    jnz .loop
+
+
+
+    xor rax, rax ; return rax to it's previous state
+    ret
+
+main:
+    mov rdi, 123
+    call print_int
 
     mov rax, 60
+    ;mov rdi, 4
     syscall

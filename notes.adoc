@@ -387,10 +387,14 @@ mov rcx, 5 ; divisor (bottom)
 div rcx  ; result is stored in RDX:RAX
 mov rdi, rax ; returning the result as a exit number
 
-mov rax, 60
+mov rax, 60 ; exit syscall
 syscall
 ----
+
+== NASM and gdb
+?
 
 == Links
 - https://www.felixcloutier.com/x86/[x86 and amd64 instruction reference]
 - https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html[intel 64 IA-32 architectures Software Developer's Manual]
+- https://redirect.cs.umbc.edu/portal/help/nasm/nasm.shtml[nasm and gdb]
