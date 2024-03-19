@@ -1,6 +1,6 @@
 = Low Level learning
 
-== Looking at the opcode table
+== Looking at the Intruction table
 Ex.
 
 .SAL/SHL
@@ -14,7 +14,7 @@ Ex.
 |===
 
 
-This is an example of an opcode table that you might see, In this case I took
+This is an example of an instruction table that you might see, In this case I took
 this from the _Intel 64 and IA-32 Architectures software Developer's Manual_.
 "r" stands for a general purpose register, "r/m8" mean a 8 bit register, "r/m16"
 means a 16 bit register. "imm" stands for immediate value (e.g., integer
@@ -373,6 +373,23 @@ registers.
 Divids unsigned the value in the AX, DX:AX, EDX:EAX, or RDX:RAX registers
 (dividend) by the source operand (divisor) and stores the result in AX (AH:AL),
 DX:AX, EDX:EAX, or RDX:RAX register
+
+example:
+
+[source, nasm]
+----
+; Because the  dividend is RDX:RAX, we need to clear RDX and RAX
+xor rdx, rdx
+xor rax, rax
+
+mov rax, 10 ; dividend (top)
+mov rcx, 5 ; divisor (bottom)
+div rcx  ; result is stored in RDX:RAX
+mov rdi, rax ; returning the result as a exit number
+
+mov rax, 60
+syscall
+----
 
 == Links
 - https://www.felixcloutier.com/x86/[x86 and amd64 instruction reference]
