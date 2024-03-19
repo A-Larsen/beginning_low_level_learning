@@ -5,17 +5,9 @@ section .text
 
 global main
 
-
-
 ; one argument of rdi
 print_int: ; function
-    ; need to keep dividing until rdi is zero
-
-; rsi was only used to test how many times loop iterated
-
-    ;mov rcx, rdi ; rcx is the number we are using
 .loop:
-
     ; modulo
     xor rdx, rdx
     mov rax, rdi ; dividend (top)
@@ -45,10 +37,9 @@ print_int: ; function
 
     jnz .loop
 
-
-
     xor rax, rax ; return rax to it's previous state
     xor rsi, rsi
+
     ret
 
 main:
