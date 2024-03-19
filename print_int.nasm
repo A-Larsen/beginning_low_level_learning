@@ -53,7 +53,7 @@ print_int: ; function
 
 main:
     ; dang, works but it's backwords
-    mov rdi, 1434
+    mov rdi, 5495
     call print_int
 
     mov rax, 60
