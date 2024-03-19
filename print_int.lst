@@ -1,0 +1,55 @@
+     1                                  section .data
+     2 00000000 303132333435363738-         codes: db '0123456789'
+     2 00000009 39                 
+     3                                  
+     4                                  section .text
+     5                                  
+     6                                  global main
+     7                                  
+     8                                  
+     9                                  
+    10                                  ; one argument of rdi
+    11                                  print_int: ; function
+    12                                      ; need to keep dividing until rdi is zero
+    13                                  
+    14                                  ; rsi was only used to test how many times loop iterated
+    15                                  
+    16 00000000 4889F9                      mov rcx, rdi ; rcx is the number we are using
+    17                                  .loop:
+    18                                  
+    19                                      ; modulo
+    20 00000003 4831D2                      xor rdx, rdx
+    21 00000006 4889C8                      mov rax, rcx ; dividend (top)
+    22 00000009 41B80A000000                mov r8, 10 ; divisor (bottom)
+    23 0000000F 49F7F0                      div r8
+    24 00000012 49F7E0                      mul r8 ; rax * r8, result i n edx:eax
+    25 00000015 4989C9                      mov r9, rcx
+    26 00000018 4C29C8                      sub rax, r9 ; answer in rax
+    27                                  
+    28                                      ; keep dividing by 10
+    29 0000001B 4831D2                      xor rdx, rdx
+    30 0000001E 4889F8                      mov rax, rdi ; dividend (top)
+    31 00000021 BF0A000000                  mov rdi, 10 ; divisor (bottom)
+    32 00000026 48F7F7                      div rdi 
+    33 00000029 4889C7                      mov rdi, rax ; result in rdi
+    34                                      ;inc rsi
+    35                                  
+    36                                  
+    37 0000002C 4885FF                      test rdi, rdi
+    38                                  
+    39 0000002F 75D2                        jnz .loop
+    40                                  
+    41                                  
+    42                                  
+    43 00000031 4831C0                      xor rax, rax ; return rax to it's previous state
+    44                                      ;xor rsi, rsi
+    45 00000034 C3                          ret
+    46                                  
+    47                                  main:
+    48 00000035 BF7B000000                  mov rdi, 123
+    49                                      ;mov rsi, 0
+    50 0000003A E8C1FFFFFF                  call print_int
+    51                                  
+    52 0000003F B83C000000                  mov rax, 60
+    53                                      ;mov rdi,rsi
+    54 00000044 0F05                        syscall
