@@ -1,10 +1,10 @@
 executatble: binary
-	gcc -o $(PROG) $(PROG).o
-	#gcc -o $(PROG) $(PROG).o -no-pie
+	#gcc -o $(PROG) $(PROG).o
+	gcc -o $(PROG) $(PROG).o -no-pie
 
 binary: $(PROG).nasm
-	nasm -f elf64 -g -l $(PROG).lst $(PROG).nasm
-	#nasm -f elf64 -g -F dwarf $(PROG).nasm
+	nasm -f elf64 -g -F dwarf $(PROG).nasm
+	#nasm -f elf64 -g -l $(PROG).lst $(PROG).nasm
 
 clean:
 	rm -rf *.o

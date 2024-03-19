@@ -13,17 +13,26 @@ print_int: ; function
 
 ; rsi was only used to test how many times loop iterated
 
-    mov rcx, rdi ; rcx is the number we are using
+    ;mov rcx, rdi ; rcx is the number we are using
 .loop:
 
     ; modulo
     xor rdx, rdx
-    mov rax, rcx ; dividend (top)
+    mov rax, rdi ; dividend (top)
     mov r8, 10 ; divisor (bottom)
     div r8
-    mul r8 ; rax * r8, result i n edx:eax
-    mov r9, rcx
-    sub rax, r9 ; answer in rax
+    mul r8 ; rax * r8, result i n edx:rax
+    mov r9, rdi
+    sub r9, rax ; answer in r9
+
+    push rdi
+    mov rax, 1 ; 'write' syscall
+    mov rdi, 1 ; stdout file description
+    lea rsi, [codes + r9]
+    mov rdx, 1
+    syscall
+
+    pop rdi
 
     ; keep dividing by 10
     xor rdx, rdx
@@ -31,8 +40,6 @@ print_int: ; function
     mov rdi, 10 ; divisor (bottom)
     div rdi 
     mov rdi, rax ; result in rdi
-    ;inc rsi
-
 
     test rdi, rdi
 
@@ -41,14 +48,14 @@ print_int: ; function
 
 
     xor rax, rax ; return rax to it's previous state
-    ;xor rsi, rsi
+    xor rsi, rsi
     ret
 
 main:
-    mov rdi, 123
-    ;mov rsi, 0
+    ; dang, works but it's backwords
+    mov rdi, 1434
     call print_int
 
     mov rax, 60
-    ;mov rdi,rsi
+    xor rsi, rsi
     syscall
