@@ -1,3 +1,6 @@
+inline_assembly: inline_assembly.c
+	gcc -o inline_assembly inline_assembly.c
+
 executatble: binary
 	#gcc -o $(PROG) $(PROG).o
 	gcc -o $(PROG) $(PROG).o -no-pie
