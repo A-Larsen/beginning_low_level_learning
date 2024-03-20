@@ -405,3 +405,4 @@ syscall
 - https://redirect.cs.umbc.edu/portal/help/nasm/nasm.shtml[nasm and gdb]
 - https://refspecs.linuxfoundation.org/elf/x86_64-abi-0.99.pdf[System V Application Binary Interface AMD64]
 - https://electronicsreference.com/assembly-language/linux_syscalls/[linux syscalls]
+- https://blog.packagecloud.io/the-definitive-guide-to-linux-system-calls/[more on linux syscalls]
