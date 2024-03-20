@@ -1,3 +1,7 @@
+; QUESTIONS:
+; - what is EDX:EAX ? I though the colon just represented offset
+; - why does syscall change rcx ?
+
 section .data
     codes: db '0123456789'
     temp: times 10 db 0
