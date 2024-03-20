@@ -7,7 +7,7 @@ binary: $(PROG).nasm
 	#nasm -f elf64 -g -l $(PROG).lst $(PROG).nasm
 
 clean:
-	rm -rf *.o
+	rm -rf *.o *.lst
 	rm -rf $(shell  find . -maxdepth 1 -type f -executable)
 
 .PHONY: clean
