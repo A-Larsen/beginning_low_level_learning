@@ -56,6 +56,7 @@ I can look through C's https://en.wikibooks.org/wiki/C_Programming/stdlib.h/itoa
 
 == Q and A
 
+
 A19::
     r13 is not cleared before it is used and could return junk values
 
@@ -64,4 +65,10 @@ Q21::
     code: Hint read about tail call optimization
 
 A21::
+    look at question_print_int.nasm
 
+Q33::
+    What is a label and does it have a size?
+
+A33::
+    labels are address. The size is 8 bytes because pointers

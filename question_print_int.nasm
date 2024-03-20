@@ -20,7 +20,7 @@ print_int: ; function
     mov rax, rdi ; dividend (top)
     mov rbx, 10 ; divisor (bottom)
     div rbx
-    mul rbx ; rax * r8, result i n edx:rax
+    mul rbx ; rax * rbx, result i n edx:rax
     mov rbx, rdi
     sub rbx, rax ; answer in rbx
 
@@ -46,7 +46,6 @@ print_int: ; function
     lea rax, [temp + rcx]
     mov rsi, rax
     
-    mov rsi, rax
     mov rax, 1 ; 'write' syscall
     mov rdi, 1 ; stdout file description
 

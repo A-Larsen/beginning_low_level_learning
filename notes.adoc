@@ -192,6 +192,8 @@ similar), together with their numbers (the value to put in EAX before you call
 int 80h). In ubuntu I found the file in
 _/usr/include/x86_64-linux-gnu/asm/unistd_64.h_.
 
+You can checkout `man syscalls` on links to lookup a syscall.
+
 
 == Different Addressing types
 
