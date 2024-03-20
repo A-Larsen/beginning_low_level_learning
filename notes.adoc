@@ -391,6 +391,9 @@ mov rax, 60 ; exit syscall
 syscall
 ----
 
+== EDX:EAX ??
+?
+
 == NASM and gdb
 ?
 
