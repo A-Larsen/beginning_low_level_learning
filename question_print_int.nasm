@@ -8,19 +8,20 @@ global main
 
 ; one argument of rdi
 print_int: ; function
-
+    push rbx
     xor rcx, rcx
 .loop:
     ; modulo
     xor rdx, rdx
     mov rax, rdi ; dividend (top)
-    mov r8, 10 ; divisor (bottom)
-    div r8
-    mul r8 ; rax * r8, result i n edx:rax
-    mov r9, rdi
-    sub r9, rax ; answer in r9
+    mov rbx, 10 ; divisor (bottom)
+    div rbx
+    mul rbx ; rax * r8, result i n edx:rax
+    mov rbx, rdi
+    sub rbx, rax ; answer in rbx
 
-    mov rax, [codes + r9]
+    ; store value 1 btyte of `codes` somewhere in temp
+    mov rax, [codes + rbx]
     mov qword [temp + rcx], rax
     inc rcx
 
@@ -35,7 +36,6 @@ print_int: ; function
     jnz .loop
 
 .reverse:
-
     dec rcx
 
     push rcx
@@ -59,16 +59,12 @@ print_int: ; function
     mov rdx, 1
     syscall
 
-    xor rax, rax ; return rax to it's previous state
-    xor rsi, rsi
-
+    pop rbx
     ret
 
 main:
-    ; dang, works but it's backwords
     mov rdi, 5495
     call print_int
-
 
     mov rax, 60
     xor rdi, rdi
