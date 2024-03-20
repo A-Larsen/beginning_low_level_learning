@@ -406,3 +406,4 @@ syscall
 - https://refspecs.linuxfoundation.org/elf/x86_64-abi-0.99.pdf[System V Application Binary Interface AMD64]
 - https://electronicsreference.com/assembly-language/linux_syscalls/[linux syscalls]
 - https://blog.packagecloud.io/the-definitive-guide-to-linux-system-calls/[more on linux syscalls]
+- https://github.com/torvalds/linux/blob/v3.13/arch/x86/syscalls/syscall_32.tbl[linux source code syscall table]
