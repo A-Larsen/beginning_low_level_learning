@@ -53,10 +53,7 @@ I can look through C's https://en.wikibooks.org/wiki/C_Programming/stdlib.h/itoa
  }
 ----
 
-
 == Q and A
-
-
 A19::
     r13 is not cleared before it is used and could return junk values
 
@@ -72,3 +69,22 @@ Q33::
 
 A33::
     labels are address. The size is 8 bytes because pointers
+
+Q45::
+    Decipher this selector: 0x08
+
+A45::
+    From
+    https://en.wikipedia.org/wiki/X86_memory_segmentation[X86_memory_segmentation]:
+
+[quote, X86_memory_segmentation wikipedia]
+----
+ ...The actual location of the beginning of a segment in the linear address
+ space can be calculated with segment×16...
+----
+
+[quote, X86_memory_segmentation wikipedia]
+----
+Each segment begins at a multiple of 16 bytes, called a paragraph, from the
+beginning of the linear (flat) address space...
+----

@@ -408,7 +408,6 @@ syscall
 - https://blog.packagecloud.io/the-definitive-guide-to-linux-system-calls/[more on linux syscalls]
 - https://github.com/torvalds/linux/blob/v3.13/arch/x86/syscalls/syscall_32.tbl[linux source code syscall table]
 
-
 == Books
 
 - "Learn to Program with Assembly by Jonathan Bartlett"
