@@ -455,3 +455,4 @@ mov dword [fs:eax], 42
     * learning AT&T syntax with GNU assembler
 
 - "Low-Level Programming by Igor Zhirkov" 
+    * intel syntax
