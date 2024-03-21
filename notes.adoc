@@ -416,6 +416,39 @@ register, however this is a privileged operation in order to enforce security
 and robustness"
 -- X86_memory_segmentation, Wikipedia
 
+== Segment Registers
+
+Logical addresses can be explicitly specified in *x86 assembly language
+
+[source, asm]
+----
+movl $42, %fs:(%eax)  ; Equivalent to M[fs:eax]<-42) in RTL
+----
+
+or in intel syntax
+
+[source, nasm]
+----
+mov dword [fs:eax], 42
+----
+
+- All CPU instructions are implicitly fetched from the code segment specified by
+  the segment selector held in the CS register.
+
+- Most memory references come from the data segment specified by the segment
+  selector held in the DS register. These may also come from the extra segment
+  specified by the segment selector held in the ES register, if a
+  segment-override prefix precedes the instruction that makes the memory
+  reference. Most, but not all, instructions that use DS by default will accept
+  an ES override prefix.
+
+- Processor stack references, either implicitly (e.g. push and pop instructions)
+  or explicitly (memory accesses using the (E)SP or (E)BP registers) use the
+  stack segment specified by the segment selector held in the SS register.
+
+- String instructions (e.g. stos, movs), along with data segment, also use the
+  extra segment specified by the segment selector held in the ES register.
+
 == Books
 
 - "Learn to Program with Assembly by Jonathan Bartlett"
