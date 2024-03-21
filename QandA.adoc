@@ -74,14 +74,19 @@ Q45::
     Decipher this selector: 0x08
 
 A45::
+- https://en.wikipedia.org/wiki/X86_memory_segmentation#Protected_mode
+- https://en.wikipedia.org/wiki/Segment_descriptor
+
+
+== Other
     From
     https://en.wikipedia.org/wiki/X86_memory_segmentation[X86_memory_segmentation]:
 
 
-> ...The actual location of the beginning of a segment in the linear address
-> space can be calculated with segment×16...
-> -- X86_memory_segmentation wikipedia
+"...The actual location of the beginning of a segment in the linear address
+ space can be calculated with segment×16..."
+-- X86_memory_segmentation, wikipedia
 
-> Each segment begins at a multiple of 16 bytes, called a paragraph, from the
-> beginning of the linear (flat) address space...
-> -- X86_memory_segmentation wikipedia
+"Each segment begins at a multiple of 16 bytes, called a paragraph, from the
+beginning of the linear (flat) address space..."
+-- X86_memory_segmentation, wikipedia
