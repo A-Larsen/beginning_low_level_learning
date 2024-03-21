@@ -438,24 +438,28 @@ or in intel syntax
 mov dword [fs:eax], 42
 ----
 
-- All CPU instructions are implicitly fetched from the code segment specified by
-  the segment selector held in the CS register.
+* What data is in each segment
+    - All CPU instructions are implicitly fetched from the code segment
+      specified by the segment selector held in the CS register.
 
-- Most memory references come from the data segment specified by the segment
-  selector held in the DS register. These may also come from the extra segment
-  specified by the segment selector held in the ES register, if a
-  segment-override prefix precedes the instruction that makes the memory
-  reference. Most, but not all, instructions that use DS by default will accept
-  an ES override prefix.
+    - Most memory references come from the data segment specified by the segment
+      selector held in the DS register. These may also come from the extra
+      segment specified by the segment selector held in the ES register, if a
+      segment-override prefix precedes the instruction that makes the memory
+      reference. Most, but not all, instructions that use DS by default will
+      accept an ES override prefix.
 
-- Processor stack references, either implicitly (e.g. push and pop instructions)
-  or explicitly (memory accesses using the (E)SP or (E)BP registers) use the
-  stack segment specified by the segment selector held in the SS register.
+    - Processor stack references, either implicitly (e.g. push and pop
+      instructions) or explicitly (memory accesses using the (E)SP or (E)BP
+      registers) use the stack segment specified by the segment selector held in
+      the SS register.
 
-- String instructions (e.g. stos, movs), along with data segment, also use the
-  extra segment specified by the segment selector held in the ES register.
+    - String instructions (e.g. stos, movs), along with data segment, also use
+      the extra segment specified by the segment selector held in the ES
+      register.
 
-- mov is used to manipulate data, so the address is relative to the data segment
+    - mov is used to manipulate data, so the address is relative to the data
+      segment
 
 == Books
 
