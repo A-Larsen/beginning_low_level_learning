@@ -411,6 +411,21 @@ and robustness"
 
 Logical addresses can be explicitly specified in *x86 assembly language
 
+all segments have a base of zero
+
+In protected mode, code may always modify all segment registers except CS (the
+code segment selector). This is because the current privilege level (CPL) of the
+processor is stored in the lower 2 bits of the CS register
+
+The only ways to raise the processor privilege level (and reload CS) are through
+the lcall (far call) and int (interrupt) instructions. Similarly, the only ways
+to lower the privilege level (and reload CS) are through lret (far return) and
+iret (interrupt return) instructions. In real mode, code may also modify the CS
+register by making a far jump (or using an undocumented POP CS instruction on
+the 8086 or 8088).[4] Of course, in real mode, there are no privilege levels;
+all programs have absolute unchecked access to all of memory and all CPU
+instructions
+
 [source, asm]
 ----
 movl $42, %fs:(%eax)  ; Equivalent to M[fs:eax]<-42) in RTL
