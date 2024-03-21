@@ -399,15 +399,6 @@ syscall
 == NASM and gdb
 ?
 
-== Links
-- https://www.felixcloutier.com/x86/[x86 and amd64 instruction reference]
-- https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html[intel 64 IA-32 architectures Software Developer's Manual]
-- https://redirect.cs.umbc.edu/portal/help/nasm/nasm.shtml[nasm and gdb]
-- https://refspecs.linuxfoundation.org/elf/x86_64-abi-0.99.pdf[System V Application Binary Interface AMD64]
-- https://electronicsreference.com/assembly-language/linux_syscalls/[linux syscalls]
-- https://blog.packagecloud.io/the-definitive-guide-to-linux-system-calls/[more on linux syscalls]
-- https://github.com/torvalds/linux/blob/v3.13/arch/x86/syscalls/syscall_32.tbl[linux source code syscall table]
-
 == Real vs Protected vs long Mode
 - https://en.wikipedia.org/wiki/X86_memory_segmentation
 
@@ -456,3 +447,13 @@ mov dword [fs:eax], 42
 
 - "Low-Level Programming by Igor Zhirkov" 
     * intel syntax
+
+== Links
+- https://www.felixcloutier.com/x86/[x86 and amd64 instruction reference]
+- https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html[intel 64 IA-32 architectures Software Developer's Manual]
+- https://redirect.cs.umbc.edu/portal/help/nasm/nasm.shtml[nasm and gdb]
+- https://refspecs.linuxfoundation.org/elf/x86_64-abi-0.99.pdf[System V Application Binary Interface AMD64]
+- https://electronicsreference.com/assembly-language/linux_syscalls/[linux syscalls]
+- https://blog.packagecloud.io/the-definitive-guide-to-linux-system-calls/[more on linux syscalls]
+- https://github.com/torvalds/linux/blob/v3.13/arch/x86/syscalls/syscall_32.tbl[linux source code syscall table]
+
