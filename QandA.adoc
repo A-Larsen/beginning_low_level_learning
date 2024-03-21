@@ -76,7 +76,7 @@ Q45::
 A45::
 - https://en.wikipedia.org/wiki/X86_memory_segmentation#Protected_mode
 - https://en.wikipedia.org/wiki/Segment_descriptor
-
+this is the A flag, and it determines if the memory was accessed
 
 == Other
     From
