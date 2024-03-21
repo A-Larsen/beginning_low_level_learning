@@ -80,8 +80,9 @@ A45::
 
 "...The actual location of the beginning of a segment in the linear address
  space can be calculated with segment×16..."
--- X86_memory_segmentation, wikipedia
+-- X86_memory_segmentation wikipedia
+
 
 "Each segment begins at a multiple of 16 bytes, called a paragraph, from the
 beginning of the linear (flat) address space..."
--- X86_memory_segmentation, wikipedia
+-- X86_memory_segmentation wikipedia
