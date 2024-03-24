@@ -195,6 +195,13 @@ _L:: bottom 4 bits of last byte
 | Overflow | OF     | 11  | Previous instruction resulted in overflow
 |===
 
+=== Instruction Pointer Register (rip)
+The processor keeps trakc of the next instruction to be executed by storing the
+address of the next instruction in rip.
+
+=== xmm and ymm Registers
+These registers are used for floating-point calculations and SIMD.
+
 
 == How to get bits in the carry flag
 ?
