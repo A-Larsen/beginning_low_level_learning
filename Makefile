@@ -1,13 +1,11 @@
-inline_assembly: inline_assembly.c
-	gcc -o inline_assembly inline_assembly.c
-
 executatble: binary
-	#gcc -o $(PROG) $(PROG).o
 	gcc -o $(PROG) $(PROG).o -no-pie
 
 binary: $(PROG).nasm
 	nasm -f elf64 -g -F dwarf $(PROG).nasm
-	#nasm -f elf64 -g -l $(PROG).lst $(PROG).nasm
+
+inline_assembly: inline_assembly.c
+	gcc -o inline_assembly inline_assembly.c
 
 clean:
 	rm -rf *.o *.lst

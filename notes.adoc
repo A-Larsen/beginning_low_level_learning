@@ -538,7 +538,7 @@ disassemble <function name>
 * **function name** - can be the name of any function (i.e main)
 
 
-=== Finding Immediate value
+=== Finding Immediate / registers / label values
 If you have
 
 [source, nasm]
@@ -571,12 +571,16 @@ You can see what is inside the memory address `0x404028` with
 
 As you can see that is the address is where `msg` is located
 
-NOTE: checkout `(gdb) help x`
+* **get register value** -> `(gdb) x/s $rax`
+* **get register value** -> `(gdb) p $rax`
+* **get label value** -> `(gdb) x/s &codes`
+* **get label value** -> `(gdb) p &codes`
+* **x/s** -> output string
+* **x/c** -> output character
+* **x/13c** -> output 13 characters
+* **x/13d** -> output 13 characters in decimal representation
 
-* **x/s** - output string
-* **x/c** -output character
-* **x/13c** -output 13 characters
-* **x/13d** -output 13 characters in decimal representation
+NOTE: checkout `(gdb) help x`
 
 === TUI
 [source, gdb]
