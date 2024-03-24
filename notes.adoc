@@ -519,7 +519,57 @@ syscall
 ?
 
 == NASM and gdb
-?
+
+=== Flavor
+
+to set dissasembly flavor to intel instead of AT&T:
+
+[source, gdb]
+----
+set disassembly-flavor intel
+----
+
+=== Dissassembly a function
+
+[source, gdb]
+----
+disassemble main
+----
+
+
+=== Finding Immediate value
+If you have
+
+[source, nasm]
+----
+msg db "hello, world", 10, 0
+----
+
+In the `.data` section and use it later with
+
+[source, nasm]
+----
+mov rsi, msg
+----
+
+The output of `dissassembly <function nam>` might look something like this
+
+[source, nasm]
+----
+0x000000000040111a <+10>:    movabs rsi,0x404028
+----
+
+You can see what is insdide the memory address `0x404028` with
+
+[source, gdb]
+----
+(gdb) x/s 0x404028
+0x404028 <msg>: "hello, world\n"
+----
+
+As you can see that address is where `msg` is located
+
+
 
 == Real vs Protected vs long Mode
 - https://en.wikipedia.org/wiki/X86_memory_segmentation
