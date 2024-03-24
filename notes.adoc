@@ -478,7 +478,7 @@ mov dword [fs:eax], 42
 The `-f` is follow by the output format, in our case elf64, which means
 Executable and Linkable Format for 64-bit. The `-g` mains that we include debug
 information in a debug format specified adter the `-F` option. We use dwarf
-debug format. The `-l` tells NASm to generate a _.lst_ file. Nasm will create an
+debug format. The `-l` tells NASM to generate a _.lst_ file. Nasm will create an
 object file with a _.o_ extension. That object file is used by the linker.
 
 DWARF::
