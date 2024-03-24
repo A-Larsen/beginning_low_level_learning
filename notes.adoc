@@ -533,8 +533,10 @@ set disassembly-flavor intel
 
 [source, gdb]
 ----
-disassemble main
+disassemble <function name>
 ----
+
+* **function name** - can be the name of any function (i.e main)
 
 
 === Finding Immediate value
