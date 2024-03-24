@@ -570,16 +570,14 @@ You can see what is inside the memory address `0x404028` with
 0x404028 <msg>: "hello, world\n"
 ----
 
+As you can see that is the address is where `msg` is located
+
 NOTE: checkout `(gdb) help x`
 
 * **x/s** - output string
 * **x/c** -output character
 * **x/13c** -output 13 characters
 * **x/13d** -output 13 characters in decimal representation
-
-As you can see that is the address is where `msg` is located
-
-
 
 == Real vs Protected vs long Mode
 - https://en.wikipedia.org/wiki/X86_memory_segmentation
