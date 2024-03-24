@@ -617,6 +617,12 @@ end
 $ gdb -x next_asm.gdb <executable>
 ----
 
+=== Step out of function
+[source, gdb]
+----
+(gdb) finish
+----
+
 
 == Real vs Protected vs long Mode
 - https://en.wikipedia.org/wiki/X86_memory_segmentation
