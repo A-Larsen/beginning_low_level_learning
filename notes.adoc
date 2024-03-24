@@ -599,6 +599,18 @@ instruction memory (e.g., code size, alignment).
 - Long Mode
     * Virtual memory
 
+== Memory Addresses
+If you look at this _.lst_ file you can see the each memory address (second
+column) has 8 hexadecimal digits meaning that there are 64 bits per instruction.
+This is because we are using 64 bit assembler.
+
+.\.lst file
+[code, lst]
+----
+    11 00000000 B801000000                  mov rax, 1
+    12 00000005 BF01000000                  mov rdi, 1
+----
+
 == Books
 - "Learn to Program with Assembly by Jonathan Bartlett"
     * learning AT&T syntax with GNU assembler
