@@ -20,9 +20,8 @@ this from the _Intel 64 and IA-32 Architectures software Developer's Manual_.
 means a 16 bit register. "imm" stands for immediate value (e.g., integer
 constant like 42 or 1335).
 
-NOTE:
-    Look at Intel 64 and IA-32 Architectures Software Developer's Manual page
-    2839
+NOTE: Look at Intel 64 and IA-32 Architectures Software Developer's Manual page
+      2839
 
 == What's the difference between the CF flag and OF flag.
 Carry Flag::
