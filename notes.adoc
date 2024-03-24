@@ -491,6 +491,20 @@ The x86-64 ISA includes several no-op (no operation) instructions, including
 nothing, but do set the rflags. The main reason for no-ops is to optimize
 instruction memory (e.g., code size, alignment).
 
+== Modes
+- Real mode (the most ancient, 16-bit)
+    * Computer is booted into this mode
+    * Can access pretty much any memory location
+    * No virtual memory
+- Protected (commonly referred as 32-bit one)
+    * Virtual memory
+    * Protection rings
+    * Improved segmentation
+- Virtual (to emulate real mode inside protected)
+- System management mode (for sleep mode, power management, etc)
+- Long Mode
+    * Virtual memory
+
 == Books
 - "Learn to Program with Assembly by Jonathan Bartlett"
     * learning AT&T syntax with GNU assembler
