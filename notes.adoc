@@ -473,6 +473,26 @@ mov dword [fs:eax], 42
 - "Low-Level Programming by Igor Zhirkov" 
     * intel syntax
 
+== Compiling and Linking
+=== Makefile
+The `-f` is follow by the output format, in our case elf64, which means
+Executable and Linkable Format for 64-bit. The `-g` mains that we include debug
+information in a debug format specified adter the `-F` option. We use dwarf
+debug format. The `-l` tells NASm to generate a _.lst_ file. Nasm will create an
+object file with a _.o_ extension. That object file is used by the linker.
+
+DWARF::
+    Debug With **A**rbitrary **R**ecord **F**ormat
+
+STABS::
+    Debug with **S**ymbol **T**able **S**trings.
+
+elf64::
+    Executable and linkable Format for 64-bit
+
+PIE::
+    **P**osition-**I**ndependant **E**xecutables
+
 == Links
 - https://www.felixcloutier.com/x86/[x86 and amd64 instruction reference]
 - https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html[intel 64 IA-32 architectures Software Developer's Manual]
