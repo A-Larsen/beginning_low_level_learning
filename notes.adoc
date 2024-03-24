@@ -554,14 +554,14 @@ In the `.data` section and use it later with
 mov rsi, msg
 ----
 
-The output of `dissassembly <function nam>` might look something like this
+The output of `dissassembly <function name>` might look something like this
 
 [source, nasm]
 ----
 0x000000000040111a <+10>:    movabs rsi,0x404028
 ----
 
-You can see what is insdide the memory address `0x404028` with
+You can see what is inside the memory address `0x404028` with
 
 [source, gdb]
 ----
@@ -569,7 +569,7 @@ You can see what is insdide the memory address `0x404028` with
 0x404028 <msg>: "hello, world\n"
 ----
 
-As you can see that address is where `msg` is located
+As you can see that is the address is where `msg` is located
 
 
 
