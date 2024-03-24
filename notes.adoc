@@ -608,9 +608,9 @@ disassemble
 end
 ----
 
-[source, gdb]
+[source, sh]
 ----
-gdb -x next_asm.gdb <executable>
+$ gdb -x next_asm.gdb <executable>
 ----
 
 
