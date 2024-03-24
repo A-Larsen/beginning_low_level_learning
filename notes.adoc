@@ -493,6 +493,12 @@ elf64::
 PIE::
     **P**osition-**I**ndependant **E**xecutables
 
+== NO-OP
+The x86-64 ISA includes several no-op (no operation) instructions, including
+`nop`, `nop A,` (no-op with an argument), and `data16`. No-ops do pretty much
+nothing, but do set the rflags. The main reason for no-ops is to optimize
+instruction memory (e.g., code size, alignment).
+
 == Links
 - https://www.felixcloutier.com/x86/[x86 and amd64 instruction reference]
 - https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html[intel 64 IA-32 architectures Software Developer's Manual]
