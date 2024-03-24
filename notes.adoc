@@ -581,9 +581,9 @@ NOTE: checkout `(gdb) help x`
 
 === TUI
 [source, gdb]
----
+----
 (gdb) tui <enable/disable>
----
+----
 
 == Real vs Protected vs long Mode
 - https://en.wikipedia.org/wiki/X86_memory_segmentation
