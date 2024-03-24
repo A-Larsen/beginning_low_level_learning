@@ -519,7 +519,6 @@ syscall
 ?
 
 == NASM and gdb
-
 === Flavor
 
 to set dissasembly flavor to intel instead of AT&T:
@@ -584,6 +583,36 @@ NOTE: checkout `(gdb) help x`
 ----
 (gdb) tui <enable/disable>
 ----
+
+=== Registers
+[source, gdb]
+----
+(gdb) info registers
+----
+
+=== Source code
+[source, gdb]
+----
+(gdb) list <nothing or line number>
+----
+
+=== Steping through Instructions
+.next_asm.gdb
+[source, gdb]
+----
+set language asm
+set disassembly-flavor intel
+define asm_next
+nexti
+disassemble
+end
+----
+
+[source, gdb]
+----
+gdb -x next_asm.gdb <executable>
+----
+
 
 == Real vs Protected vs long Mode
 - https://en.wikipedia.org/wiki/X86_memory_segmentation
@@ -715,3 +744,4 @@ This is because we are using 64 bit assembler.
 - https://blog.packagecloud.io/the-definitive-guide-to-linux-system-calls/[more on linux syscalls]
 - https://github.com/torvalds/linux/blob/v3.13/arch/x86/syscalls/syscall_32.tbl[linux source code syscall table]
 - https://stackoverflow.com/questions/15017659/how-to-read-the-intel-opcode-notation[op code notation]
+- https://stackoverflow.com/questions/10684468/missing-debugging-information-with-gdb-and-nasm[debugging asm_next script nasm and gdb]
