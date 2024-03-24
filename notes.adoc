@@ -554,7 +554,8 @@ In the `.data` section and use it later with
 mov rsi, msg
 ----
 
-The output of `dissassembly <function name>` might look something like this
+The output of `(gdb) dissassembly <function name>` might look something like
+this
 
 [source, nasm]
 ----
@@ -568,6 +569,13 @@ You can see what is inside the memory address `0x404028` with
 (gdb) x/s 0x404028
 0x404028 <msg>: "hello, world\n"
 ----
+
+NOTE: checkout `(gdb) help x`
+
+* **x/s** - output string
+* **x/c** -output character
+* **x/13c** -output 13 characters
+* **x/13d** -output 13 characters in decimal representation
 
 As you can see that is the address is where `msg` is located
 
