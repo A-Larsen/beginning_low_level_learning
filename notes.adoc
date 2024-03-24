@@ -51,10 +51,15 @@ represent if it is a unsigned number. Or it can represent whether a number is
 "signed" or "unsigned" if it is a signed number.
 
 == Data types
-Quad Word:: 64 bits
-Double Word:: 32 bits
-Word:: 16 bits
-Byte:: 8 bits
+
+.datatypes
+|===
+| Type | Length  | Name
+| db   | 8 bits  | Byte
+| dw   | 16 bits | Word
+| dd   | 32 bits | Double Word
+| dq   | 64 bits | Quadword
+|===
 
 == lea vs mov
 lea:: load effective address
