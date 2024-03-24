@@ -147,7 +147,7 @@ lea rsi, [variable]
 
 square brackets represent *indirect addressing*.
 
-= Registers
+== Registers
 
 === R_X vs E_X vs _X vs _H vs _L
 R_X:: all 64 bits
@@ -157,7 +157,6 @@ _H:: top 4 bits of last byte
 _L:: bottom 4 bits of last byte
 
 === General Purpose Registers
-.registers
 |===
 | 64-bit | 32-bit | 16-bit | low 8-bit | high 8-bit | comment
 | rax    | eax    | ax     | al        | ah         |
@@ -176,6 +175,24 @@ _L:: bottom 4 bits of last byte
 | r13    | r13d   | r13w   | r13b      |            |
 | r14    | r14d   | r14w   | r14b      |            |
 | r15    | r15d   | r15w   | r15b      |            |
+|===
+
+=== Flag Registers
+|===
+| Name     | Symbol | Bit | Content
+
+| Carry    | CF     | 0   | Previous instruction had a carry
+
+| parity   | PF     | 2   | Last byte has even number of 1s
+
+| Adjust   | AF     | 4   | BCD operations
+
+| Zero     | ZF     | 6   | Pervious instruction resulted in zero
+
+| Sign     | SF     | 8   | Previous instruction resulted in most significant
+                            bit equal to 1
+
+| Overflow | OF     | 11  | Previous instruction resulted in overflow
 |===
 
 
