@@ -974,6 +974,41 @@ $ readelf --file-header ./memory
 The entry point from `readelf` is smaller then the entry point from `disass`.
 This is because their is a header for elf executables.
 
+== Checking if Signed Number is negative
+=== binary
+check if the most significant bit is 1
+
+=== hexidecimal
+check if lefmost byte is 8, 9, A, B, C D, E, or F. Break number into multiple
+bytes or this will not work. For example 0xd12 would appear to be negative if
+you didn't break it up into byte chunks, doing so you get:
+
+----
+0x0d, 0x12 
+----
+
+or
+
+----
+0x0d << 8 | 0x12
+----
+
+Notice how the leftmost byte actually starts with a zero. Also notice how each
+byte is two digits long.
+
+you can or bytes together to get the original answer by doing
+
+----
+byte4 << 24 | byte3 << 16 | byte2 << 8 | byte1
+----
+
+bitshift right 8, 16, 24 are offsets, shifting by one byte, two bytes, and then
+three.
+
+
+
+
+
 == Books
 - "Learn to Program with Assembly by Jonathan Bartlett"
     * learning AT&T syntax with GNU assembler
@@ -983,6 +1018,7 @@ This is because their is a header for elf executables.
 
 - "Linkers and Loaders, John R. Levine, 1999, The Morgan Kaufmann Series in
   Sofware Engineering and Programming"
+
 
 == Links
 - https://www.felixcloutier.com/x86/[x86 and amd64 instruction reference]
@@ -994,3 +1030,6 @@ This is because their is a header for elf executables.
 - https://github.com/torvalds/linux/blob/v3.13/arch/x86/syscalls/syscall_32.tbl[linux source code syscall table]
 - https://stackoverflow.com/questions/15017659/how-to-read-the-intel-opcode-notation[op code notation]
 - https://stackoverflow.com/questions/10684468/missing-debugging-information-with-gdb-and-nasm[debugging asm_next script nasm and gdb]
+
+== Asciidoctor
+- https://docs.asciidoctor.org/diagram-extension/latest/diagram_types/bytefield/[bytefield extension]
