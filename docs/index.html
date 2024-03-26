@@ -901,6 +901,7 @@ details[open] > summary::before {
 </li>
 <li><a href="#_nasm_and_gdb">NASM and GDB</a>
 <ul class="sectlevel2">
+<li><a href="#_get_current_line">Get current line</a></li>
 <li><a href="#_break_at_specific_instruction_number">Break at specific instruction number</a></li>
 <li><a href="#_flavor">Flavor</a></li>
 <li><a href="#_dissassembly_a_function">Dissassembly a function</a></li>
@@ -2082,10 +2083,18 @@ DX:AX, EDX:EAX, or RDX:RAX register</p>
 <h2 id="_nasm_and_gdb">NASM and GDB</h2>
 <div class="sectionbody">
 <div class="sect2">
+<h3 id="_get_current_line">Get current line</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="gdb"><span></span>(gdb) frame</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_break_at_specific_instruction_number">Break at specific instruction number</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="gdb"><span></span> b * 0x0000000000401110</code></pre>
+<pre class="pygments highlight"><code data-lang="gdb"><span></span> (gdb) b * 0x0000000000401110</code></pre>
 </div>
 </div>
 </div>
@@ -2096,7 +2105,7 @@ DX:AX, EDX:EAX, or RDX:RAX register</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="gdb"><span></span>set disassembly-flavor intel</code></pre>
+<pre class="pygments highlight"><code data-lang="gdb"><span></span>(gdb) set disassembly-flavor intel</code></pre>
 </div>
 </div>
 </div>
@@ -2965,7 +2974,7 @@ Sofware Engineering and Programming"</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-03-26 17:42:27 -0400
+Last updated 2024-03-26 18:03:10 -0400
 </div>
 </div>
 <script type="text/x-mathjax-config">

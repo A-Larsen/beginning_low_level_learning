@@ -580,11 +580,17 @@ syscall
 ----
 
 == NASM and GDB
+=== Get current line
+[source, gdb]
+----
+(gdb) frame
+----
+
 === Break at specific instruction number
 
 [source, gdb]
 ----
- b * 0x0000000000401110
+ (gdb) b * 0x0000000000401110
 ----
 
 === Flavor
@@ -593,7 +599,7 @@ to set dissasembly flavor to intel instead of AT&T:
 
 [source, gdb]
 ----
-set disassembly-flavor intel
+(gdb) set disassembly-flavor intel
 ----
 
 === Dissassembly a function
