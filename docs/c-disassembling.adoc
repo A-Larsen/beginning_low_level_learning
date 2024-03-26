@@ -69,5 +69,5 @@ floating point register that has the value of `a` in single percision mode.
 ====
 
 We can see `uint128` is 1092616192, which is the how the binary actually looks
-in single point percision. We can also so the `v4_float` stores the value of the
-number as we understand it.
+in single point percision. We can also see that `v4_float` stores the value of
+the number as we understand it.
