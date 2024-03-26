@@ -919,6 +919,7 @@ footer {
 <li><a href="#_modes">Modes</a></li>
 <li><a href="#_memory">Memory</a>
 <ul class="sectlevel2">
+<li><a href="#_layout">Layout</a></li>
 <li><a href="#_virtual_memory">Virtual Memory</a></li>
 </ul>
 </li>
@@ -2443,6 +2444,9 @@ instruction memory (e.g., code size, alignment).</p>
 <h2 id="_memory">Memory</h2>
 <div class="sectionbody">
 <div class="paragraph">
+<p>The memory size has a theoretical limit of \$2^64\$ address.</p>
+</div>
+<div class="paragraph">
 <p>If you look at this <em>.lst</em> file you can see the each memory address (second
 column) has 8 hexadecimal digits meaning that there are 64 bits per instruction.
 This is because we are using 64 bit assembler.</p>
@@ -2454,12 +2458,92 @@ This is because we are using 64 bit assembler.</p>
     12 00000005 BF01000000                  mov rdi, 1</pre>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_layout">Layout</h3>
 <div class="paragraph">
-<p>The memory size has a theoretical limit of \$2^64\$ address.</p>
+<p>The stack in high memory can grow; it grows in the downward directection toward
+<code>section .bss</code>. The available free memory between the stack and the other
+sections is called the heap.</p>
+</div>
+<div class="paragraph">
+<p>The memory in <code>section .bss</code> is asigned at runtime.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="diag-ditaa-md5-eb2c2c23f80988e41e796c93cf98dc62.png" alt="Diagram" width="470" height="364">
+<img src="diag-ditaa-md5-748c8d76a4b154138a91a12caf43c78a.png" alt="Diagram" width="640" height="364">
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="gdb"><span></span>readelf --symbols ./memory | tail +10 | sort -k 2 -r</code></pre>
+</div>
+</div>
+<details>
+<summary class="title">output</summary>
+<div class="content">
+<div class="literalblock">
+<div class="content">
+<pre>38: 0000000000404090     0 NOTYPE  GLOBAL DEFAULT   23 _end
+23: 0000000000404071     8 OBJECT  LOCAL  DEFAULT   23 qvar
+22: 000000000040405d     2 OBJECT  LOCAL  DEFAULT   23 wvar
+21: 0000000000404059     4 OBJECT  LOCAL  DEFAULT   23 dvar
+20: 0000000000404058     1 OBJECT  LOCAL  DEFAULT   23 bvar
+43: 0000000000404058     0 OBJECT  GLOBAL HIDDEN    22 __TMC_END__
+ 7: 0000000000404054     1 OBJECT  LOCAL  DEFAULT   23 completed.0
+41: 0000000000404051     0 NOTYPE  GLOBAL DEFAULT   23 __bss_start
+32: 0000000000404051     0 NOTYPE  GLOBAL DEFAULT   22 _edata
+19: 000000000040404d     1 OBJECT  LOCAL  DEFAULT   22 text2
+18: 0000000000404045     8 OBJECT  LOCAL  DEFAULT   22 qNum2
+17: 0000000000404041     1 OBJECT  LOCAL  DEFAULT   22 text1
+16: 0000000000404039     8 OBJECT  LOCAL  DEFAULT   22 qNum1
+15: 0000000000404035     4 OBJECT  LOCAL  DEFAULT   22 dNum
+14: 000000000040402b     2 OBJECT  LOCAL  DEFAULT   22 warray
+13: 0000000000404029     2 OBJECT  LOCAL  DEFAULT   22 wNum
+12: 0000000000404028     1 OBJECT  LOCAL  DEFAULT   22 bNum
+36: 0000000000404020     0 OBJECT  GLOBAL HIDDEN    22 __dso_handle
+31: 0000000000404018     0 NOTYPE  WEAK   DEFAULT   22 data_start
+34: 0000000000404018     0 NOTYPE  GLOBAL DEFAULT   22 __data_start
+29: 0000000000404000     0 OBJECT  LOCAL  DEFAULT   21 _GLOBAL_OFFSET_TABLE_
+27: 0000000000403e60     0 OBJECT  LOCAL  DEFAULT   19 _DYNAMIC
+ 8: 0000000000403e58     0 OBJECT  LOCAL  DEFAULT   18 __do_global_dtor[...]
+10: 0000000000403e50     0 OBJECT  LOCAL  DEFAULT   17 __frame_dummy_in[...]
+25: 0000000000402060     0 OBJECT  LOCAL  DEFAULT   16 __FRAME_END__
+28: 0000000000402004     0 NOTYPE  LOCAL  DEFAULT   15 __GNU_EH_FRAME_HDR
+37: 0000000000402000     4 OBJECT  GLOBAL DEFAULT   14 _IO_stdin_used
+33: 0000000000401190     0 FUNC    GLOBAL HIDDEN    13 _fini
+42: 0000000000401110     0 NOTYPE  GLOBAL DEFAULT   12 main
+ 9: 0000000000401100     0 FUNC    LOCAL  DEFAULT   12 frame_dummy
+ 6: 00000000004010d0     0 FUNC    LOCAL  DEFAULT   12 __do_global_dtors_aux
+ 5: 0000000000401090     0 FUNC    LOCAL  DEFAULT   12 register_tm_clones
+ 4: 0000000000401060     0 FUNC    LOCAL  DEFAULT   12 deregister_tm_clones
+39: 0000000000401050     5 FUNC    GLOBAL HIDDEN    12 _dl_relocate_sta[...]
+40: 0000000000401020    38 FUNC    GLOBAL DEFAULT   12 _start
+44: 0000000000401000     0 FUNC    GLOBAL HIDDEN    11 _init
+ 2: 000000000040037c    32 OBJECT  LOCAL  DEFAULT    4 __abi_tag
+35: 0000000000000000     0 NOTYPE  WEAK   DEFAULT  UND __gmon_start__
+ 0: 0000000000000000     0 NOTYPE  LOCAL  DEFAULT  UND
+30: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __libc_start_mai[...]
+11: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS memory.nasm
+24: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS crtstuff.c
+ 3: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS crtstuff.c
+ 1: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS crt1.o
+26: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS</pre>
+</div>
+</div>
+</div>
+</details>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>main</strong>  &#8594; 0x0000000000401110.</p>
+</li>
+<li>
+<p><strong>.bss</strong>  &#8594; 0x0000000000404051</p>
+</li>
+<li>
+<p><strong>.data</strong> &#8594; 0x0000000000404018</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect2">
@@ -2625,7 +2709,7 @@ Sofware Engineering and Programming"</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-03-26 01:05:11 -0400
+Last updated 2024-03-26 01:18:26 -0400
 </div>
 </div>
 <script type="text/x-mathjax-config">
