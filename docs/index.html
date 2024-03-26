@@ -436,86 +436,469 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 #footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
 pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
 span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
 td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
 span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
-pre.pygments .hll { background-color: #ffffcc }
-pre.pygments { background: #f8f8f8; }
-pre.pygments .tok-c { color: #408080; font-style: italic } /* Comment */
-pre.pygments .tok-err { border: 1px solid #FF0000 } /* Error */
-pre.pygments .tok-k { color: #008000; font-weight: bold } /* Keyword */
-pre.pygments .tok-o { color: #666666 } /* Operator */
-pre.pygments .tok-ch { color: #408080; font-style: italic } /* Comment.Hashbang */
-pre.pygments .tok-cm { color: #408080; font-style: italic } /* Comment.Multiline */
-pre.pygments .tok-cp { color: #BC7A00 } /* Comment.Preproc */
-pre.pygments .tok-cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
-pre.pygments .tok-c1 { color: #408080; font-style: italic } /* Comment.Single */
-pre.pygments .tok-cs { color: #408080; font-style: italic } /* Comment.Special */
-pre.pygments .tok-gd { color: #A00000 } /* Generic.Deleted */
+pre.pygments .hll { background-color: #49483e }
+pre.pygments { background: #272822; color: #f8f8f2 }
+pre.pygments .tok-c { color: #75715e } /* Comment */
+pre.pygments .tok-err { color: #960050; background-color: #1e0010 } /* Error */
+pre.pygments .tok-k { color: #66d9ef } /* Keyword */
+pre.pygments .tok-l { color: #ae81ff } /* Literal */
+pre.pygments .tok-n { color: #f8f8f2 } /* Name */
+pre.pygments .tok-o { color: #f92672 } /* Operator */
+pre.pygments .tok-p { color: #f8f8f2 } /* Punctuation */
+pre.pygments .tok-ch { color: #75715e } /* Comment.Hashbang */
+pre.pygments .tok-cm { color: #75715e } /* Comment.Multiline */
+pre.pygments .tok-cp { color: #75715e } /* Comment.Preproc */
+pre.pygments .tok-cpf { color: #75715e } /* Comment.PreprocFile */
+pre.pygments .tok-c1 { color: #75715e } /* Comment.Single */
+pre.pygments .tok-cs { color: #75715e } /* Comment.Special */
+pre.pygments .tok-gd { color: #f92672 } /* Generic.Deleted */
 pre.pygments .tok-ge { font-style: italic } /* Generic.Emph */
-pre.pygments .tok-gr { color: #FF0000 } /* Generic.Error */
-pre.pygments .tok-gh { color: #000080; font-weight: bold } /* Generic.Heading */
-pre.pygments .tok-gi { color: #00A000 } /* Generic.Inserted */
-pre.pygments .tok-go { color: #888888 } /* Generic.Output */
-pre.pygments .tok-gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+pre.pygments .tok-gi { color: #a6e22e } /* Generic.Inserted */
+pre.pygments .tok-go { color: #66d9ef } /* Generic.Output */
+pre.pygments .tok-gp { color: #f92672; font-weight: bold } /* Generic.Prompt */
 pre.pygments .tok-gs { font-weight: bold } /* Generic.Strong */
-pre.pygments .tok-gu { color: #800080; font-weight: bold } /* Generic.Subheading */
-pre.pygments .tok-gt { color: #0044DD } /* Generic.Traceback */
-pre.pygments .tok-kc { color: #008000; font-weight: bold } /* Keyword.Constant */
-pre.pygments .tok-kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
-pre.pygments .tok-kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
-pre.pygments .tok-kp { color: #008000 } /* Keyword.Pseudo */
-pre.pygments .tok-kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
-pre.pygments .tok-kt { color: #B00040 } /* Keyword.Type */
-pre.pygments .tok-m { color: #666666 } /* Literal.Number */
-pre.pygments .tok-s { color: #BA2121 } /* Literal.String */
-pre.pygments .tok-na { color: #7D9029 } /* Name.Attribute */
-pre.pygments .tok-nb { color: #008000 } /* Name.Builtin */
-pre.pygments .tok-nc { color: #0000FF; font-weight: bold } /* Name.Class */
-pre.pygments .tok-no { color: #880000 } /* Name.Constant */
-pre.pygments .tok-nd { color: #AA22FF } /* Name.Decorator */
-pre.pygments .tok-ni { color: #999999; font-weight: bold } /* Name.Entity */
-pre.pygments .tok-ne { color: #D2413A; font-weight: bold } /* Name.Exception */
-pre.pygments .tok-nf { color: #0000FF } /* Name.Function */
-pre.pygments .tok-nl { color: #A0A000 } /* Name.Label */
-pre.pygments .tok-nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
-pre.pygments .tok-nt { color: #008000; font-weight: bold } /* Name.Tag */
-pre.pygments .tok-nv { color: #19177C } /* Name.Variable */
-pre.pygments .tok-ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
-pre.pygments .tok-w { color: #bbbbbb } /* Text.Whitespace */
-pre.pygments .tok-mb { color: #666666 } /* Literal.Number.Bin */
-pre.pygments .tok-mf { color: #666666 } /* Literal.Number.Float */
-pre.pygments .tok-mh { color: #666666 } /* Literal.Number.Hex */
-pre.pygments .tok-mi { color: #666666 } /* Literal.Number.Integer */
-pre.pygments .tok-mo { color: #666666 } /* Literal.Number.Oct */
-pre.pygments .tok-sa { color: #BA2121 } /* Literal.String.Affix */
-pre.pygments .tok-sb { color: #BA2121 } /* Literal.String.Backtick */
-pre.pygments .tok-sc { color: #BA2121 } /* Literal.String.Char */
-pre.pygments .tok-dl { color: #BA2121 } /* Literal.String.Delimiter */
-pre.pygments .tok-sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
-pre.pygments .tok-s2 { color: #BA2121 } /* Literal.String.Double */
-pre.pygments .tok-se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
-pre.pygments .tok-sh { color: #BA2121 } /* Literal.String.Heredoc */
-pre.pygments .tok-si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
-pre.pygments .tok-sx { color: #008000 } /* Literal.String.Other */
-pre.pygments .tok-sr { color: #BB6688 } /* Literal.String.Regex */
-pre.pygments .tok-s1 { color: #BA2121 } /* Literal.String.Single */
-pre.pygments .tok-ss { color: #19177C } /* Literal.String.Symbol */
-pre.pygments .tok-bp { color: #008000 } /* Name.Builtin.Pseudo */
-pre.pygments .tok-fm { color: #0000FF } /* Name.Function.Magic */
-pre.pygments .tok-vc { color: #19177C } /* Name.Variable.Class */
-pre.pygments .tok-vg { color: #19177C } /* Name.Variable.Global */
-pre.pygments .tok-vi { color: #19177C } /* Name.Variable.Instance */
-pre.pygments .tok-vm { color: #19177C } /* Name.Variable.Magic */
-pre.pygments .tok-il { color: #666666 } /* Literal.Number.Integer.Long */
+pre.pygments .tok-gu { color: #75715e } /* Generic.Subheading */
+pre.pygments .tok-kc { color: #66d9ef } /* Keyword.Constant */
+pre.pygments .tok-kd { color: #66d9ef } /* Keyword.Declaration */
+pre.pygments .tok-kn { color: #f92672 } /* Keyword.Namespace */
+pre.pygments .tok-kp { color: #66d9ef } /* Keyword.Pseudo */
+pre.pygments .tok-kr { color: #66d9ef } /* Keyword.Reserved */
+pre.pygments .tok-kt { color: #66d9ef } /* Keyword.Type */
+pre.pygments .tok-ld { color: #e6db74 } /* Literal.Date */
+pre.pygments .tok-m { color: #ae81ff } /* Literal.Number */
+pre.pygments .tok-s { color: #e6db74 } /* Literal.String */
+pre.pygments .tok-na { color: #a6e22e } /* Name.Attribute */
+pre.pygments .tok-nb { color: #f8f8f2 } /* Name.Builtin */
+pre.pygments .tok-nc { color: #a6e22e } /* Name.Class */
+pre.pygments .tok-no { color: #66d9ef } /* Name.Constant */
+pre.pygments .tok-nd { color: #a6e22e } /* Name.Decorator */
+pre.pygments .tok-ni { color: #f8f8f2 } /* Name.Entity */
+pre.pygments .tok-ne { color: #a6e22e } /* Name.Exception */
+pre.pygments .tok-nf { color: #a6e22e } /* Name.Function */
+pre.pygments .tok-nl { color: #f8f8f2 } /* Name.Label */
+pre.pygments .tok-nn { color: #f8f8f2 } /* Name.Namespace */
+pre.pygments .tok-nx { color: #a6e22e } /* Name.Other */
+pre.pygments .tok-py { color: #f8f8f2 } /* Name.Property */
+pre.pygments .tok-nt { color: #f92672 } /* Name.Tag */
+pre.pygments .tok-nv { color: #f8f8f2 } /* Name.Variable */
+pre.pygments .tok-ow { color: #f92672 } /* Operator.Word */
+pre.pygments .tok-w { color: #f8f8f2 } /* Text.Whitespace */
+pre.pygments .tok-mb { color: #ae81ff } /* Literal.Number.Bin */
+pre.pygments .tok-mf { color: #ae81ff } /* Literal.Number.Float */
+pre.pygments .tok-mh { color: #ae81ff } /* Literal.Number.Hex */
+pre.pygments .tok-mi { color: #ae81ff } /* Literal.Number.Integer */
+pre.pygments .tok-mo { color: #ae81ff } /* Literal.Number.Oct */
+pre.pygments .tok-sa { color: #e6db74 } /* Literal.String.Affix */
+pre.pygments .tok-sb { color: #e6db74 } /* Literal.String.Backtick */
+pre.pygments .tok-sc { color: #e6db74 } /* Literal.String.Char */
+pre.pygments .tok-dl { color: #e6db74 } /* Literal.String.Delimiter */
+pre.pygments .tok-sd { color: #e6db74 } /* Literal.String.Doc */
+pre.pygments .tok-s2 { color: #e6db74 } /* Literal.String.Double */
+pre.pygments .tok-se { color: #ae81ff } /* Literal.String.Escape */
+pre.pygments .tok-sh { color: #e6db74 } /* Literal.String.Heredoc */
+pre.pygments .tok-si { color: #e6db74 } /* Literal.String.Interpol */
+pre.pygments .tok-sx { color: #e6db74 } /* Literal.String.Other */
+pre.pygments .tok-sr { color: #e6db74 } /* Literal.String.Regex */
+pre.pygments .tok-s1 { color: #e6db74 } /* Literal.String.Single */
+pre.pygments .tok-ss { color: #e6db74 } /* Literal.String.Symbol */
+pre.pygments .tok-bp { color: #f8f8f2 } /* Name.Builtin.Pseudo */
+pre.pygments .tok-fm { color: #a6e22e } /* Name.Function.Magic */
+pre.pygments .tok-vc { color: #f8f8f2 } /* Name.Variable.Class */
+pre.pygments .tok-vg { color: #f8f8f2 } /* Name.Variable.Global */
+pre.pygments .tok-vi { color: #f8f8f2 } /* Name.Variable.Instance */
+pre.pygments .tok-vm { color: #f8f8f2 } /* Name.Variable.Magic */
+pre.pygments .tok-il { color: #ae81ff } /* Literal.Number.Integer.Long */
 </style>
+<head>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=DotGothic16">
+<link rel="icon" type="image/png" href="N2DE_favicon.png"/>
+
+<style>
+
+/*--------------------------------------------------------------*/
+/*use '!important' to override default css used by asciidoctor*/
+/*--------------------------------------------------------------*/
+
+:root {
+    --gruvbox-black: #282828;
+    --gruvbox-black2: #1d2021;
+    --gruvbox-black3: #463f39;
+    --gruvbox-red: #fb4934;
+    --gruvbox-yellow: #fabd2f;
+    --gruvbox-white: #ebdbb2;
+    --gruvbox-white2: #fbf1c7;
+    --gruvbox-blue: #83a598;
+    --gruvbox-green: #b8bb26;
+    --gruvbox-bg1: #7c6f64;
+    --gruvbox-bg2: #665c54;
+
+}
+
+.title {
+  color: var(--gruvbox-red) !important;
+}
+
+.tableblock {
+    background-color: inherit;
+    color: var(--gruvbox-white);
+    max-width: 95%;
+}
+
+.tableblock th {
+    background-color: var(--gruvbox-black3);
+    color: var(--gruvbox-white);
+    max-width: 97%;
+}
+
+code:not([data-lang]) {
+    background-color: var(--gruvbox-bg2) !important;
+    color: var(--gruvbox-white);
+    text-shadow: none;
+}
+
+.checklist {
+    text-align: left;
+    font-size: .8em;
+}
+
+.checklist li ul {
+    margin-left: 3%;
+}
+
+#content, h1, pre {
+    border-radius: 8px !important;
+}
+
+#header, #content, #footnotes, #footer {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.api-type a:hover {
+    text-decoration: underline;
+}
+
+.api-type, .api-type a {
+    color: var(--gruvbox-green);
+    text-decoration: none;
+}
+
+pre {
+    border-style: solid !important;
+    border-color: white !important;
+    border-width: 2px !important;
+}
+
+h1 {
+    font-family: "DotGothic16", sans-serif !important;
+    background-color: var(--gruvbox-bg2) !important;
+    color: var(--gruvbox-white) !important;
+    opacity: .6;
+}
+
+.admonitionblock > table td.content {
+    color: var(--gruvbox-white) !important;
+}
+
+/*
+html {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+}
+
+*/
+/*html {*/
+body {
+    /*background: black url("background-image-space.jpeg") no-repeat fixed center;*/
+    /*background-color: black;*/
+    background-color: var(--gruvbox-black);
+    background-attachment: fixed;
+    background-size: cover;
+    overflow-y: scroll;
+    /*
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    */
+}
+
+
+/*
+body {
+    overflow-y: scroll;
+    background: rgba(0,0,0,0);
+    height: 100%;
+    margin: 2%;
+}
+*/
+
+#toc {
+    background-color: var(--gruvbox-black2) !important;
+    /*opacity: .9;*/
+}
+
+#toctitle {
+    color: var(--gruvbox-red);
+}
+
+a {
+    color: var(--gruvbox-blue);
+}
+
+#content {
+    color: #ebdbb2;
+    background: var(--gruvbox-black);
+    /*opacity: .9;*/
+}
+
+#header > h1:nth-last-child(2) {
+    border-bottom: none !important;
+    background-color: rgba(0, 0, 0, .1);
+    padding-left: 2%;
+}
+
+.sect1 + .sect1 {
+  border-top: none !important;
+}
+
+.sect1 h2 {
+    background-size: cover;
+    background-attachment: fixed;
+    border-bottom: 1px solid var(--gruvbox-white);
+    border-top: 1px solid var(--gruvbox-white);
+    text-align: center;
+    color: var(--gruvbox-white) !important;
+    /*
+    text-shadow: 1px 1px 1px var(--gruvbox-black);
+    text-shadow: 3px 3px 3px var(--gruvbox-black);
+    text-shadow: 5px 5px 5px var(--gruvbox-blue);
+    */
+}
+
+h3, h4, h5 {
+    /*
+    text-shadow: 1px 1px 1px var(--gruvbox-white);
+    */
+}
+
+h3 {
+  color: var(--gruvbox-red) !important;
+}
+
+h4 {
+  color: var(--gruvbox-yellow) !important;
+}
+
+h5 {
+  color: #83a598 !important;
+}
+
+h2 ~ *:not(h1) {
+  margin-left: .5em;
+}
+
+.pygments {
+    max-width: 97% !important;
+    white-space: pre;
+    overflow-x: scroll !important;
+}
+
+::before {
+    /*makes sure that the programming language that show up on hover is within
+      pre tag*/
+    padding-right: 3%;
+}
+
+@media screen and (max-width: 800px) {
+    .checklist li ul {
+        margin-left: 6% !important;
+    }
+    #toc {
+        padding-left: 10px;
+    }
+
+    footer {
+        margin-bottom: 10px !important;
+    }
+    html {
+        margin-bottom: 10px !important;
+    }
+}
+@media screen and (max-width: 535px) {
+    h3 ~ *:not(h2):not(h3) {
+      margin-left: 0 !important;
+    }
+
+    h4 ~ *:not(h2):not(h3):not(.h3):not(h4) {
+      margin-left: 0 !important;
+    }
+    h5 ~ *:not(h2):not(h3):not(.h3):not(h4):not(.h4):not(h5) {
+      margin-left: 0 !important;
+    }
+
+    footer {
+        margin-bottom: 10px !important;
+    }
+    html {
+        margin-bottom: 10px !important;
+    }
+}
+h3 ~ *:not(h2):not(h3) {
+  margin-left: 1.5em;
+}
+
+h4 ~ *:not(h2):not(h3):not(.h3):not(h4) {
+  margin-left: 2em;
+}
+h5 ~ *:not(h2):not(h3):not(.h3):not(h4):not(.h4):not(h5) {
+  margin-left: 2.5em;
+}
+
+
+.sect1 h2 {
+    background: linear-gradient(
+        to bottom,
+        rgba(251, 189, 47, 0.2), /* yellow */
+        rgba(0, 0, 0, 0.4)       /* black */
+    );
+    /*opacity: .9;*/
+  }
+
+#preamble p{
+  padding-left: 10px;
+  color: var(--gruvbox-white) !important;
+}
+
+#footer {
+    max-width: 62.5em !important;
+    padding-left: 10px !important;
+    text-align: center;
+}
+
+.logo img {
+    display: block !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+#header > h1:first-child {
+  margin-top: .3em !important;
+  padding-top: .2em !important;
+  padding-bottom: .3em !important;
+}
+
+footer {
+    max-width: 62.5em;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+
+}
+
+</style>
+
 </head>
-<body class="article">
+
+<script src="docinfo.js"></script>
+
+
+</head>
+<body class="article toc2 toc-left">
 <div id="header">
 <h1>Low Level learning</h1>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_looking_at_the_opcode_tables">Looking at the OpCode tables</a>
+<ul class="sectlevel2">
+<li><a href="#_instructions">Instructions</a></li>
+<li><a href="#_opcodes">Opcodes</a></li>
+</ul>
+</li>
+<li><a href="#_whats_the_difference_between_the_cf_flag_and_of_flag">What&#8217;s the difference between the CF flag and OF flag.</a></li>
+<li><a href="#_what_is_that_d_flag">What is that D Flag</a></li>
+<li><a href="#_l_vs_h_in_registers">L vs H in registers</a></li>
+<li><a href="#_least_significant_vs_most_significant">Least significant vs Most significant</a></li>
+<li><a href="#_what_does_the_most_significant_bit_mean_in_numbers">What does the most significant bit mean in numbers?</a></li>
+<li><a href="#_data_types">Data types</a></li>
+<li><a href="#_lea_vs_mov">lea vs mov</a></li>
+<li><a href="#_getting_the_address_of_a_variable">Getting the address of a "variable"</a></li>
+<li><a href="#_registers">Registers</a>
+<ul class="sectlevel2">
+<li><a href="#_r_x_vs_e_x_vs_x_vs_h_vs_l">R_X vs E_X vs _X vs _H vs _L</a></li>
+<li><a href="#_general_purpose_registers">General Purpose Registers</a></li>
+<li><a href="#_flag_registers">Flag Registers</a></li>
+<li><a href="#_instruction_pointer_register_rip">Instruction Pointer Register (rip)</a></li>
+<li><a href="#_xmm_and_ymm_registers">xmm and ymm Registers</a></li>
+</ul>
+</li>
+<li><a href="#_how_to_get_bits_in_the_carry_flag">How to get bits in the carry flag</a></li>
+<li><a href="#_main">Main</a></li>
+<li><a href="#_labels">Labels</a></li>
+<li><a href="#_what_is_the_differnce_between_sar_and_shr">What is the differnce between SAR and SHR?</a></li>
+<li><a href="#_jumping">Jumping</a></li>
+<li><a href="#_function_calls">Function Calls</a></li>
+<li><a href="#_syscalls">Syscalls</a></li>
+<li><a href="#_different_addressing_types">Different Addressing types</a>
+<ul class="sectlevel2">
+<li><a href="#_immediate">Immediate</a></li>
+<li><a href="#_register">Register</a></li>
+<li><a href="#_direct_memory">Direct Memory</a></li>
+<li><a href="#_base_indexed_with_scale_and_discplacement">Base-indexed with scale and discplacement</a></li>
+</ul>
+</li>
+<li><a href="#_att_vs_intel_syntax">ATT vs. Intel Syntax</a></li>
+<li><a href="#_change_a_number_from_little_endian_to_big_endian_in_c">Change a number from little endian to big endian in C</a></li>
+<li><a href="#_strings">Strings</a></li>
+<li><a href="#_constant_precomputation">Constant Precomputation</a></li>
+<li><a href="#_pointers_and_differnt_addressing_types">Pointers and Differnt Addressing Types</a></li>
+<li><a href="#_twos_complement">Two&#8217;s complement</a></li>
+<li><a href="#_instructions_2">Instructions</a>
+<ul class="sectlevel2">
+<li><a href="#_neg">NEG</a></li>
+<li><a href="#_imul">IMUL</a></li>
+<li><a href="#_mul">MUL</a></li>
+<li><a href="#_sub">SUB</a></li>
+<li><a href="#_idiv">IDIV</a></li>
+<li><a href="#_div">DIV</a></li>
+</ul>
+</li>
+<li><a href="#_edxeax">EDX:EAX ??</a></li>
+<li><a href="#_nasm_and_gdb">NASM and gdb</a>
+<ul class="sectlevel2">
+<li><a href="#_flavor">Flavor</a></li>
+<li><a href="#_dissassembly_a_function">Dissassembly a function</a></li>
+<li><a href="#_finding_immediate_registers_label_values">Finding Immediate / registers / label values</a></li>
+<li><a href="#_tui">TUI</a></li>
+<li><a href="#_registers_2">Registers</a></li>
+<li><a href="#_source_code">Source code</a></li>
+<li><a href="#_steping_through_instructions">Steping through Instructions</a></li>
+<li><a href="#_step_out_of_function">Step out of function</a></li>
+</ul>
+</li>
+<li><a href="#_real_vs_protected_vs_long_mode">Real vs Protected vs long Mode</a></li>
+<li><a href="#_segment_registers">Segment Registers</a></li>
+<li><a href="#_compiling_and_linking">Compiling and Linking</a>
+<ul class="sectlevel2">
+<li><a href="#_makefile">Makefile</a></li>
+</ul>
+</li>
+<li><a href="#_no_op">NO-OP</a></li>
+<li><a href="#_modes">Modes</a></li>
+<li><a href="#_memory">Memory</a></li>
+<li><a href="#_books">Books</a></li>
+<li><a href="#_links">Links</a></li>
+</ul>
+</div>
 </div>
 <div id="content">
 <div class="sect1">
@@ -659,7 +1042,7 @@ form a single opcode byte.</p>
 <table>
 <tr>
 <td class="icon">
-<div class="title">Note</div>
+<i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
 Look at Intel 64 and IA-32 Architectures Software Developer&#8217;s Manual page
@@ -852,15 +1235,17 @@ actual value at that address.</p>
 <col style="width: 16.6666%;">
 <col style="width: 16.667%;">
 </colgroup>
-<tbody>
+<thead>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">64-bit</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">32-bit</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">16-bit</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">low 8-bit</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">high 8-bit</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">comment</p></td>
+<th class="tableblock halign-left valign-top">64-bit</th>
+<th class="tableblock halign-left valign-top">32-bit</th>
+<th class="tableblock halign-left valign-top">16-bit</th>
+<th class="tableblock halign-left valign-top">low 8-bit</th>
+<th class="tableblock halign-left valign-top">high 8-bit</th>
+<th class="tableblock halign-left valign-top">comment</th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">rax</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">eax</p></td>
@@ -1228,7 +1613,7 @@ push for that)</p>
 <table>
 <tr>
 <td class="icon">
-<div class="title">Note</div>
+<i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
 some system calls also return values - be careful to read the docs!
@@ -1668,7 +2053,7 @@ this</p>
 <table>
 <tr>
 <td class="icon">
-<div class="title">Note</div>
+<i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
 checkout <code>(gdb) help x</code>
@@ -1854,7 +2239,7 @@ object file with a <em>.o</em> extension. That object file is used by the linker
 </dd>
 <dt class="hdlist1">elf64</dt>
 <dd>
-<p><span class="underline">E</span> xecutable and <strong>l</strong>inkable <strong>F</strong>ormat for <strong>64</strong>-bit</p>
+<p><strong>E</strong>xecutable and <strong>l</strong>inkable <strong>F</strong>ormat for <strong>64</strong>-bit</p>
 </dd>
 <dt class="hdlist1">PIE</dt>
 <dd>
@@ -2023,8 +2408,32 @@ This is because we are using 64 bit assembler.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-03-25 21:48:09 -0400
+Last updated 2024-03-25 21:53:37 -0400
 </div>
 </div>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "none" } }
+})
+MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
+  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains("stemblock")) {
+      data.math.root.display = "block"
+    }
+    return data
+  })
+})
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
 </body>
 </html>

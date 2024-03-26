@@ -1,5 +1,10 @@
 = Low Level learning
+:docinfo: shared
 :source-highlighter: pygments
+:pygments-style: monokai
+:icons: font
+:stem:
+:toc: left
 
 == Looking at the OpCode tables
 
@@ -161,6 +166,8 @@ _H:: top 4 bits of last byte
 _L:: bottom 4 bits of last byte
 
 === General Purpose Registers
+
+[%header]
 |===
 | 64-bit | 32-bit | 16-bit | low 8-bit | high 8-bit | comment
 | rax    | eax    | ax     | al        | ah         |
