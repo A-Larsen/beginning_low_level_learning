@@ -836,6 +836,9 @@ The memory size has a theoretical limit of stem:[2^64] address.
 From `man elf` we can see that `e_entry` from the `ElfN_Ehdr` struct gives the
 virtual address to which the system first transfers control.
 
+== Strings and Symbol Tables
+From `man elf` we see that `Elf32_Sym` or `Elf64_Sym` can hold these tables.
+
 == Books
 - "Learn to Program with Assembly by Jonathan Bartlett"
     * learning AT&T syntax with GNU assembler
