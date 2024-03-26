@@ -906,7 +906,7 @@ footer {
 <li><a href="#_segment_registers">Segment Registers</a>
 <ul class="sectlevel2">
 <li><a href="#_shdr">SHDR</a></li>
-<li><a href="#_data_segment">data segment</a></li>
+<li><a href="#_data_segment">Data segment</a></li>
 </ul>
 </li>
 <li><a href="#_compiling_and_linking">Compiling and Linking</a>
@@ -2308,13 +2308,17 @@ contain info about <code>.bss</code>, <code>.data</code>, etc.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_data_segment">data segment</h3>
+<h3 id="_data_segment">Data segment</h3>
 <div class="sect3">
 <h4 id="_example_1">Example 1</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="nasm"><span></span><span class="tok-k">section </span><span class="tok-nv">.bss</span>
-    <span class="tok-nf">bNum</span> <span class="tok-nv">db</span> <span class="tok-mi">123</span></code></pre>
+<pre class="pygments highlight"><code data-lang="nasm"><span></span><span class="tok-k">global </span><span class="tok-nv">main</span>
+<span class="tok-k">section </span><span class="tok-nv">.bss</span>
+    <span class="tok-nf">bNum</span> <span class="tok-nv">db</span> <span class="tok-mi">123</span>
+<span class="tok-k">section </span><span class="tok-nv">.text</span>
+<span class="tok-nl">main:</span>
+<span class="tok-nf">lea</span> <span class="tok-nb">rax</span><span class="tok-p">,</span> <span class="tok-p">[</span><span class="tok-nv">bNum</span><span class="tok-p">]</span></code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -2799,7 +2803,7 @@ Sofware Engineering and Programming"</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-03-26 13:28:45 -0400
+Last updated 2024-03-26 13:31:14 -0400
 </div>
 </div>
 <script type="text/x-mathjax-config">

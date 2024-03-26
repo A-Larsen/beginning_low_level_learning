@@ -733,14 +733,18 @@ mov dword [fs:eax], 42
 From https://linux.die.net/man/5/elf[man elf] we can see that the `Elf32_Shdr` or `Elf32_Shdr` structs, can
 contain info about `.bss`, `.data`, etc.
 
-=== data segment
+=== Data segment
 
 ==== Example 1
 
 [source, nasm]
 ----
+global main
 section .bss
     bNum db 123
+section .text
+main:
+lea rax, [bNum]
 ----
 
 .gdb disassembly
@@ -751,7 +755,6 @@ section .bss
 
 ds:: code segment
 0x404028:: address of bNum
-
 
 == Compiling and Linking
 === Makefile
