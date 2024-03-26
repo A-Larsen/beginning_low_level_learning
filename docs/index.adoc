@@ -1097,16 +1097,16 @@ In this case I or'ed together 4 bytes to get a 24 bit number. bitshift right 8,
 I decimal number has three parts:
 
 SIGN::
-    specifies a digitive or positive number, 0 being positive and 1 being
+    Specifies a negitive or positive number, 0 being positive and 1 being
     negative.
 
 EXPONENT::
-    Takes the unsigned version of the number and counts the first bit to the
+    Takes the signed version of the number and counts the first bit to the
     right of most signicant on bit all the way to the least significant bit and
     then adds 127 if it is single percision or 1023 if it is double percision.
 
 FRACTION::
-    Takes the unsigned version number and stores the first bit to the right of
+    Takes the signed version number and stores the first bit to the right of
     most signicant on bit all the way to the least significant bit.
 
 A single-precision number is stored  in 32 bits: 1 sign bit, 11 exponent bits,
