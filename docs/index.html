@@ -919,6 +919,7 @@ footer {
 <li><a href="#_memory">Memory</a>
 <ul class="sectlevel2">
 <li><a href="#_layout">Layout</a></li>
+<li><a href="#_stack">Stack</a></li>
 <li><a href="#_virtual_memory">Virtual Memory</a></li>
 </ul>
 </li>
@@ -2566,6 +2567,14 @@ sections is called the heap.</p>
 </div>
 </div>
 <div class="sect2">
+<h3 id="_stack">Stack</h3>
+<div class="paragraph">
+<p>The stacck segment starts in high memory, and when it grows, it grows in the
+downward direction. Items are placed on the stack with the <a href="https://www.felixcloutier.com/x86/push">push</a> instruction
+and removed from the stack with the <a href="https://www.felixcloutier.com/x86/pop">pop</a> instruction.</p>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_virtual_memory">Virtual Memory</h3>
 <div class="paragraph">
 <p>From <code>man elf</code> we can see that <code>e_entry</code> from the <code>ElfN_Ehdr</code> struct gives the
@@ -2788,7 +2797,7 @@ Sofware Engineering and Programming"</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-03-26 13:05:54 -0400
+Last updated 2024-03-26 13:13:23 -0400
 </div>
 </div>
 <script type="text/x-mathjax-config">
