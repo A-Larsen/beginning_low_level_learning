@@ -941,6 +941,7 @@ details[open] > summary::before {
 <li><a href="#_hexidecimal">hexidecimal</a></li>
 </ul>
 </li>
+<li><a href="#_single_vs_double_precision">Single vs. Double Precision</a></li>
 <li><a href="#_books">Books</a></li>
 <li><a href="#_links">Links</a></li>
 <li><a href="#_asciidoctor">Asciidoctor</a></li>
@@ -2822,6 +2823,54 @@ byte is two digits long.</p>
 </div>
 </div>
 <div class="sect1">
+<h2 id="_single_vs_double_precision">Single vs. Double Precision</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>I decimal number has three parts:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">SIGN</dt>
+<dd>
+<p>specifies a digitive or positive number, 0 being positive and 1 being
+negative</p>
+</dd>
+<dt class="hdlist1">EXPONENT</dt>
+<dd>
+<p>&#8230;&#8203;</p>
+</dd>
+<dt class="hdlist1">FRACTION</dt>
+<dd>
+<p>&#8230;&#8203;</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>A single-precision number is stored  in 32 bits: 1 sign bit, 11 exponent bits,
+and 23 fraction bits</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>S   EEEEEEEE   FFFFFFFFFFFFFFFFFFFFFFF
+0   1      8   9                     31</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If the exponent portion is above 127 then it has a positive exponent.[,W]</p>
+</div>
+<div class="paragraph">
+<p>A double-percision number is stored in 64-bits: 1 sign bit, 11 exponent bits,
+and 52 fractin bits.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>S  EEEEEEEEEEE   FFFFFFFFFFFFFF...FFFFFFFFFFFFFFF
+0  1         11  12                             63</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_books">Books</h2>
 <div class="sectionbody">
 <div class="ulist">
@@ -2905,7 +2954,7 @@ Sofware Engineering and Programming"</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-03-26 15:04:38 -0400
+Last updated 2024-03-26 17:21:22 -0400
 </div>
 </div>
 <script type="text/x-mathjax-config">
