@@ -396,17 +396,6 @@ with the command `set disassembly-flavor intel`
 
 === Text
 
-[source, nasm]
-----
-text1 db "abc", 0
-----
-
-[source, gdb]
-----
-(gdb) x/4b &text1
-0x404041 <text1>:       0x61    0x62    0x63    0x00
-----
-
 This instruction
 
 [source, gdb]
@@ -422,6 +411,8 @@ stores `text1` into rax in little endian mode
 (gdb) i r
 rax            0x5452455000636261  6075995057182433889
 ----
+
+0x61 is a, 0x62 is b, and 0x63 is c.
 
 === Change a number from little endian to big endian in C
 
