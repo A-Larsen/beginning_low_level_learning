@@ -1,5 +1,7 @@
 == Beginning Low Level Programming
 
+https://html-preview.github.io/?url=https://github.com/A-Larsen/beginning_low_level_learning/blob/main/docs/index.html[Notes]
+
 == building a binary
 
 ----
