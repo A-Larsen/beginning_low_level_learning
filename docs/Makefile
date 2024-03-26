@@ -1,4 +1,4 @@
-FILENAME=index.adoc
+FILENAME=*.adoc
 
 build: $(FILENAME)
 	rm -rf diag*.png

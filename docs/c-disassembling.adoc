@@ -1,0 +1,72 @@
+= C Disassembling
+:docinfo: shared
+:source-highlighter: pygments
+:pygments-style: monokai
+:icons: font
+:stem:
+:toc: left
+
+== Floating Points
+
+.assign_float.c
+[source, c]
+----
+#include <stdio.h>
+#include <stdlib.h>
+
+int
+main(void){
+    float a = 10.0f;
+    return 1;
+}
+----
+
+.gdb disassemble
+[source, gdb]
+----
+(gdb) disass
+----
+
+.output
+[%collapsible]
+====
+       0x0000555555555129 <+0>:     endbr64 
+       0x000055555555512d <+4>:     push   rbp
+       0x000055555555512e <+5>:     mov    rbp,rsp
+       0x0000555555555131 <+8>:     movss  xmm0,DWORD PTR [rip+0xecb]        # 0x5555555560
+    04
+       0x0000555555555139 <+16>:    movss  DWORD PTR [rbp-0x4],xmm0
+    => 0x000055555555513e <+21>:    mov    eax,0x1
+       0x0000555555555143 <+26>:    pop    rbp
+       0x0000555555555144 <+27>:    ret    
+====
+
+`push rbp`,`mov rbp, rsp` is the function prologue for the stack frame.
+`pop rbp` is the function epilogue for the stack frame. In `mov eax, 0x1` eax is
+the return value for the function which we are setting to one. `xmm0` is the
+floating point register that has the value of `a` in single percision mode.
+
+.gdb print xmm0 register
+[source, gdb]
+----
+(gdb) p $xmm0
+----
+
+.output
+[%collapsible]
+====
+    $2 = {
+      v8_bfloat16 = {0, 10, 0, 0, 0, 0, 0, 0},
+      v8_half = {0, 2.5625, 0, 0, 0, 0, 0, 0},
+      v4_float = {10, 0, 0, 0},
+      v2_double = {5.3982412455708344e-315, 0},
+      v16_int8 = {0, 0, 32, 65, 0 <repeats 12 times>},
+      v8_int16 = {0, 16672, 0, 0, 0, 0, 0, 0},
+      v4_int32 = {1092616192, 0, 0, 0},
+      v2_int64 = {1092616192, 0},
+      uint128 = 1092616192
+    }
+====
+
+We can see `uint128` is 1092616192, which is the decimal 10 in single point
+pecision

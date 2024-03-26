@@ -580,6 +580,11 @@ syscall
 ----
 
 == NASM and GDB
+=== Make Printing Look Nice
+----
+(gdb) set print pretty
+----
+
 === Get current line
 [source, gdb]
 ----
