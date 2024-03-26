@@ -698,13 +698,13 @@ debug format. The `-l` tells NASM to generate a _.lst_ file. Nasm will create an
 object file with a _.o_ extension. That object file is used by the linker.
 
 DWARF::
-    Debug With **A**rbitrary **R**ecord **F**ormat
+    **D**ebug With **A**rbitrary **R**ecord **F**ormat
 
 STABS::
-    Debug with **S**ymbol **T**able **S**trings.
+    Debug with **S**ymbol **Tab**le **S**trings.
 
 elf64::
-    Executable and linkable Format for 64-bit
+    **E**xecutable and **l**inkable **F**ormat for **64**-bit
 
 PIE::
     **P**osition-**I**ndependant **E**xecutables
