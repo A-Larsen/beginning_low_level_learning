@@ -24,9 +24,9 @@ main:
     mov rbp, rsp
 
     lea rax, [bNum]
-    mov rax, bNum
+    mov rax, bNum ;; effectively the same as above
     mov rax, [bNum]
-    mov [bvar], rax
+    mov [bvar], rax ; because rax is bigger than bvar, this can cause issues
     lea rax, [bvar]
     lea rax, [wNum]
     mov rax, [wNum]

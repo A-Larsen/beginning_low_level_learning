@@ -392,7 +392,38 @@ gdb uses ATT syntax by default, but you can change it to intel (nasm's syntax)
 with the command `set disassembly-flavor intel`
 
 
-== Change a number from little endian to big endian in C
+== Endianness
+
+=== Text
+
+[source, nasm]
+----
+text1 db "abc", 0
+----
+
+[source, gdb]
+----
+(gdb) x/4b &text1
+0x404041 <text1>:       0x61    0x62    0x63    0x00
+----
+
+This instruction
+
+[source, gdb]
+----
+mov rax, [text1]
+----
+
+stores `text1` into rax in little endian mode
+
+.gdb rax register
+[source, gdb]
+----
+(gdb) i r
+rax            0x5452455000636261  6075995057182433889
+----
+
+=== Change a number from little endian to big endian in C
 
 [source, c]
 ----
