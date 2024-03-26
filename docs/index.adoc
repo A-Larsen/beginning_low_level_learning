@@ -1109,9 +1109,11 @@ FRACTION::
     Takes the non-decimal version number and stores the first bit to the right
     of most signicant on bit all the way to the least significant bit.
 
+If the exponent part of a single percision number is above 127 it is a positive
+exponent, otherwise it is a negative exponent.
 
-
- 
+If the exponent part of a double percision number is above 1023 it is a positive
+exponent, otherwise it is a negative exponent.
 
 A single-precision number is stored in 32 bits: 1 sign bit, 11 exponent bits,
 and 23 fraction bits
