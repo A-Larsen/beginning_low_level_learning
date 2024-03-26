@@ -37,7 +37,6 @@ print_int: ; function
 
 
 .reverse:
-
     lea rax, [temp + rcx - 1]
     mov rsi, rax
     
