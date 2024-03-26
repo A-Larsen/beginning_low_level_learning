@@ -846,6 +846,9 @@ From `man elf` we see that `Elf32_Sym` or `Elf64_Sym` can hold these tables.
 - "Low-Level Programming by Igor Zhirkov" 
     * intel syntax
 
+- "Linkers and Loaders, John R. Levine, 1999, The Morgan Kaufmann Series in
+  Sofware Engineering and Programming"
+
 == Links
 - https://www.felixcloutier.com/x86/[x86 and amd64 instruction reference]
 - https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html[intel 64 IA-32 architectures Software Developer's Manual]
