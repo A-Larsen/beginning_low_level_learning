@@ -695,7 +695,7 @@ mov dword [fs:eax], 42
     - mov is used to manipulate data, so the address is relative to the data
       segment
 
-=== ds
+=== data segment
 
 ==== Example 1
 
