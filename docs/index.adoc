@@ -1098,13 +1098,16 @@ I decimal number has three parts:
 
 SIGN::
     specifies a digitive or positive number, 0 being positive and 1 being
-    negative
+    negative.
 
 EXPONENT::
-    ...
+    Takes the unsigned version of the number and counts the first bit to the
+    right of most signicant on bit all the way to the least significant bit and
+    then adds 127 if it is single percision or 1023 if it is double percision.
 
 FRACTION::
-    ...
+    Takes the unsigned version number and stores the first bit to the right of
+    most signicant on bit all the way to the least significant bit.
 
 A single-precision number is stored  in 32 bits: 1 sign bit, 11 exponent bits,
 and 23 fraction bits
@@ -1113,9 +1116,6 @@ and 23 fraction bits
 S   EEEEEEEE   FFFFFFFFFFFFFFFFFFFFFFF 
 0   1      8   9                     31
 ----
-
-If the exponent portion is above 127 then it has a positive exponent.[,W]
-
 
 A double-percision number is stored in 64-bits: 1 sign bit, 11 exponent bits,
 and 52 fractin bits.
