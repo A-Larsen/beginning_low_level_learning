@@ -1101,15 +1101,19 @@ SIGN::
     negative.
 
 EXPONENT::
-    Takes the signed version of the number and counts the first bit to the
+    Takes the non-decimal version of the number and counts the first bit to the
     right of most signicant on bit all the way to the least significant bit and
     then adds 127 if it is single percision or 1023 if it is double percision.
 
 FRACTION::
-    Takes the signed version number and stores the first bit to the right of
-    most signicant on bit all the way to the least significant bit.
+    Takes the non-decimal version number and stores the first bit to the right
+    of most signicant on bit all the way to the least significant bit.
 
-A single-precision number is stored  in 32 bits: 1 sign bit, 11 exponent bits,
+
+
+ 
+
+A single-precision number is stored in 32 bits: 1 sign bit, 11 exponent bits,
 and 23 fraction bits
 
 ----
