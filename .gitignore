@@ -1,0 +1,12 @@
+*
+
+!*.gdb
+!*.nasm
+!*.c
+!Makefile
+!*.adoc
+!*.js
+!*.html
+!*.png
+!docs/
+!.gitignore
