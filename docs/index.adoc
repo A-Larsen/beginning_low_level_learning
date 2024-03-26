@@ -530,8 +530,8 @@ registers.
 
 The **modulo** can be found in rdx.
 
-Remember to set rdx to zero every time before you use idiv or the resulting
-quotient may be wrong.
+WARNING: Remember to set rdx to zero every time before you use idiv or the
+         resulting quotient may be wrong.
 
 === DIV
 Divids unsigned the value in the AX, DX:AX, EDX:EAX, or RDX:RAX registers
