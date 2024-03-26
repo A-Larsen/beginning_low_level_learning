@@ -989,7 +989,7 @@ main:
 ====
 
 Here you can see the stack, and can see 0x0000000000000041 (A),
-0x0000000000000042 (B), 0x0000000000000042 \\(C), 0x0000000000000043 (D)
+0x0000000000000042 (B), 0x0000000000000042 \(C), 0x0000000000000043 (D)
 0x0000000000000044 (E), being pushed onto the stack.
 
 === Virtual Memory
