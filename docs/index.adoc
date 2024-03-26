@@ -6,6 +6,9 @@
 :stem:
 :toc: left
 
+== Related Links
+- https://html-preview.github.io/?url=https://github.com/A-Larsen/beginning_low_level_learning/blob/main/docs/c-disassembling.html[c-disassmebling]
+
 == Looking at the OpCode tables
 
 Ex.
