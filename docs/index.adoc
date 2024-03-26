@@ -1002,8 +1002,8 @@ you can or bytes together to get the original answer by doing
 byte4 << 24 | byte3 << 16 | byte2 << 8 | byte1
 ----
 
-bitshift right 8, 16, 24 are offsets, shifting by one byte, two bytes, and then
-three.
+In this case I or'ed together 4 bytes to get a 24 bit number. bitshift right 8,
+16, 24 are offsets; shifting by one byte, two bytes, and then three.
 
 
 
