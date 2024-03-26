@@ -869,7 +869,12 @@ footer {
 </ul>
 </li>
 <li><a href="#_att_vs_intel_syntax">ATT vs. Intel Syntax</a></li>
+<li><a href="#_endianness">Endianness</a>
+<ul class="sectlevel2">
+<li><a href="#_text">Text</a></li>
 <li><a href="#_change_a_number_from_little_endian_to_big_endian_in_c">Change a number from little endian to big endian in C</a></li>
+</ul>
+</li>
 <li><a href="#_strings">Strings</a></li>
 <li><a href="#_constant_precomputation">Constant Precomputation</a></li>
 <li><a href="#_pointers_and_differnt_addressing_types">Pointers and Differnt Addressing Types</a></li>
@@ -885,8 +890,9 @@ footer {
 </ul>
 </li>
 <li><a href="#_edxeax">EDX:EAX ??</a></li>
-<li><a href="#_nasm_and_gdb">NASM and gdb</a>
+<li><a href="#_nasm_and_gdb">NASM and GDB</a>
 <ul class="sectlevel2">
+<li><a href="#_break_at_specific_instruction_number">Break at specific instruction number</a></li>
 <li><a href="#_flavor">Flavor</a></li>
 <li><a href="#_dissassembly_a_function">Dissassembly a function</a></li>
 <li><a href="#_finding_immediate_registers_label_values">Finding Immediate / registers / label values</a></li>
@@ -900,6 +906,7 @@ footer {
 <li><a href="#_real_vs_protected_vs_long_mode">Real vs Protected vs long Mode</a></li>
 <li><a href="#_segment_registers">Segment Registers</a>
 <ul class="sectlevel2">
+<li><a href="#_shdr">SHDR</a></li>
 <li><a href="#_data_segment">data segment</a></li>
 </ul>
 </li>
@@ -910,7 +917,13 @@ footer {
 </li>
 <li><a href="#_no_op">NO-OP</a></li>
 <li><a href="#_modes">Modes</a></li>
-<li><a href="#_memory">Memory</a></li>
+<li><a href="#_memory">Memory</a>
+<ul class="sectlevel2">
+<li><a href="#_virtual_memory">Virtual Memory</a></li>
+</ul>
+</li>
+<li><a href="#_strings_and_symbol_tables">Strings and Symbol Tables</a></li>
+<li><a href="#_elf_file_header">Elf File Header</a></li>
 <li><a href="#_books">Books</a></li>
 <li><a href="#_links">Links</a></li>
 </ul>
@@ -1756,8 +1769,34 @@ with the command <code>set disassembly-flavor intel</code></p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_change_a_number_from_little_endian_to_big_endian_in_c">Change a number from little endian to big endian in C</h2>
+<h2 id="_endianness">Endianness</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_text">Text</h3>
+<div class="paragraph">
+<p>This instruction</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="gdb"><span></span>mov rax, [text1]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>stores <code>text1</code> into rax in little endian mode</p>
+</div>
+<div class="listingblock">
+<div class="title">gdb rax register</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="gdb"><span></span>(gdb) i r
+rax            0x5452455000636261  6075995057182433889</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>0x61 is a, 0x62 is b, and 0x63 is c.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_change_a_number_from_little_endian_to_big_endian_in_c">Change a number from little endian to big endian in C</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="c"><span></span><span class="tok-cp">#include</span><span class="tok-w"> </span><span class="tok-cpf">&lt;stdio.h&gt;</span><span class="tok-cp"></span>
@@ -1769,6 +1808,7 @@ with the command <code>set disassembly-flavor intel</code></p>
 <span class="tok-w">    </span><span class="tok-kt">unsigned</span><span class="tok-w"> </span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">num</span><span class="tok-w"> </span><span class="tok-o">=</span><span class="tok-w"> </span><span class="tok-mh">0x12345678</span><span class="tok-p">;</span><span class="tok-w"></span>
 <span class="tok-w">    </span><span class="tok-n">printf</span><span class="tok-p">(</span><span class="tok-s">&quot;%x</span><span class="tok-se">\n</span><span class="tok-s">&quot;</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">htonl</span><span class="tok-p">(</span><span class="tok-n">num</span><span class="tok-p">));</span><span class="tok-w"></span>
 <span class="tok-p">}</span><span class="tok-w"></span></code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -1970,8 +2010,16 @@ DX:AX, EDX:EAX, or RDX:RAX register</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_nasm_and_gdb">NASM and gdb</h2>
+<h2 id="_nasm_and_gdb">NASM and GDB</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_break_at_specific_instruction_number">Break at specific instruction number</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="gdb"><span></span> b * 0x0000000000401110</code></pre>
+</div>
+</div>
+</div>
 <div class="sect2">
 <h3 id="_flavor">Flavor</h3>
 <div class="paragraph">
@@ -2230,6 +2278,13 @@ segment</p>
 </ul>
 </div>
 <div class="sect2">
+<h3 id="_shdr">SHDR</h3>
+<div class="paragraph">
+<p>From <code>man elf</code> we can see that the <code>Elf32_Shdr</code> or <code>Elf32_Shdr</code> structs, can
+contain info about <code>.bss</code>, <code>.data</code>, etc.</p>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_data_segment">data segment</h3>
 <div class="sect3">
 <h4 id="_example_1">Example 1</h4>
@@ -2407,6 +2462,95 @@ This is because we are using 64 bit assembler.</p>
 <img src="diag-ditaa-md5-eb2c2c23f80988e41e796c93cf98dc62.png" alt="Diagram" width="470" height="364">
 </div>
 </div>
+<div class="sect2">
+<h3 id="_virtual_memory">Virtual Memory</h3>
+<div class="paragraph">
+<p>From <code>man elf</code> we can see that <code>e_entry</code> from the <code>ElfN_Ehdr</code> struct gives the
+virtual address to which the system first transfers control.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_strings_and_symbol_tables">Strings and Symbol Tables</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>From <code>man elf</code> we see that <code>Elf32_Sym</code> or <code>Elf64_Sym</code> can hold these tables.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_elf_file_header">Elf File Header</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="sh"><span></span>$ readelf --file-header ./memory</code></pre>
+</div>
+</div>
+<details>
+<summary class="title">output</summary>
+<div class="content">
+<div class="literalblock">
+<div class="content">
+<pre>Magic:   7f 45 4c 46 02 01 01 00 00 00 00 00 00 00 00 00
+Class:                             ELF64
+Data:                              2's complement, little endian
+Version:                           1 (current)
+OS/ABI:                            UNIX - System V
+ABI Version:                       0
+Type:                              EXEC (Executable file)
+Machine:                           Advanced Micro Devices X86-64
+Version:                           0x1
+Entry point address:               0x401020
+Start of program headers:          64 (bytes into file)
+Start of section headers:          14520 (bytes into file)
+Flags:                             0x0
+Size of this header:               64 (bytes)
+Size of program headers:           56 (bytes)
+Number of program headers:         13</pre>
+</div>
+</div>
+</div>
+</details>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="gdb"><span></span>(gdb) disass</code></pre>
+</div>
+</div>
+<details>
+<summary class="title">output</summary>
+<div class="content">
+<div class="literalblock">
+<div class="content">
+<pre>Dump of assembler code for function main:
+   0x0000000000401110 &lt;+0&gt;:     push   %rbp
+   0x0000000000401111 &lt;+1&gt;:     mov    %rsp,%rbp
+=&gt; 0x0000000000401114 &lt;+4&gt;:     lea    0x404028,%rax
+   0x000000000040111c &lt;+12&gt;:    movabs $0x404028,%rax
+   0x0000000000401126 &lt;+22&gt;:    mov    0x404028,%rax
+   0x000000000040112e &lt;+30&gt;:    mov    %rax,0x404058
+   0x0000000000401136 &lt;+38&gt;:    lea    0x404058,%rax
+   0x000000000040113e &lt;+46&gt;:    lea    0x404029,%rax
+   0x0000000000401146 &lt;+54&gt;:    mov    0x404029,%rax
+   0x000000000040114e &lt;+62&gt;:    lea    0x404041,%rax
+   0x0000000000401156 &lt;+70&gt;:    movabs $0x404041,%rax
+   0x0000000000401160 &lt;+80&gt;:    movabs $0x404042,%rax
+   0x000000000040116a &lt;+90&gt;:    lea    0x404042,%rax
+   0x0000000000401172 &lt;+98&gt;:    mov    0x404041,%rax
+   0x000000000040117a &lt;+106&gt;:   mov    0x404042,%rax
+   0x0000000000401182 &lt;+114&gt;:   mov    %rbp,%rsp
+   0x0000000000401185 &lt;+117&gt;:   pop    %rbp
+   0x0000000000401186 &lt;+118&gt;:   mov    $0x3c,%eax
+   0x000000000040118b &lt;+123&gt;:   xor    %rdi,%rdi
+   0x000000000040118e &lt;+126&gt;:   syscall</pre>
+</div>
+</div>
+</div>
+</details>
+<div class="paragraph">
+<p>The entry point from <code>readelf</code> is smaller then the entry point from <code>disass</code>.
+This is because their is a header for elf executables.</p>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -2433,6 +2577,10 @@ This is because we are using 64 bit assembler.</p>
 </li>
 </ul>
 </div>
+</li>
+<li>
+<p>"Linkers and Loaders, John R. Levine, 1999, The Morgan Kaufmann Series in
+Sofware Engineering and Programming"</p>
 </li>
 </ul>
 </div>
@@ -2477,7 +2625,7 @@ This is because we are using 64 bit assembler.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-03-25 23:31:40 -0400
+Last updated 2024-03-26 01:05:11 -0400
 </div>
 </div>
 <script type="text/x-mathjax-config">
