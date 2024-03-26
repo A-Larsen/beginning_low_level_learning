@@ -2624,6 +2624,56 @@ time you push, the stack grows, every time you pop, the stack shrinks.</p>
 <p>The stack can be used as temporary storage to save values in registers and call
 them back later or, more importantly, to transfer values to functions.</p>
 </div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="nasm"><span></span><span class="tok-k">section </span><span class="tok-nv">.data</span>
+    <span class="tok-nf">string</span> <span class="tok-nv">db</span> <span class="tok-s">&quot;ABCDE&quot;</span><span class="tok-p">,</span> <span class="tok-mi">0</span>
+    <span class="tok-no">stringLen</span><span class="tok-kd"> equ</span> <span class="tok-kc">$</span> <span class="tok-o">-</span> <span class="tok-nv">string</span> <span class="tok-o">-</span> <span class="tok-mi">1</span>
+
+<span class="tok-nl">main:</span>
+    <span class="tok-nf">xor</span> <span class="tok-nb">rax</span><span class="tok-p">,</span> <span class="tok-nb">rax</span>
+    <span class="tok-nf">mov</span> <span class="tok-nb">rbx</span><span class="tok-p">,</span> <span class="tok-nv">string</span>
+    <span class="tok-nf">mov</span> <span class="tok-nb">rcx</span><span class="tok-p">,</span> <span class="tok-nv">stringLen</span>
+    <span class="tok-nf">mov</span> <span class="tok-nb">r12</span><span class="tok-p">,</span> <span class="tok-mi">0</span>
+    <span class="tok-nl">pushLoop:</span>
+        <span class="tok-nf">mov</span> <span class="tok-nb">al</span><span class="tok-p">,</span> <span class="tok-kt">byte</span> <span class="tok-p">[</span><span class="tok-nb">rbx</span> <span class="tok-o">+</span> <span class="tok-nb">r12</span><span class="tok-p">]</span>
+        <span class="tok-nf">push</span> <span class="tok-nb">rax</span>
+        <span class="tok-nf">inc</span> <span class="tok-nb">r12</span>
+        <span class="tok-nf">loop</span> <span class="tok-nv">pushLoop</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="gdb"><span></span>(gdb) i s</code></pre>
+</div>
+</div>
+<details>
+<summary class="title">output</summary>
+<div class="content">
+<div class="literalblock">
+<div class="content">
+<pre>#0  0x000000000040116a in pushLoop ()
+#1  0x0000000000000044 in ?? ()
+#2  0x0000000000000043 in ?? ()
+#3  0x0000000000000042 in ?? ()
+#4  0x0000000000000041 in ?? ()
+#5  0x0000000000000001 in ?? ()
+#6  0x00007ffff7da1d90 in __libc_start_call_main (main=main@entry=0x401130 &lt;main&gt;,
+    argc=1, argc@entry=-10544, argv=0x7fffffffd7e8, argv@entry=0x4)
+    at ../sysdeps/nptl/libc_start_call_main.h:58
+#7  0x00007ffff7da1e40 in __libc_start_main_impl (main=0x401130 &lt;main&gt;, argc=-10544,
+    argv=0x4, init=&lt;optimized out&gt;, fini=&lt;optimized out&gt;, rtld_fini=&lt;optimized out&gt;,
+    stack_end=0x7fffffffd7d8) at ../csu/libc-start.c:392
+#8  0x0000000000401065 in _start ()</pre>
+</div>
+</div>
+</div>
+</details>
+<div class="paragraph">
+<p>Here you can see the stack, and can see 0x0000000000000041 (A),
+0x0000000000000042 (B), 0x0000000000000042 &#169;, 0x0000000000000043 (D)
+0x0000000000000044 (E), being pushed onto the stack.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_virtual_memory">Virtual Memory</h3>
@@ -2849,7 +2899,7 @@ Sofware Engineering and Programming"</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-03-26 14:07:32 -0400
+Last updated 2024-03-26 15:02:45 -0400
 </div>
 </div>
 <script type="text/x-mathjax-config">
