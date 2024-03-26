@@ -910,6 +910,11 @@ readelf --symbols ./memory | tail +10 | sort -k 2 -r
 - **.bss**  -> 0x0000000000404051
 - **.data** -> 0x0000000000404018
 
+=== Stack
+The stacck segment starts in high memory, and when it grows, it grows in the
+downward direction. Items are placed on the stack with the https://www.felixcloutier.com/x86/push[push] instruction
+and removed from the stack with the https://www.felixcloutier.com/x86/pop[pop] instruction.
+
 === Virtual Memory
 
 From `man elf` we can see that `e_entry` from the `ElfN_Ehdr` struct gives the
