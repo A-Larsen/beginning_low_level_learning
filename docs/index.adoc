@@ -528,6 +528,11 @@ registers.
 - Overflow is indicated withthe #DE (divide error) exception rather than with
   the CF flag
 
+The **modulo** can be found in rdx.
+
+Remember to set rdx to zero every time before you use idiv or the resulting
+quotient may be wrong.
+
 === DIV
 Divids unsigned the value in the AX, DX:AX, EDX:EAX, or RDX:RAX registers
 (dividend) by the source operand (divisor) and stores the result in AX (AH:AL),
