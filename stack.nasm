@@ -25,11 +25,37 @@ main:
     mov rbx, string
     mov rcx, stringLen
     mov r12, 0
+
     pushLoop:
         mov al, byte [rbx + r12]
         push rax
         inc r12
         loop pushLoop
 
+    ; pop the string char per char from the stack
+    ; this will reverse the original string
+
+    mov rbx, string
+    mov rcx, stringLen
+    mov r12, 0
+
+    popLoop:
+        pop rax
+        mov byte [rbx + r12], al
+        inc r12
+        loop popLoop
+
+    mov byte [rbx + r12], 0 ; terminate string with 0
+
+    ; Print the reversed string
+    mov rdi, fmt2
+    mov rsi, string
+    mov rax, 0
+    call printf
+
     mov rsp, rbp
     pop rbp
+
+    mov rax, 60
+    xor rdi, rdi
+    syscall
