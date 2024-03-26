@@ -23,8 +23,8 @@ Ex.
 
 
 This is an example of an instruction table that you might see, In this case I
-took this from the _Intel 64 and IA-32 Architectures software Developer's
-Manual_.
+took this from the
+https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html[Intel 64 and IA-32 Architectures software Developer's Manual].
 
 === Instructions
 r::
@@ -89,8 +89,6 @@ ib, iw, id, io::
     ST(i) from the FPU register stack. The number i (which can range from 0 to
     7) is added to the hexadecimal byte given at the left of the plus sign to
     form a single opcode byte.
-
-
 
 
 NOTE: Look at Intel 64 and IA-32 Architectures Software Developer's Manual page
@@ -323,7 +321,7 @@ similar), together with their numbers (the value to put in EAX before you call
 int 80h). In ubuntu I found the file in
 _/usr/include/x86_64-linux-gnu/asm/unistd_64.h_.
 
-You can checkout `man syscalls` on links to lookup a syscall.
+You can checkout https://www.man7.org/linux/man-pages/man2/syscalls.2.html[man syscalls] on links to lookup a syscall.
 
 
 == Different Addressing types
@@ -478,11 +476,11 @@ main:
 2. add 1
 
 == Instructions
-=== NEG
-The `NEG` instruction applys two complement. It sets the CF falgs to zero if the
+=== https://www.felixcloutier.com/x86/neg[NEG]
+The https://www.felixcloutier.com/x86/neg[NEG] instruction applys two complement. It sets the CF falgs to zero if the
 source operand is 0; otherwise it is set to 1.
 
-=== IMUL
+=== https://www.felixcloutier.com/x86/imul[IMUL]
 signed multiplication
 
 One-operand form::
@@ -497,7 +495,7 @@ Three-operand form::
     with `mul a, b, c`, the multiplication of `b` and `c` is
     stored in `a`
 
-=== MUL
+=== https://www.felixcloutier.com/x86/mul[MUL]
 unsigned multiply
 
 the source operand is located in either AL, AX, or EAX, dending on the size of
@@ -507,7 +505,7 @@ The result is stored in RDX:RAX meaning that the lower 64 bits are stored in RAX
 and the upper 64 bits are stored in RDX. This is because the result of two
 numbers can be larger bit size they originaly had.
 
-=== SUB
+=== https://www.felixcloutier.com/x86/sub[SUB]
 subtract source operand from the destination operand and stores the result in
 the destination operand.
 
@@ -520,7 +518,7 @@ the destination operand.
 
 In 64-bit mode the instruction's default operation size is 32 bits
 
-=== IDIV
+=== https://www.felixcloutier.com/x86/idiv[IDIV]
 signed divide. Divides the value in AX, DX:AX, or EDX:EAX (dividend) by the
 source operand (divisor) and stores the result in AX (AH:AL), DX:AX, or EDX:EAX
 registers.
@@ -533,7 +531,7 @@ The **modulo** can be found in rdx.
 WARNING: Remember to set rdx to zero every time before you use idiv or the
          resulting quotient may be wrong.
 
-=== DIV
+=== https://www.felixcloutier.com/x86/div[DIV]
 Divids unsigned the value in the AX, DX:AX, EDX:EAX, or RDX:RAX registers
 (dividend) by the source operand (divisor) and stores the result in AX (AH:AL),
 DX:AX, EDX:EAX, or RDX:RAX register
@@ -731,7 +729,7 @@ mov dword [fs:eax], 42
       segment
 
 === SHDR
-From `man elf` we can see that the `Elf32_Shdr` or `Elf32_Shdr` structs, can
+From https://linux.die.net/man/5/elf[man elf] we can see that the `Elf32_Shdr` or `Elf32_Shdr` structs, can
 contain info about `.bss`, `.data`, etc.
 
 === data segment
@@ -917,11 +915,11 @@ and removed from the stack with the https://www.felixcloutier.com/x86/pop[pop] i
 
 === Virtual Memory
 
-From `man elf` we can see that `e_entry` from the `ElfN_Ehdr` struct gives the
+From https://linux.die.net/man/5/elf[man elf] we can see that `e_entry` from the `ElfN_Ehdr` struct gives the
 virtual address to which the system first transfers control.
 
 == Strings and Symbol Tables
-From `man elf` we see that `Elf32_Sym` or `Elf64_Sym` can hold these tables.
+From https://linux.die.net/man/5/elf[man elf] we see that `Elf32_Sym` or `Elf64_Sym` can hold these tables.
 
 == Elf File Header
 
