@@ -62,8 +62,7 @@ code:not([data-lang]) {
     font-size: .8em;
 }
 
-.checklist li ul {
-    margin-left: 3%;
+.checklist li ul { margin-left: 3%;
 }
 
 #content, h1, pre {
@@ -296,6 +295,13 @@ footer {
     margin-right: auto;
     display: block;
 
+}
+
+details[open] > summary::before {
+   /* display: none;*/
+    border-top: none;
+    content: "▼";
+    margin-top: -12px;
 }
 
 </style>
