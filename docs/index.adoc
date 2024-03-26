@@ -1,4 +1,4 @@
-= Low Level learning
+= Low Level Learning
 :docinfo: shared
 :source-highlighter: pygments
 :pygments-style: monokai
@@ -25,7 +25,6 @@ Ex.
 This is an example of an instruction table that you might see, In this case I
 took this from the _Intel 64 and IA-32 Architectures software Developer's
 Manual_.
-
 
 === Instructions
 r::
@@ -723,18 +722,26 @@ nothing, but do set the rflags. The main reason for no-ops is to optimize
 instruction memory (e.g., code size, alignment).
 
 == Modes
-- Real mode (the most ancient, 16-bit)
-    * Computer is booted into this mode
-    * Can access pretty much any memory location
-    * No virtual memory
-- Protected (commonly referred as 32-bit one)
-    * Virtual memory
-    * Protection rings
-    * Improved segmentation
-- Virtual (to emulate real mode inside protected)
-- System management mode (for sleep mode, power management, etc)
-- Long Mode
-    * Virtual memory
+Real mode::
+* the most ancient, 16-bit
+* Computer is booted into this mode
+* Can access pretty much any memory location
+* No virtual memory
+
+Protected::
+* commonly referred as 32-bit one
+* Virtual memory
+* Protection rings
+* Improved segmentation
+
+Virtual::
+* emulate real mode inside protected
+
+System management mode::
+* for sleep mode, power management, etc
+
+Long Mode::
+* Virtual memory
 
 == Memory 
 If you look at this _.lst_ file you can see the each memory address (second
