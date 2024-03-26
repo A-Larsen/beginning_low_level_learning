@@ -717,6 +717,10 @@ mov dword [fs:eax], 42
     - mov is used to manipulate data, so the address is relative to the data
       segment
 
+=== SHDR
+From `man elf` we can see that the `Elf32_Shdr` or `Elf32_Shdr` structs, can
+contain info about `.bss`, `.data`, etc.
+
 === data segment
 
 ==== Example 1
@@ -826,6 +830,11 @@ The memory size has a theoretical limit of stem:[2^64] address.
 |          .text             |
 +----------------------------+ low address
 ----
+
+=== Virtual Memory
+
+From `man elf` we can see that `e_entry` from the `ElfN_Ehdr` struct gives the
+virtual address to which the system first transfers control.
 
 == Books
 - "Learn to Program with Assembly by Jonathan Bartlett"
