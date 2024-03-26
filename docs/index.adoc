@@ -740,7 +740,7 @@ contain info about `.bss`, `.data`, etc.
 [source, nasm]
 ----
 global main
-section .bss
+section .data
     bNum db 123
 section .text
 main:
@@ -753,7 +753,7 @@ lea rax, [bNum]
  lea    rax,ds:0x404028
 ----
 
-ds:: code segment
+ds:: data segment
 0x404028:: address of bNum
 
 == Compiling and Linking
