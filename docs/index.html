@@ -925,8 +925,15 @@ footer {
 </li>
 <li><a href="#_strings_and_symbol_tables">Strings and Symbol Tables</a></li>
 <li><a href="#_elf_file_header">Elf File Header</a></li>
+<li><a href="#_checking_if_signed_number_is_negative">Checking if Signed Number is negative</a>
+<ul class="sectlevel2">
+<li><a href="#_binary">binary</a></li>
+<li><a href="#_hexidecimal">hexidecimal</a></li>
+</ul>
+</li>
 <li><a href="#_books">Books</a></li>
 <li><a href="#_links">Links</a></li>
+<li><a href="#_asciidoctor">Asciidoctor</a></li>
 </ul>
 </div>
 </div>
@@ -2638,6 +2645,54 @@ This is because their is a header for elf executables.</p>
 </div>
 </div>
 <div class="sect1">
+<h2 id="_checking_if_signed_number_is_negative">Checking if Signed Number is negative</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_binary">binary</h3>
+<div class="paragraph">
+<p>check if the most significant bit is 1</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_hexidecimal">hexidecimal</h3>
+<div class="paragraph">
+<p>check if lefmost byte is 8, 9, A, B, C D, E, or F. Break number into multiple
+bytes or this will not work. For example 0xd12 would appear to be negative if
+you didn&#8217;t break it up into byte chunks, doing so you get:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>0x0d, 0x12</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>or</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>0x0d &lt;&lt; 8 | 0x12</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Notice how the leftmost byte actually starts with a zero. Also notice how each
+byte is two digits long.</p>
+</div>
+<div class="paragraph">
+<p>you can or bytes together to get the original answer by doing</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>byte4 &lt;&lt; 24 | byte3 &lt;&lt; 16 | byte2 &lt;&lt; 8 | byte1</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>bitshift right 8, 16, 24 are offsets, shifting by one byte, two bytes, and then
+three.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_books">Books</h2>
 <div class="sectionbody">
 <div class="ulist">
@@ -2706,10 +2761,22 @@ Sofware Engineering and Programming"</p>
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_asciidoctor">Asciidoctor</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.asciidoctor.org/diagram-extension/latest/diagram_types/bytefield/">bytefield extension</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-03-26 01:18:26 -0400
+Last updated 2024-03-26 12:51:10 -0400
 </div>
 </div>
 <script type="text/x-mathjax-config">
