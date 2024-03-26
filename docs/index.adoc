@@ -8,6 +8,7 @@
 
 == Related Links
 - https://html-preview.github.io/?url=https://github.com/A-Larsen/beginning_low_level_learning/blob/main/docs/c-disassembling.html[c-disassmebling]
+- https://html-preview.github.io/?url=https://github.com/A-Larsen/beginning_low_level_learning/blob/main/docs/Q-and-A.html[Q and A]
 
 == Looking at the OpCode tables
 

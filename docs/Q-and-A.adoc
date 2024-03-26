@@ -1,3 +1,11 @@
+= Q and A
+:docinfo: shared
+:source-highlighter: pygments
+:pygments-style: monokai
+:icons: font
+:stem:
+:toc: left
+
 == Working through Question 21
 to find the number in each decimal place I could use the formula
 
