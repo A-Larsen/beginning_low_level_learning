@@ -857,7 +857,11 @@ footer {
 <li><a href="#_main">Main</a></li>
 <li><a href="#_labels">Labels</a></li>
 <li><a href="#_what_is_the_differnce_between_sar_and_shr">What is the differnce between SAR and SHR?</a></li>
-<li><a href="#_jumping">Jumping</a></li>
+<li><a href="#_jumping_looping">Jumping / looping</a>
+<ul class="sectlevel2">
+<li><a href="#_different_types_of_jumps">Different Types of Jumps</a></li>
+</ul>
+</li>
 <li><a href="#_function_calls">Function Calls</a></li>
 <li><a href="#_syscalls">Syscalls</a></li>
 <li><a href="#_different_addressing_types">Different Addressing types</a>
@@ -1552,7 +1556,7 @@ just clears the most significant bit.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_jumping">Jumping</h2>
+<h2 id="_jumping_looping">Jumping / looping</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><code>cmp</code> sets the approriate flags. <code>jl</code> jumps if rax &lt; 42. <code>jmp</code> jumps straight to
@@ -1584,7 +1588,42 @@ of <em>unsigned numbers with cmp</em>.</p>
 <dd>
 <p>(jump if above or equal), jle (jump if less or equal) and similar</p>
 </dd>
+<dt class="hdlist1"><a href="https://www.felixcloutier.com/x86/loop:loopcc">loop</a></dt>
+<dd>
+<p>checks RCX/ECX/CX register as a counter. Each time the LOOP instruction is
+executed, the count register is decremented, the check for 0. If the count
+is 0, the loop is terminated. If the count is not zero, a near jump is
+performed.</p>
+</dd>
 </dl>
+</div>
+<div class="sect2">
+<h3 id="_different_types_of_jumps"><a href="https://www.felixcloutier.com/x86/jmp">Different Types of Jumps</a></h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Near Jump</dt>
+<dd>
+<p>A jump to an instruction within the current code segment (the segment
+currently pointed to by the CS register), sometimes referred to as an
+intrasegment jump</p>
+</dd>
+<dt class="hdlist1">Short Jump</dt>
+<dd>
+<p>A near jump where the jump range is limited to –128 to +127 from the current
+EIP value</p>
+</dd>
+<dt class="hdlist1">Far Jump</dt>
+<dd>
+<p>A jump to an instruction located in a different segment than the current
+code segment but at the same privilege level, sometimes referred to as an
+intersegment jump</p>
+</dd>
+<dt class="hdlist1">Task Switch</dt>
+<dd>
+<p>A jump to an instruction located in a different task</p>
+</dd>
+</dl>
+</div>
 </div>
 </div>
 </div>
@@ -2576,8 +2615,14 @@ sections is called the heap.</p>
 <h3 id="_stack">Stack</h3>
 <div class="paragraph">
 <p>The stacck segment starts in high memory, and when it grows, it grows in the
-downward direction. Items are placed on the stack with the <a href="https://www.felixcloutier.com/x86/push">push</a> instruction
-and removed from the stack with the <a href="https://www.felixcloutier.com/x86/pop">pop</a> instruction.</p>
+downward direction. Items are placed on the stack with the
+<a href="https://www.felixcloutier.com/x86/push">push</a> instruction and removed from the
+stack with the <a href="https://www.felixcloutier.com/x86/pop">pop</a> instruction. Every
+time you push, the stack grows, every time you pop, the stack shrinks.</p>
+</div>
+<div class="paragraph">
+<p>The stack can be used as temporary storage to save values in registers and call
+them back later or, more importantly, to transfer values to functions.</p>
 </div>
 </div>
 <div class="sect2">
@@ -2804,7 +2849,7 @@ Sofware Engineering and Programming"</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-03-26 13:36:31 -0400
+Last updated 2024-03-26 14:07:32 -0400
 </div>
 </div>
 <script type="text/x-mathjax-config">

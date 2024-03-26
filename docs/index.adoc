@@ -248,7 +248,7 @@ main:
 SAR sets or clears the most significant bit depending on the sign, While SHR
 just clears the most significant bit.
 
-== Jumping
+== Jumping / looping
 
 `cmp` sets the approriate flags. `jl` jumps if rax < 42. `jmp` jumps straight to
 the `ex` label.
@@ -270,6 +270,31 @@ ex:
 `jg`:: (Jump if greater) / `jl` (jump if less) for _signed_.
 
 `jae`:: (jump if above or equal), jle (jump if less or equal) and similar
+
+https://www.felixcloutier.com/x86/loop:loopcc[loop]::
+    checks RCX/ECX/CX register as a counter. Each time the LOOP instruction is
+    executed, the count register is decremented, the check for 0. If the count
+    is 0, the loop is terminated. If the count is not zero, a near jump is
+    performed.
+
+=== https://www.felixcloutier.com/x86/jmp[Different Types of Jumps]
+
+Near Jump::
+    A jump to an instruction within the current code segment (the segment
+    currently pointed to by the CS register), sometimes referred to as an
+    intrasegment jump
+
+Short Jump::
+    A near jump where the jump range is limited to –128 to +127 from the current
+    EIP value
+
+Far Jump::
+    A jump to an instruction located in a different segment than the current
+    code segment but at the same privilege level, sometimes referred to as an
+    intersegment jump
+
+Task Switch::
+    A jump to an instruction located in a different task
 
 == Function Calls
 `Instruction call <address>` is the same as:
@@ -914,8 +939,13 @@ readelf --symbols ./memory | tail +10 | sort -k 2 -r
 
 === Stack
 The stacck segment starts in high memory, and when it grows, it grows in the
-downward direction. Items are placed on the stack with the https://www.felixcloutier.com/x86/push[push] instruction
-and removed from the stack with the https://www.felixcloutier.com/x86/pop[pop] instruction.
+downward direction. Items are placed on the stack with the
+https://www.felixcloutier.com/x86/push[push] instruction and removed from the
+stack with the https://www.felixcloutier.com/x86/pop[pop] instruction. Every
+time you push, the stack grows, every time you pop, the stack shrinks.
+
+The stack can be used as temporary storage to save values in registers and call
+them back later or, more importantly, to transfer values to functions.
 
 === Virtual Memory
 From https://linux.die.net/man/5/elf[man elf] or `info elf` we can see that
@@ -1017,10 +1047,6 @@ byte4 << 24 | byte3 << 16 | byte2 << 8 | byte1
 
 In this case I or'ed together 4 bytes to get a 24 bit number. bitshift right 8,
 16, 24 are offsets; shifting by one byte, two bytes, and then three.
-
-
-
-
 
 == Books
 - "Learn to Program with Assembly by Jonathan Bartlett"
