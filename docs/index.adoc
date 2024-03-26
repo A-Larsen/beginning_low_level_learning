@@ -1093,6 +1093,25 @@ byte4 << 24 | byte3 << 16 | byte2 << 8 | byte1
 In this case I or'ed together 4 bytes to get a 24 bit number. bitshift right 8,
 16, 24 are offsets; shifting by one byte, two bytes, and then three.
 
+== Single vs. Double Precision
+
+A single-precision number is stored  in 32 bits: 1 sign bit, 11 exponent bits,
+and 23 fraction bits
+
+----
+S   EEEEEEEE   FFFFFFFFFFFFFFFFFFFFFFF 
+0   1      8   9                     31
+----
+
+A double-percision number is stored in 64-bits: 1 sign bit, 11 exponent bits,
+and 52 fractin bits.
+
+----
+S  EEEEEEEEEEE   FFFFFFFFFFFFFF...FFFFFFFFFFFFFFF 
+0  1         11  12                             63
+----
+
+
 == Books
 - "Learn to Program with Assembly by Jonathan Bartlett"
     * learning AT&T syntax with GNU assembler
