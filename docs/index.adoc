@@ -695,6 +695,26 @@ mov dword [fs:eax], 42
     - mov is used to manipulate data, so the address is relative to the data
       segment
 
+=== ds
+
+==== Example 1
+
+[source, nasm]
+----
+section .bss
+    bNum db 123
+----
+
+.gdb disassembly
+[source, gdb]
+----
+ lea    rax,ds:0x404028
+----
+
+ds:: code segment
+0x404028:: address of bNum
+
+
 == Compiling and Linking
 === Makefile
 The `-f` is follow by the output format, in our case elf64, which means
@@ -754,6 +774,10 @@ This is because we are using 64 bit assembler.
     11 00000000 B801000000                  mov rax, 1
     12 00000005 BF01000000                  mov rdi, 1
 ----
+
+
+
+The memory size has a theoretical limit of stem:[2^64] address.
 
 [ditaa]
 ----
