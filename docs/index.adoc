@@ -124,6 +124,7 @@ represent if it is a unsigned number. Or it can represent whether a number is
 == Data types
 
 .datatypes
+[%header]
 |===
 | Type | Length  | Name
 | db   | 8 bits  | Byte
@@ -801,7 +802,7 @@ Long Mode::
 * Virtual memory
 
 == Memory 
-The memory size has a theoretical limit of stem:[2^64] address.
+The memory size has a theoretical limit of 2^64 address.
 
 If you look at this _.lst_ file you can see the each memory address (second
 column) has 8 hexadecimal digits meaning that there are 64 bits per instruction.
