@@ -918,9 +918,9 @@ downward direction. Items are placed on the stack with the https://www.felixclou
 and removed from the stack with the https://www.felixcloutier.com/x86/pop[pop] instruction.
 
 === Virtual Memory
-
-From https://linux.die.net/man/5/elf[man elf] we can see that `e_entry` from the `ElfN_Ehdr` struct gives the
-virtual address to which the system first transfers control.
+From https://linux.die.net/man/5/elf[man elf] or `info elf` we can see that
+`e_entry` from the `ElfN_Ehdr` struct gives the virtual address to which the
+system first transfers control.
 
 == Strings and Symbol Tables
 From https://linux.die.net/man/5/elf[man elf] we see that `Elf32_Sym` or `Elf64_Sym` can hold these tables.
