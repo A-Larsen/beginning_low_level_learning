@@ -898,7 +898,11 @@ footer {
 </ul>
 </li>
 <li><a href="#_real_vs_protected_vs_long_mode">Real vs Protected vs long Mode</a></li>
-<li><a href="#_segment_registers">Segment Registers</a></li>
+<li><a href="#_segment_registers">Segment Registers</a>
+<ul class="sectlevel2">
+<li><a href="#_ds">ds</a></li>
+</ul>
+</li>
 <li><a href="#_compiling_and_linking">Compiling and Linking</a>
 <ul class="sectlevel2">
 <li><a href="#_makefile">Makefile</a></li>
@@ -2225,6 +2229,36 @@ segment</p>
 </li>
 </ul>
 </div>
+<div class="sect2">
+<h3 id="_ds">ds</h3>
+<div class="sect3">
+<h4 id="_example_1">Example 1</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="nasm"><span></span><span class="tok-k">section </span><span class="tok-nv">.bss</span>
+    <span class="tok-nf">bNum</span> <span class="tok-nv">db</span> <span class="tok-mi">123</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">gdb disassembly</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="gdb"><span></span> lea    rax,ds:0x404028</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">ds</dt>
+<dd>
+<p>code segment</p>
+</dd>
+<dt class="hdlist1">0x404028</dt>
+<dd>
+<p>address of bNum</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -2443,7 +2477,7 @@ This is because we are using 64 bit assembler.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-03-25 23:10:40 -0400
+Last updated 2024-03-25 23:25:59 -0400
 </div>
 </div>
 <script type="text/x-mathjax-config">
