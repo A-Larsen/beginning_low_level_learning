@@ -1,10 +1,13 @@
 = Low Level learning
+:source-highlighter: pygments
 
 == Looking at the OpCode tables
+
 Ex.
 
+
 .SAL/SHL
-[cols="1,1,1,1,1,4"]
+[%header cols="1,1,1,1,1,4"]
 |===
 | Opcode   | Instruction      | Op/En | 64-bit Mode | Compat/Leg Mode | Description
 
@@ -17,6 +20,7 @@ Ex.
 This is an example of an instruction table that you might see, In this case I
 took this from the _Intel 64 and IA-32 Architectures software Developer's
 Manual_.
+
 
 === Instructions
 r::
@@ -255,13 +259,12 @@ yes:
 ex:
 ----
 
-Other::
-    1. `ja` (jump if above)/ `jb` (jump if below) for a jump after a comparison
-       of _unsigned numbers with cmp_.
+`ja`:: (jump if above)/ `jb` (jump if below) for a jump after a comparison
+   of _unsigned numbers with cmp_.
 
-    2. `jg` (Jump if greater) / `jl` (jump if less) for _signed_.
+`jg`:: (Jump if greater) / `jl` (jump if less) for _signed_.
 
-    3. `jae` (jump if above or equal), jle (jump if less or equal) and similar
+`jae`:: (jump if above or equal), jle (jump if less or equal) and similar
 
 == Function Calls
 `Instruction call <address>` is the same as:
@@ -726,7 +729,7 @@ instruction memory (e.g., code size, alignment).
 - Long Mode
     * Virtual memory
 
-== Memory Addresses
+== Memory 
 If you look at this _.lst_ file you can see the each memory address (second
 column) has 8 hexadecimal digits meaning that there are 64 bits per instruction.
 This is because we are using 64 bit assembler.
@@ -736,6 +739,32 @@ This is because we are using 64 bit assembler.
 ----
     11 00000000 B801000000                  mov rax, 1
     12 00000005 BF01000000                  mov rdi, 1
+----
+
+[ditaa]
+----
++----------------------------+ high address
+|    environment variables   |
+|   command line arguments   |
++----------------------------+
+|          stack             |
+|                            |
+|                            |
+|                            |
+|                            |
+|                            |
+|                            |
+|           heap             |
++----------------------------+
+|                            |
+|           .bss             |
++----------------------------+
+|                            |
+|          .data             |
++----------------------------+
+|                            |
+|          .text             |
++----------------------------+ low address
 ----
 
 == Books
