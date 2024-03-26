@@ -889,7 +889,6 @@ footer {
 <li><a href="#_div">DIV</a></li>
 </ul>
 </li>
-<li><a href="#_edxeax">EDX:EAX ??</a></li>
 <li><a href="#_nasm_and_gdb">NASM and GDB</a>
 <ul class="sectlevel2">
 <li><a href="#_break_at_specific_instruction_number">Break at specific instruction number</a></li>
@@ -1940,6 +1939,11 @@ stored in <code>a</code></p>
 <p>the source operand is located in either AL, AX, or EAX, dending on the size of
 the operand.</p>
 </div>
+<div class="paragraph">
+<p>The result is stored in RDX:RAX meaning that the lower 64 bits are stored in RAX
+and the upper 64 bits are stored in RDX. This is because the result of two
+numbers can be larger bit size they originaly had.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_sub">SUB</h3>
@@ -2006,14 +2010,6 @@ DX:AX, EDX:EAX, or RDX:RAX register</p>
 <span class="tok-nf">syscall</span></code></pre>
 </div>
 </div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_edxeax">EDX:EAX ??</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>?</p>
 </div>
 </div>
 </div>
@@ -2776,7 +2772,7 @@ Sofware Engineering and Programming"</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-03-26 12:53:53 -0400
+Last updated 2024-03-26 13:01:40 -0400
 </div>
 </div>
 <script type="text/x-mathjax-config">

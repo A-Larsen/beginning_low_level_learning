@@ -503,6 +503,10 @@ unsigned multiply
 the source operand is located in either AL, AX, or EAX, dending on the size of
 the operand.
 
+The result is stored in RDX:RAX meaning that the lower 64 bits are stored in RAX
+and the upper 64 bits are stored in RDX. This is because the result of two
+numbers can be larger bit size they originaly had.
+
 === SUB
 subtract source operand from the destination operand and stores the result in
 the destination operand.
@@ -545,9 +549,6 @@ mov rdi, rax ; returning the result as a exit number
 mov rax, 60 ; exit syscall
 syscall
 ----
-
-== EDX:EAX ??
-?
 
 == NASM and GDB
 === Break at specific instruction number
