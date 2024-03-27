@@ -606,7 +606,34 @@ syscall
 ----
 
 == NASM and GDB
+=== Next instruction
+assembly:
+[source, gdb]
+----
+(gdb) ni
+----
+
+C:
+[source, gdb]
+----
+(gdb) n
+----
+
+=== Steping into a function
+To step into an assembly function
+[source, gdb]
+----
+(gdb) stepi
+----
+
+To step into an C function
+[source, gdb]
+----
+(gdb) stepi
+----
+
 === Make Printing Look Nice
+[source, gdb]
 ----
 (gdb) set print pretty
 ----
@@ -618,7 +645,6 @@ syscall
 ----
 
 === Break at specific instruction number
-
 [source, gdb]
 ----
  (gdb) b * 0x0000000000401110
