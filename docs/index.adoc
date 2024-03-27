@@ -245,13 +245,33 @@ Task Switch::
     A jump to an instruction located in a different task
 
 == Function Calls
-`Instruction call <address>` is the same as:
+=== Requirements
+push start wih a function prologue and end with a function epilogue followed by
+a `pop rip`.
+
+.function prologue
+[source, nasm]
+----
+push rbp
+mov rbp,rsp
+----
+
+.function epilogue
+[source, nasm]
+----
+mov rsp, rbp
+pop rbp
+----
+
+Needs to move the the label with a jmp:
 
 [source, nasm]
 ----
 push rip
 jmp <address>
 ----
+
+The instruction `call <address>` is the same as the above.
 
 The address now stored in the stack (for rip contents) is called *return*
 *address*.
@@ -286,6 +306,8 @@ pattern of calling a function:
 - Restore caller-saved registers stored before the function call.
 
 NOTE: some system calls also return values - be careful to read the docs!
+
+The stack has to have 16-byte alignment when you call a function.
 
 === Locality
 Functions can have their own sections, such as `.data`, `.bss`, and `.text`. A
