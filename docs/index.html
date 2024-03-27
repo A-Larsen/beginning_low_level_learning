@@ -889,7 +889,7 @@ details[open] > summary::before {
 <li><a href="#_strings">Strings</a></li>
 <li><a href="#_constant_precomputation">Constant Precomputation</a></li>
 <li><a href="#_pointers_and_differnt_addressing_types">Pointers and Differnt Addressing Types</a></li>
-<li><a href="#_twos_complement">Two&#8217;s complement</a></li>
+<li><a href="#_negative_numbers_twos_complement">Negative Numbers / Two&#8217;s complement</a></li>
 <li><a href="#_instructions_2">Instructions</a>
 <ul class="sectlevel2">
 <li><a href="#_neg">NEG</a></li>
@@ -1948,7 +1948,7 @@ whose size is not specified.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_twos_complement">Two&#8217;s complement</h2>
+<h2 id="_negative_numbers_twos_complement">Negative Numbers / Two&#8217;s complement</h2>
 <div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
@@ -1959,6 +1959,23 @@ whose size is not specified.</p>
 <p>add 1</p>
 </li>
 </ol>
+</div>
+<div class="paragraph">
+<p>for example, I can convert this number into the negative version of the number
+in c.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="c"><span></span><span class="tok-cp">#include</span><span class="tok-w"> </span><span class="tok-cpf">&lt;stdio.h&gt;</span><span class="tok-cp"></span>
+
+<span class="tok-cp">#define NUM 500</span>
+
+<span class="tok-kt">int</span><span class="tok-w"></span>
+<span class="tok-nf">main</span><span class="tok-p">(</span><span class="tok-kt">void</span><span class="tok-p">){</span><span class="tok-w"></span>
+<span class="tok-w">    </span><span class="tok-kt">unsigned</span><span class="tok-w"> </span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">a</span><span class="tok-w"> </span><span class="tok-o">=</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-o">~</span><span class="tok-n">NUM</span><span class="tok-p">)</span><span class="tok-w"> </span><span class="tok-o">+</span><span class="tok-w"> </span><span class="tok-mi">1</span><span class="tok-p">;</span><span class="tok-w"></span>
+<span class="tok-w">    </span><span class="tok-n">printf</span><span class="tok-p">(</span><span class="tok-s">&quot;%d</span><span class="tok-se">\n</span><span class="tok-s">&quot;</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">a</span><span class="tok-p">);</span><span class="tok-w"></span>
+<span class="tok-p">}</span><span class="tok-w"></span></code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -3003,7 +3020,7 @@ Hoey"</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-03-27 12:00:43 -0400
+Last updated 2024-03-27 12:57:29 -0400
 </div>
 </div>
 <script type="text/x-mathjax-config">

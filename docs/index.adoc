@@ -501,9 +501,25 @@ main:
 	syscall
 ----
 
-== Two's complement
+== Negative Numbers / Two's complement
 1. Do a logical not to all the bits
 2. add 1
+
+for example, I can convert this number into the negative version of the number
+in c.
+
+[source, c]
+----
+#include <stdio.h>
+
+#define NUM 500
+
+int
+main(void){
+    unsigned int a = (~NUM) + 1;
+    printf("%d\n", a);
+}
+----
 
 == Instructions
 === https://www.felixcloutier.com/x86/neg[NEG]
