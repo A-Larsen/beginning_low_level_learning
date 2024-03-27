@@ -25,11 +25,25 @@ function zebraChecklist(element) {
     }
 }
 
+function hideTocChildren() {
+    const tocList = document.querySelector(".sectlevel1");
+
+    for (let i =0; i < tocList.children.length; ++i) {
+        let child = tocList.children[i];
+        let lis = child.querySelectorAll("li");
+        for (let j = 0; j < lis.length; ++j) {
+            lis[j].style.display = "none";
+        }
+    }
+}
+
 window.onload = function() {
     const class_api_type = document.querySelectorAll(".api-type");
-    const class_checklist =   document.querySelectorAll("ul.checklist");
-    const class_download =   document.querySelectorAll(".download");
-    const id_footer =   document.querySelector("#footer");
+    const class_checklist = document.querySelectorAll("ul.checklist");
+    const class_download = document.querySelectorAll(".download");
+    const id_footer = document.querySelector("#footer");
+    const tocList = document.querySelector(".sectlevel1");
+    // document.querySelector(".sectlevel1").children[1].querySelectorAll("li")[0] 
 
     class_api_type.forEach(type => {
         switch(type.outerText) {
@@ -58,8 +72,6 @@ window.onload = function() {
     })
 
     zebraChecklist(class_checklist);
-    // footer.innerHTML += "<div>powered by asciidoctor</div>"
-    // footer.querySelector("div").outHTML += "<div>powered by asciidoctor<div>";
     let footer = document.createElement("footer");
     footer.style.color = "black";
     footer.style.textAlign = "center";
@@ -67,4 +79,19 @@ window.onload = function() {
     footer.style.opacity = ".5"
     footer.innerHTML = "<p>powered by <a href='https://asciidoctor.org/'>asciidoctor</a></p>";
     document.body.appendChild(footer);
+
+    for (let i =0; i < tocList.children.length; ++i) {
+        let child = tocList.children[i];
+        let lis = child.querySelectorAll("li");
+        for (let j = 0; j < lis.length; ++j) {
+            lis[j].style.display = "none";
+        }
+
+        child.addEventListener("click", event => {
+            hideTocChildren();
+            for (let j = 0; j < lis.length; ++j) {
+                lis[j].style.display = "block";
+            }
+        })
+    }
 }
