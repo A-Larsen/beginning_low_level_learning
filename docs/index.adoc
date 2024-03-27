@@ -265,7 +265,6 @@ the first six arguments are rdi, rsi, rdx, rcx, r8, and r9, respectively.
 One should not invoke `ret` unless the stack is in exactly the same state as
 when the function started.
 
-
 Callee-saved registers::
     must be restored by the procedure being called.
     rbx, rbp, rsp, r12-r15
@@ -287,6 +286,10 @@ pattern of calling a function:
 - Restore caller-saved registers stored before the function call.
 
 NOTE: some system calls also return values - be careful to read the docs!
+
+=== Locality
+Functions can have their own sections, such as `.data`, `.bss`, and `.text`. A
+period before a variable means that variable is local to that function.
 
 == Syscalls
 syscall instructions implicitly uses rcx. System calls cannot accept more than
