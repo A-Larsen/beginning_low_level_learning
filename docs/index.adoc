@@ -167,8 +167,6 @@ address of the next instruction in rip.
 === xmm and ymm Registers
 These registers are used for floating-point calculations and SIMD.
 
-
-
 == Main
 One file in your assembly program needs "main" defined. This seems to be defined
 in the `.text` section.
@@ -537,25 +535,6 @@ SAR sets or clears the most significant bit depending on the sign, While SHR
 just clears the most significant bit.
 
 
-== Flags
-[%header]
-|===
-| Name      | Symbol | Bit | Content
-
-| Carry     | CF     | 0   | Previous instruction had a carry
-
-| Parity    | PF     | 2   | Last Byte has even number of 1s
-
-| Zero      | ZF     | 4   | BCD operations
-
-| Sign      | SF     | 8   | Previous instruction restulted in most significant
-                             bit equal to 1
-
-| Direction | DF     | 10  | Direction of string operation (increment or
-                             decrement)
-
-| Overflow  | OF     | 11  | Previous Instruction resulted in overflow
-|===
 
 === What's the difference between the CF flag and OF flag.
 Carry Flag::
