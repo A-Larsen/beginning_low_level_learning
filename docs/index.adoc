@@ -246,7 +246,7 @@ Task Switch::
 
 == Function Calls
 === Requirements
-push start wih a function prologue and end with a function epilogue followed by
+Must start wih a function prologue and end with a function epilogue followed by
 a `pop rip`.
 
 .function prologue
@@ -263,7 +263,7 @@ mov rsp, rbp
 pop rbp
 ----
 
-Needs to move the the label with a jmp:
+Must move to the the function label with a jmp, like so:
 
 [source, nasm]
 ----
