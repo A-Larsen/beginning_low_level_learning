@@ -507,6 +507,12 @@ The x86-64 ISA includes several no-op (no operation) instructions, including
 nothing, but do set the rflags. The main reason for no-ops is to optimize
 instruction memory (e.g., code size, alignment).
 
+=== MOVSD
+move a double precision floating point value
+
+=== MOVSS
+move a single precision floating point value
+
 === What is the differnce between SAR and SHR?
 SAR sets or clears the most significant bit depending on the sign, While SHR
 just clears the most significant bit.
