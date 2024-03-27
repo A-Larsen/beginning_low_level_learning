@@ -260,6 +260,8 @@ the first six arguments are rdi, rsi, rdx, rcx, r8, and r9, respectively.
 
 `ret` instruction denotes the function end. same as `pop rip`.
 
+`leave` is the the same as `mov rsp, rbp` and `pop rbp` (the epilogue).
+
 One should not invoke `ret` unless the stack is in exactly the same state as
 when the function started.
 
@@ -279,10 +281,10 @@ pattern of calling a function:
 
 - Store arguments in the relevent register (rdi, rsi, etc).
 
-- Invoke function returns, rax, will hold the return value.
+- If you return a value from a function, you use xmm0 for floating point values
+  and use rax for other values, such as integers or addresses.
 
 - Restore caller-saved registers stored before the function call.
-
 
 NOTE: some system calls also return values - be careful to read the docs!
 
@@ -929,7 +931,7 @@ readelf --symbols ./memory | tail +10 | sort -k 2 -r
 - **.data** -> 0x0000000000404018
 
 === Stack
-The stacck segment starts in high memory, and when it grows, it grows in the
+The stack segment starts in high memory, and when it grows, it grows in the
 downward direction. Items are placed on the stack with the
 https://www.felixcloutier.com/x86/push[push] instruction and removed from the
 stack with the https://www.felixcloutier.com/x86/pop[pop] instruction. Every
@@ -937,6 +939,11 @@ time you push, the stack grows, every time you pop, the stack shrinks.
 
 The stack can be used as temporary storage to save values in registers and call
 them back later or, more importantly, to transfer values to functions.
+
+The stack has to have a 16-byte alignment when you call a function. The reason
+for this is that there are SIMD instructions that perform parallel operations on
+larger blocks of data, and these SIMD instructions may require that these data
+are located in memory on addresses that are multiples of 16 bytes.
 
 [source, nasm]
 ----

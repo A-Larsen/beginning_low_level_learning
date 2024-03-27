@@ -1563,6 +1563,9 @@ intersegment jump</p>
 <p><code>ret</code> instruction denotes the function end. same as <code>pop rip</code>.</p>
 </div>
 <div class="paragraph">
+<p><code>leave</code> is the the same as <code>mov rsp, rbp</code> and <code>pop rbp</code> (the epilogue).</p>
+</div>
+<div class="paragraph">
 <p>One should not invoke <code>ret</code> unless the stack is in exactly the same state as
 when the function started.</p>
 </div>
@@ -1593,7 +1596,8 @@ push for that)</p>
 <p>Store arguments in the relevent register (rdi, rsi, etc).</p>
 </li>
 <li>
-<p>Invoke function returns, rax, will hold the return value.</p>
+<p>If you return a value from a function, you use xmm0 for floating point values
+and use rax for other values, such as integers or addresses.</p>
 </li>
 <li>
 <p>Restore caller-saved registers stored before the function call.</p>
@@ -2582,7 +2586,7 @@ sections is called the heap.</p>
 <div class="sect2">
 <h3 id="_stack">Stack</h3>
 <div class="paragraph">
-<p>The stacck segment starts in high memory, and when it grows, it grows in the
+<p>The stack segment starts in high memory, and when it grows, it grows in the
 downward direction. Items are placed on the stack with the
 <a href="https://www.felixcloutier.com/x86/push">push</a> instruction and removed from the
 stack with the <a href="https://www.felixcloutier.com/x86/pop">pop</a> instruction. Every
@@ -2591,6 +2595,12 @@ time you push, the stack grows, every time you pop, the stack shrinks.</p>
 <div class="paragraph">
 <p>The stack can be used as temporary storage to save values in registers and call
 them back later or, more importantly, to transfer values to functions.</p>
+</div>
+<div class="paragraph">
+<p>The stack has to have a 16-byte alignment when you call a function. The reason
+for this is that there are SIMD instructions that perform parallel operations on
+larger blocks of data, and these SIMD instructions may require that these data
+are located in memory on addresses that are multiples of 16 bytes.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3022,7 +3032,7 @@ Hoey"</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-03-27 19:10:05 -0400
+Last updated 2024-03-27 19:23:54 -0400
 </div>
 </div>
 <script type="text/x-mathjax-config">
