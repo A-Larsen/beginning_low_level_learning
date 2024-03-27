@@ -889,7 +889,7 @@ details[open] > summary::before {
 <li><a href="#_strings">Strings</a></li>
 <li><a href="#_constant_precomputation">Constant Precomputation</a></li>
 <li><a href="#_pointers_and_differnt_addressing_types">Pointers and Differnt Addressing Types</a></li>
-<li><a href="#_negative_numbers_twos_complement">Negative Numbers / Two&#8217;s complement</a></li>
+<li><a href="#_twos_complement">Two&#8217;s complement</a></li>
 <li><a href="#_instructions_2">Instructions</a>
 <ul class="sectlevel2">
 <li><a href="#_neg">NEG</a></li>
@@ -1948,8 +1948,12 @@ whose size is not specified.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_negative_numbers_twos_complement">Negative Numbers / Two&#8217;s complement</h2>
+<h2 id="_twos_complement">Two&#8217;s complement</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>Two&#8217;s complement is used to represent negative numbers.This is the steps to get
+the negative version of a number.</p>
+</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1959,6 +1963,10 @@ whose size is not specified.</p>
 <p>add 1</p>
 </li>
 </ol>
+</div>
+<div class="paragraph">
+<p>Binary 4294967296 is zero, anything above this number is positive, anything
+below this is negative.</p>
 </div>
 <div class="paragraph">
 <p>for example, I can convert this number into the negative version of the number
@@ -3020,7 +3028,7 @@ Hoey"</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-03-27 12:57:29 -0400
+Last updated 2024-03-27 13:03:07 -0400
 </div>
 </div>
 <script type="text/x-mathjax-config">

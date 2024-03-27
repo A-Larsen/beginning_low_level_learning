@@ -501,9 +501,15 @@ main:
 	syscall
 ----
 
-== Negative Numbers / Two's complement
+== Two's complement
+Two's complement is used to represent negative numbers.This is the steps to get
+the negative version of a number.
+
 1. Do a logical not to all the bits
 2. add 1
+
+Binary 4294967296 is zero, anything above this number is positive, anything
+below this is negative.
 
 for example, I can convert this number into the negative version of the number
 in c.
