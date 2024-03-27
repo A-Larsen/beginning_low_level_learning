@@ -606,6 +606,22 @@ syscall
 ----
 
 == NASM and GDB
+=== Looking at flags
+To get flag values:
+[source, gdb]
+----
+info registers eflags
+----
+
+An output like this:
+
+[source, gdb]
+----
+eflags  0x41  [ CF ZF ]
+----
+
+means that the carry and zero flag are set
+
 === Next instruction
 assembly:
 [source, gdb]
@@ -629,7 +645,7 @@ To step into an assembly function
 To step into an C function
 [source, gdb]
 ----
-(gdb) stepi
+(gdb) step
 ----
 
 === Make Printing Look Nice
@@ -651,7 +667,6 @@ To step into an C function
 ----
 
 === Flavor
-
 to set dissasembly flavor to intel instead of AT&T:
 
 [source, gdb]
