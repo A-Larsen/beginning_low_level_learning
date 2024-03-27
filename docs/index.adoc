@@ -1130,7 +1130,7 @@ exponent, otherwise it is a negative exponent.
 If the exponent part of a double percision number is above 1023 it is a positive
 exponent, otherwise it is a negative exponent.
 
-A single-precision number is stored in 32 bits: 1 sign bit, 11 exponent bits,
+A single-precision number is stored in 32 bits: 1 sign bit, 8 exponent bits,
 and 23 fraction bits
 
 ----
@@ -1160,6 +1160,8 @@ S  EEEEEEEEEEE   FFFFFFFFFFFFFF...FFFFFFFFFFFFFFF
 
 - "Assembly Language for x86 Processors 6th Edition by Kip R. Irvine"
 
+- "Beginning x64 Assembly Programming from Novice to AVX Professional by Jo Van
+   Hoey"
 
 == Links
 - https://www.felixcloutier.com/x86/[x86 and amd64 instruction reference]
