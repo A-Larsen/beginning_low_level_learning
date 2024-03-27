@@ -898,8 +898,10 @@ details[open] > summary::before {
 <li><a href="#_sub">SUB</a></li>
 <li><a href="#_idiv">IDIV</a></li>
 <li><a href="#_div">DIV</a></li>
+<li><a href="#_test">TEST</a></li>
 </ul>
 </li>
+<li><a href="#_flags">Flags</a></li>
 <li><a href="#_nasm_and_gdb">NASM and GDB</a>
 <ul class="sectlevel2">
 <li><a href="#_looking_at_flags">Looking at flags</a></li>
@@ -2122,6 +2124,78 @@ DX:AX, EDX:EAX, or RDX:RAX register</p>
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_test"><a href="https://www.felixcloutier.com/x86/test">TEST</a></h3>
+<div class="paragraph">
+<p>Computes the bit-wise logical AND of first operand (source 1 operand) and the
+second operand (source 2 operand) and sets the SF, ZF, and PF status flags
+according to the result. The result is then discarded.</p>
+</div>
+<div class="paragraph">
+<p>If the result of AND is zero then the ZF flag is set.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_flags">Flags</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Symbol</th>
+<th class="tableblock halign-left valign-top">Bit</th>
+<th class="tableblock halign-left valign-top">Content</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Carry</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CR</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Previous instruction had a carry</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Parity</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PF</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Last Byte has even number of 1s</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Zero</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ZF</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BCD operations</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sign</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SF</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Previous instruction restulted in most significant
+                             bit equal to 1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Direction</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DF</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Direction of string operation (increment or
+                             decrement)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Overflow</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OF</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">11</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Previous Instruction resulted in overflow</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div class="sect1">
@@ -3091,7 +3165,7 @@ Hoey"</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-03-27 17:19:45 -0400
+Last updated 2024-03-27 17:34:45 -0400
 </div>
 </div>
 <script type="text/x-mathjax-config">

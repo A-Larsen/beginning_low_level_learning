@@ -605,6 +605,33 @@ mov rax, 60 ; exit syscall
 syscall
 ----
 
+=== https://www.felixcloutier.com/x86/test[TEST]
+Computes the bit-wise logical AND of first operand (source 1 operand) and the
+second operand (source 2 operand) and sets the SF, ZF, and PF status flags
+according to the result. The result is then discarded.
+
+If the result of AND is zero then the ZF flag is set.
+
+== Flags
+[%header]
+|===
+| Name      | Symbol | Bit | Content
+
+| Carry     | CR     | 0   | Previous instruction had a carry
+
+| Parity    | PF     | 2   | Last Byte has even number of 1s
+
+| Zero      | ZF     | 4   | BCD operations
+
+| Sign      | SF     | 8   | Previous instruction restulted in most significant
+                             bit equal to 1
+
+| Direction | DF     | 10  | Direction of string operation (increment or
+                             decrement)
+
+| Overflow  | OF     | 11  | Previous Instruction resulted in overflow
+|===
+
 == NASM and GDB
 === Looking at flags
 To get flag values:
