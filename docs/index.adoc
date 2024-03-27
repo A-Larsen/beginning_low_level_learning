@@ -359,10 +359,6 @@ lea rax, [rbx + rbx * 4] ; rax = rbx * 5
 add r8, [9 + rbx * 8 + 7]
 ----
 
-== ATT vs. Intel Syntax
-gdb uses ATT syntax by default, but you can change it to intel (nasm's syntax)
-with the command `set disassembly-flavor intel`
-
 
 == Endianness
 === Least significant vs Most significant
@@ -401,25 +397,6 @@ main(void){
     unsigned int num = 0x12345678;
     printf("%x\n", htonl(num));
 }
-----
-
-== Strings
-To explicitly state the length of a string:
-
-[source, nasm]
-----
-db 27, 'Selling England by the Pound'
-----
-
-== Constant Precomputation
-The math in the code belows is calculated at compile time and turned into a
-constant
-
-[source, nasm]
-----
-lab: db 0
-
-mov rax, lab + 1 + 2 *3 
 ----
 
 == Pointers and Differnt Addressing Types
@@ -1176,6 +1153,30 @@ byte4 << 24 | byte3 << 16 | byte2 << 8 | byte1
 
 In this case I or'ed together 4 bytes to get a 24 bit number. bitshift right 8,
 16, 24 are offsets; shifting by one byte, two bytes, and then three.
+
+== Syntax
+=== ATT vs. Intel Syntax
+gdb uses ATT syntax by default, but you can change it to intel (nasm's syntax)
+with the command `set disassembly-flavor intel`
+
+=== Strings
+To explicitly state the length of a string:
+
+[source, nasm]
+----
+db 27, 'Selling England by the Pound'
+----
+
+=== Constant Precomputation
+The math in the code belows is calculated at compile time and turned into a
+constant
+
+[source, nasm]
+----
+lab: db 0
+
+mov rax, lab + 1 + 2 *3 
+----
 
 == Books
 - "Learn to Program with Assembly by Jonathan Bartlett"

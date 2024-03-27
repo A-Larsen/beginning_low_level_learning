@@ -870,7 +870,6 @@ details[open] > summary::before {
 <li><a href="#_base_indexed_with_scale_and_discplacement">Base-indexed with scale and discplacement</a></li>
 </ul>
 </li>
-<li><a href="#_att_vs_intel_syntax">ATT vs. Intel Syntax</a></li>
 <li><a href="#_endianness">Endianness</a>
 <ul class="sectlevel2">
 <li><a href="#_least_significant_vs_most_significant">Least significant vs Most significant</a></li>
@@ -878,8 +877,6 @@ details[open] > summary::before {
 <li><a href="#_change_a_number_from_little_endian_to_big_endian_in_c">Change a number from little endian to big endian in C</a></li>
 </ul>
 </li>
-<li><a href="#_strings">Strings</a></li>
-<li><a href="#_constant_precomputation">Constant Precomputation</a></li>
 <li><a href="#_pointers_and_differnt_addressing_types">Pointers and Differnt Addressing Types</a></li>
 <li><a href="#_instructions_2">Instructions</a>
 <ul class="sectlevel2">
@@ -942,6 +939,13 @@ details[open] > summary::before {
 <li><a href="#_single_vs_double_precision">Single vs. Double Precision</a></li>
 <li><a href="#_twos_complement">Two&#8217;s complement</a></li>
 <li><a href="#_checking_if_signed_number_is_negative">Checking if Signed Number is negative</a></li>
+</ul>
+</li>
+<li><a href="#_syntax">Syntax</a>
+<ul class="sectlevel2">
+<li><a href="#_att_vs_intel_syntax">ATT vs. Intel Syntax</a></li>
+<li><a href="#_strings">Strings</a></li>
+<li><a href="#_constant_precomputation">Constant Precomputation</a></li>
 </ul>
 </li>
 <li><a href="#_books">Books</a></li>
@@ -1716,15 +1720,6 @@ calculated based on the following components:</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_att_vs_intel_syntax">ATT vs. Intel Syntax</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>gdb uses ATT syntax by default, but you can change it to intel (nasm&#8217;s syntax)
-with the command <code>set disassembly-flavor intel</code></p>
-</div>
-</div>
-</div>
-<div class="sect1">
 <h2 id="_endianness">Endianness</h2>
 <div class="sectionbody">
 <div class="sect2">
@@ -1773,35 +1768,6 @@ rax            0x5452455000636261  6075995057182433889</code></pre>
 <span class="tok-w">    </span><span class="tok-n">printf</span><span class="tok-p">(</span><span class="tok-s">&quot;%x</span><span class="tok-se">\n</span><span class="tok-s">&quot;</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">htonl</span><span class="tok-p">(</span><span class="tok-n">num</span><span class="tok-p">));</span><span class="tok-w"></span>
 <span class="tok-p">}</span><span class="tok-w"></span></code></pre>
 </div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_strings">Strings</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>To explicitly state the length of a string:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="pygments highlight"><code data-lang="nasm"><span></span><span class="tok-kd">db</span> <span class="tok-mi">27</span><span class="tok-p">,</span> <span class="tok-s">&#39;Selling England by the Pound&#39;</span></code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_constant_precomputation">Constant Precomputation</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The math in the code belows is calculated at compile time and turned into a
-constant</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="pygments highlight"><code data-lang="nasm"><span></span><span class="tok-nl">lab:</span> <span class="tok-kd">db</span> <span class="tok-mi">0</span>
-
-<span class="tok-nf">mov</span> <span class="tok-nb">rax</span><span class="tok-p">,</span> <span class="tok-nv">lab</span> <span class="tok-o">+</span> <span class="tok-mi">1</span> <span class="tok-o">+</span> <span class="tok-mi">2</span> <span class="tok-o">*</span><span class="tok-mi">3</span></code></pre>
 </div>
 </div>
 </div>
@@ -2915,6 +2881,43 @@ byte is two digits long.</p>
 </div>
 </div>
 <div class="sect1">
+<h2 id="_syntax">Syntax</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_att_vs_intel_syntax">ATT vs. Intel Syntax</h3>
+<div class="paragraph">
+<p>gdb uses ATT syntax by default, but you can change it to intel (nasm&#8217;s syntax)
+with the command <code>set disassembly-flavor intel</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_strings">Strings</h3>
+<div class="paragraph">
+<p>To explicitly state the length of a string:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="nasm"><span></span><span class="tok-kd">db</span> <span class="tok-mi">27</span><span class="tok-p">,</span> <span class="tok-s">&#39;Selling England by the Pound&#39;</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_constant_precomputation">Constant Precomputation</h3>
+<div class="paragraph">
+<p>The math in the code belows is calculated at compile time and turned into a
+constant</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="nasm"><span></span><span class="tok-nl">lab:</span> <span class="tok-kd">db</span> <span class="tok-mi">0</span>
+
+<span class="tok-nf">mov</span> <span class="tok-nb">rax</span><span class="tok-p">,</span> <span class="tok-nv">lab</span> <span class="tok-o">+</span> <span class="tok-mi">1</span> <span class="tok-o">+</span> <span class="tok-mi">2</span> <span class="tok-o">*</span><span class="tok-mi">3</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_books">Books</h2>
 <div class="sectionbody">
 <div class="ulist">
@@ -3005,7 +3008,7 @@ Hoey"</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-03-27 17:52:42 -0400
+Last updated 2024-03-27 18:36:28 -0400
 </div>
 </div>
 <script type="text/x-mathjax-config">
