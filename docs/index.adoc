@@ -511,8 +511,8 @@ the negative version of a number.
 Binary 4294967296 is zero, anything above this number is positive, anything
 below this is negative.
 
-for example, I can convert this number into the negative version of the number
-in c.
+For example, I can convert the number 500 into the negative version of the
+number in c.
 
 [source, c]
 ----
