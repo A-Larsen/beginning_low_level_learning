@@ -843,12 +843,7 @@ details[open] > summary::before {
 <li><a href="#_opcodes">Opcodes</a></li>
 </ul>
 </li>
-<li><a href="#_what_is_that_d_flag">What is that D Flag</a></li>
-<li><a href="#_l_vs_h_in_registers">L vs H in registers</a></li>
-<li><a href="#_least_significant_vs_most_significant">Least significant vs Most significant</a></li>
-<li><a href="#_what_does_the_most_significant_bit_mean_in_numbers">What does the most significant bit mean in numbers?</a></li>
 <li><a href="#_data_types">Data types</a></li>
-<li><a href="#_lea_vs_mov">lea vs mov</a></li>
 <li><a href="#_registers">Registers</a>
 <ul class="sectlevel2">
 <li><a href="#_r_x_vs_e_x_vs_x_vs_h_vs_l">R_X vs E_X vs _X vs _H vs _L</a></li>
@@ -860,7 +855,6 @@ details[open] > summary::before {
 </li>
 <li><a href="#_main">Main</a></li>
 <li><a href="#_labels">Labels</a></li>
-<li><a href="#_what_is_the_differnce_between_sar_and_shr">What is the differnce between SAR and SHR?</a></li>
 <li><a href="#_jumping_looping">Jumping / looping</a>
 <ul class="sectlevel2">
 <li><a href="#_different_types_of_jumps">Different Types of Jumps</a></li>
@@ -879,6 +873,7 @@ details[open] > summary::before {
 <li><a href="#_att_vs_intel_syntax">ATT vs. Intel Syntax</a></li>
 <li><a href="#_endianness">Endianness</a>
 <ul class="sectlevel2">
+<li><a href="#_least_significant_vs_most_significant">Least significant vs Most significant</a></li>
 <li><a href="#_text">Text</a></li>
 <li><a href="#_change_a_number_from_little_endian_to_big_endian_in_c">Change a number from little endian to big endian in C</a></li>
 </ul>
@@ -886,7 +881,6 @@ details[open] > summary::before {
 <li><a href="#_strings">Strings</a></li>
 <li><a href="#_constant_precomputation">Constant Precomputation</a></li>
 <li><a href="#_pointers_and_differnt_addressing_types">Pointers and Differnt Addressing Types</a></li>
-<li><a href="#_twos_complement">Two&#8217;s complement</a></li>
 <li><a href="#_instructions_2">Instructions</a>
 <ul class="sectlevel2">
 <li><a href="#_neg">NEG</a></li>
@@ -897,6 +891,8 @@ details[open] > summary::before {
 <li><a href="#_lea">LEA</a></li>
 <li><a href="#_div">DIV</a></li>
 <li><a href="#_test">TEST</a></li>
+<li><a href="#_nop">NOP</a></li>
+<li><a href="#_what_is_the_differnce_between_sar_and_shr">What is the differnce between SAR and SHR?</a></li>
 </ul>
 </li>
 <li><a href="#_flags">Flags</a>
@@ -922,7 +918,6 @@ details[open] > summary::before {
 <li><a href="#_step_out_of_function">Step out of function</a></li>
 </ul>
 </li>
-<li><a href="#_real_vs_protected_vs_long_mode">Real vs Protected vs long Mode</a></li>
 <li><a href="#_segment_registers">Segment Registers</a>
 <ul class="sectlevel2">
 <li><a href="#_shdr">SHDR</a></li>
@@ -934,24 +929,25 @@ details[open] > summary::before {
 <li><a href="#_makefile">Makefile</a></li>
 </ul>
 </li>
-<li><a href="#_no_op">NO-OP</a></li>
 <li><a href="#_modes">Modes</a></li>
 <li><a href="#_memory">Memory</a>
 <ul class="sectlevel2">
 <li><a href="#_layout">Layout</a></li>
 <li><a href="#_stack">Stack</a></li>
 <li><a href="#_virtual_memory">Virtual Memory</a></li>
+<li><a href="#_what_is_that_d_flag">What is that D Flag</a></li>
 </ul>
 </li>
 <li><a href="#_strings_and_symbol_tables">Strings and Symbol Tables</a></li>
 <li><a href="#_elf_file_header">Elf File Header</a></li>
-<li><a href="#_checking_if_signed_number_is_negative">Checking if Signed Number is negative</a>
+<li><a href="#_numerical">Numerical</a>
 <ul class="sectlevel2">
-<li><a href="#_binary">binary</a></li>
-<li><a href="#_hexidecimal">hexidecimal</a></li>
+<li><a href="#_what_does_the_most_significant_bit_mean_in_numbers">What does the most significant bit mean in numbers?</a></li>
+<li><a href="#_single_vs_double_precision">Single vs. Double Precision</a></li>
+<li><a href="#_twos_complement">Two&#8217;s complement</a></li>
+<li><a href="#_checking_if_signed_number_is_negative">Checking if Signed Number is negative</a></li>
 </ul>
 </li>
-<li><a href="#_single_vs_double_precision">Single vs. Double Precision</a></li>
 <li><a href="#_books">Books</a></li>
 <li><a href="#_links">Links</a></li>
 <li><a href="#_asciidoctor">Asciidoctor</a></li>
@@ -1128,46 +1124,6 @@ Look at Intel 64 and IA-32 Architectures Software Developer&#8217;s Manual page
 </div>
 </div>
 <div class="sect1">
-<h2 id="_what_is_that_d_flag">What is that D Flag</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The "D" flag determines the size of each element in the stack. It can be
-changed, but changing it can result in an unaligned stack if you are not
-careful.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_l_vs_h_in_registers">L vs H in registers</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>"L" is used as a mnemonic lower four bits of the last byte of a register. "H"
-is used as a mnemonic as the upper for bits of the last byte of a register. Not
-always the case, but sometimes holds true. For example, CL, is the last four
-bits of the RCX register.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_least_significant_vs_most_significant">Least significant vs Most significant</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>less significant bits are further the the right. More signifacant bits are
-further to the right.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_what_does_the_most_significant_bit_mean_in_numbers">What does the most significant bit mean in numbers?</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>It can either be a part of the bit of the number or thing it is trying to
-represent if it is a unsigned number. Or it can represent whether a number is
-"signed" or "unsigned" if it is a signed number.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
 <h2 id="_data_types">Data types</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
@@ -1207,27 +1163,6 @@ represent if it is a unsigned number. Or it can represent whether a number is
 </tr>
 </tbody>
 </table>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_lea_vs_mov">lea vs mov</h2>
-<div class="sectionbody">
-<div class="dlist">
-<dl>
-<dt class="hdlist1">lea</dt>
-<dd>
-<p>load effective address</p>
-</dd>
-<dt class="hdlist1">mov</dt>
-<dd>
-<p>load value</p>
-</dd>
-</dl>
-</div>
-<div class="paragraph">
-<p><code>lea</code> loads a pointer to the item you&#8217;re addressing wheras <code>mov</code> loads the
-actual value at that address.</p>
-</div>
 </div>
 </div>
 <div class="sect1">
@@ -1532,15 +1467,6 @@ could loop like this <code>main.loop</code>. Like in this example:</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_what_is_the_differnce_between_sar_and_shr">What is the differnce between SAR and SHR?</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>SAR sets or clears the most significant bit depending on the sign, While SHR
-just clears the most significant bit.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
 <h2 id="_jumping_looping">Jumping / looping</h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -1806,6 +1732,14 @@ with the command <code>set disassembly-flavor intel</code></p>
 <h2 id="_endianness">Endianness</h2>
 <div class="sectionbody">
 <div class="sect2">
+<h3 id="_least_significant_vs_most_significant">Least significant vs Most significant</h3>
+<div class="paragraph">
+<p>This is dependent on the endianness of the system. Most systems are little
+endian meaning that the less significant bits are further the the right. More
+signifacant bits are further to the right.</p>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_text">Text</h3>
 <div class="paragraph">
 <p>This instruction</p>
@@ -1903,46 +1837,6 @@ whose size is not specified.</p>
 	<span class="tok-nf">mov</span>  <span class="tok-nb">rax</span><span class="tok-p">,</span> <span class="tok-mi">60</span>
 	<span class="tok-nf">mov</span> <span class="tok-nb">rdi</span><span class="tok-p">,</span> <span class="tok-mi">0</span>
 	<span class="tok-nf">syscall</span></code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_twos_complement">Two&#8217;s complement</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Two&#8217;s complement is used to represent negative numbers.This is the steps to get
-the negative version of a number.</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Do a logical not to all the bits</p>
-</li>
-<li>
-<p>add 1</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>Binary 4294967296 is zero, anything above this number is positive, anything
-below this is negative.</p>
-</div>
-<div class="paragraph">
-<p>For example, I can convert the number 500 into the negative version of the
-number in c.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="pygments highlight"><code data-lang="c"><span></span><span class="tok-cp">#include</span><span class="tok-w"> </span><span class="tok-cpf">&lt;stdio.h&gt;</span><span class="tok-cp"></span>
-
-<span class="tok-cp">#define NUM 500</span>
-
-<span class="tok-kt">int</span><span class="tok-w"></span>
-<span class="tok-nf">main</span><span class="tok-p">(</span><span class="tok-kt">void</span><span class="tok-p">){</span><span class="tok-w"></span>
-<span class="tok-w">    </span><span class="tok-kt">unsigned</span><span class="tok-w"> </span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">a</span><span class="tok-w"> </span><span class="tok-o">=</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-o">~</span><span class="tok-n">NUM</span><span class="tok-p">)</span><span class="tok-w"> </span><span class="tok-o">+</span><span class="tok-w"> </span><span class="tok-mi">1</span><span class="tok-p">;</span><span class="tok-w"></span>
-<span class="tok-w">    </span><span class="tok-n">printf</span><span class="tok-p">(</span><span class="tok-s">&quot;%d</span><span class="tok-se">\n</span><span class="tok-s">&quot;</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">a</span><span class="tok-p">);</span><span class="tok-w"></span>
-<span class="tok-p">}</span><span class="tok-w"></span></code></pre>
 </div>
 </div>
 </div>
@@ -2081,6 +1975,22 @@ according to the result. The result is then discarded.</p>
 </div>
 <div class="paragraph">
 <p>If the result of AND is zero then the ZF flag is set.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_nop"><a href="https://www.felixcloutier.com/x86/nop">NOP</a></h3>
+<div class="paragraph">
+<p>The x86-64 ISA includes several no-op (no operation) instructions, including
+<code>nop</code>, <code>nop A,</code> (no-op with an argument), and <code>data16</code>. No-ops do pretty much
+nothing, but do set the rflags. The main reason for no-ops is to optimize
+instruction memory (e.g., code size, alignment).</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_what_is_the_differnce_between_sar_and_shr">What is the differnce between SAR and SHR?</h3>
+<div class="paragraph">
+<p>SAR sets or clears the most significant bit depending on the sign, While SHR
+just clears the most significant bit.</p>
 </div>
 </div>
 </div>
@@ -2408,29 +2318,6 @@ end</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_real_vs_protected_vs_long_mode">Real vs Protected vs long Mode</h2>
-<div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://en.wikipedia.org/wiki/X86_memory_segmentation" class="bare">https://en.wikipedia.org/wiki/X86_memory_segmentation</a></p>
-</li>
-</ul>
-</div>
-<div class="quoteblock">
-<blockquote>
-A 386 CPU can be put back into real mode by clearing a bit in the CR0 control
-register, however this is a privileged operation in order to enforce security
-and robustness
-</blockquote>
-<div class="attribution">
-&#8212; X86_memory_segmentation<br>
-<cite>Wikipedia</cite>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
 <h2 id="_segment_registers">Segment Registers</h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -2584,17 +2471,6 @@ object file with a <em>.o</em> extension. That object file is used by the linker
 </div>
 </div>
 <div class="sect1">
-<h2 id="_no_op">NO-OP</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The x86-64 ISA includes several no-op (no operation) instructions, including
-<code>nop</code>, <code>nop A,</code> (no-op with an argument), and <code>data16</code>. No-ops do pretty much
-nothing, but do set the rflags. The main reason for no-ops is to optimize
-instruction memory (e.g., code size, alignment).</p>
-</div>
-</div>
-</div>
-<div class="sect1">
 <h2 id="_modes">Modes</h2>
 <div class="sectionbody">
 <div class="dlist">
@@ -2668,6 +2544,17 @@ instruction memory (e.g., code size, alignment).</p>
 </div>
 </dd>
 </dl>
+</div>
+<div class="quoteblock">
+<blockquote>
+A 386 CPU can be put back into real mode by clearing a bit in the CR0 control
+register, however this is a privileged operation in order to enforce security
+and robustness
+</blockquote>
+<div class="attribution">
+&#8212; X86_memory_segmentation<br>
+<cite>Wikipedia</cite>
+</div>
 </div>
 </div>
 </div>
@@ -2849,6 +2736,14 @@ them back later or, more importantly, to transfer values to functions.</p>
 system first transfers control.</p>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_what_is_that_d_flag">What is that D Flag</h3>
+<div class="paragraph">
+<p>The "D" flag determines the size of each element in the stack. It can be
+changed, but changing it can result in an unaligned stack if you are not
+careful.</p>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -2934,56 +2829,18 @@ This is because their is a header for elf executables.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_checking_if_signed_number_is_negative">Checking if Signed Number is negative</h2>
+<h2 id="_numerical">Numerical</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_binary">binary</h3>
+<h3 id="_what_does_the_most_significant_bit_mean_in_numbers">What does the most significant bit mean in numbers?</h3>
 <div class="paragraph">
-<p>check if the most significant bit is 1</p>
+<p>It can either be a part of the bit of the number or thing it is trying to
+represent if it is a unsigned number. Or it can represent whether a number is
+"signed" or "unsigned" if it is a signed number.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_hexidecimal">hexidecimal</h3>
-<div class="paragraph">
-<p>check if lefmost byte is 8, 9, A, B, C D, E, or F. Break number into multiple
-bytes or this will not work. For example 0xd12 would appear to be negative if
-you didn&#8217;t break it up into byte chunks, doing so you get:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>0x0d, 0x12</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>or</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>0x0d &lt;&lt; 8 | 0x12</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Notice how the leftmost byte actually starts with a zero. Also notice how each
-byte is two digits long.</p>
-</div>
-<div class="paragraph">
-<p>you can or bytes together to get the original answer by doing</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>byte4 &lt;&lt; 24 | byte3 &lt;&lt; 16 | byte2 &lt;&lt; 8 | byte1</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>In this case I or&#8217;ed together 4 bytes to get a 24 bit number. bitshift right 8,
-16, 24 are offsets; shifting by one byte, two bytes, and then three.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_single_vs_double_precision">Single vs. Double Precision</h2>
-<div class="sectionbody">
+<h3 id="_single_vs_double_precision">Single vs. Double Precision</h3>
 <div class="paragraph">
 <p>I decimal number has three parts:</p>
 </div>
@@ -3033,6 +2890,91 @@ and 52 fractin bits.</p>
 <div class="content">
 <pre>S  EEEEEEEEEEE   FFFFFFFFFFFFFF...FFFFFFFFFFFFFFF
 0  1         11  12                             63</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_twos_complement">Two&#8217;s complement</h3>
+<div class="paragraph">
+<p>Two&#8217;s complement is used to represent negative numbers.This is the steps to get
+the negative version of a number.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Do a logical not to all the bits</p>
+</li>
+<li>
+<p>add 1</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Binary 4294967296 is zero, anything above this number is positive, anything
+below this is negative.</p>
+</div>
+<div class="paragraph">
+<p>For example, I can convert the number 500 into the negative version of the
+number in c.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="c"><span></span><span class="tok-cp">#include</span><span class="tok-w"> </span><span class="tok-cpf">&lt;stdio.h&gt;</span><span class="tok-cp"></span>
+
+<span class="tok-cp">#define NUM 500</span>
+
+<span class="tok-kt">int</span><span class="tok-w"></span>
+<span class="tok-nf">main</span><span class="tok-p">(</span><span class="tok-kt">void</span><span class="tok-p">){</span><span class="tok-w"></span>
+<span class="tok-kt">unsigned</span><span class="tok-w"> </span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">a</span><span class="tok-w"> </span><span class="tok-o">=</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-o">~</span><span class="tok-n">NUM</span><span class="tok-p">)</span><span class="tok-w"> </span><span class="tok-o">+</span><span class="tok-w"> </span><span class="tok-mi">1</span><span class="tok-p">;</span><span class="tok-w"></span>
+<span class="tok-n">printf</span><span class="tok-p">(</span><span class="tok-s">&quot;%d</span><span class="tok-se">\n</span><span class="tok-s">&quot;</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">a</span><span class="tok-p">);</span><span class="tok-w"></span>
+<span class="tok-p">}</span><span class="tok-w"></span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_checking_if_signed_number_is_negative">Checking if Signed Number is negative</h3>
+<div class="sect3">
+<h4 id="_binary">binary</h4>
+<div class="paragraph">
+<p>check if the most significant bit is 1</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_hexidecimal">hexidecimal</h4>
+<div class="paragraph">
+<p>check if lefmost byte is 8, 9, A, B, C D, E, or F. Break number into multiple
+bytes or this will not work. For example 0xd12 would appear to be negative if
+you didn&#8217;t break it up into byte chunks, doing so you get:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>0x0d, 0x12</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>or</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>0x0d &lt;&lt; 8 | 0x12</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Notice how the leftmost byte actually starts with a zero. Also notice how each
+byte is two digits long.</p>
+</div>
+<div class="paragraph">
+<p>you can or bytes together to get the original answer by doing</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>byte4 &lt;&lt; 24 | byte3 &lt;&lt; 16 | byte2 &lt;&lt; 8 | byte1</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this case I or&#8217;ed together 4 bytes to get a 24 bit number. bitshift right 8,
+16, 24 are offsets; shifting by one byte, two bytes, and then three.</p>
+</div>
 </div>
 </div>
 </div>
@@ -3128,7 +3070,7 @@ Hoey"</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-03-27 17:39:09 -0400
+Last updated 2024-03-27 17:49:56 -0400
 </div>
 </div>
 <script type="text/x-mathjax-config">

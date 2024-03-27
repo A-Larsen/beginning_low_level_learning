@@ -99,28 +99,7 @@ NOTE: Look at Intel 64 and IA-32 Architectures Software Developer's Manual page
       2839
 
 
-== What is that D Flag
-The "D" flag determines the size of each element in the stack. It can be
-changed, but changing it can result in an unaligned stack if you are not
-careful.
-
-== L vs H in registers
-"L" is used as a mnemonic lower four bits of the last byte of a register. "H"
-is used as a mnemonic as the upper for bits of the last byte of a register. Not
-always the case, but sometimes holds true. For example, CL, is the last four
-bits of the RCX register.
-
-== Least significant vs Most significant
-less significant bits are further the the right. More signifacant bits are
-further to the right.
-
-== What does the most significant bit mean in numbers?
-It can either be a part of the bit of the number or thing it is trying to
-represent if it is a unsigned number. Or it can represent whether a number is
-"signed" or "unsigned" if it is a signed number.
-
 == Data types
-
 .datatypes
 [%header]
 |===
@@ -130,13 +109,6 @@ represent if it is a unsigned number. Or it can represent whether a number is
 | dd   | 32 bits | Double Word
 | dq   | 64 bits | Quadword
 |===
-
-== lea vs mov
-lea:: load effective address
-mov:: load value
-
-`lea` loads a pointer to the item you're addressing wheras `mov` loads the
-actual value at that address.
 
 == Registers
 
@@ -225,10 +197,6 @@ main:
     jnz .loop
 
 ----
-
-== What is the differnce between SAR and SHR?
-SAR sets or clears the most significant bit depending on the sign, While SHR
-just clears the most significant bit.
 
 == Jumping / looping
 
@@ -399,9 +367,12 @@ with the command `set disassembly-flavor intel`
 
 
 == Endianness
+=== Least significant vs Most significant
+This is dependent on the endianness of the system. Most systems are little
+endian meaning that the less significant bits are further the the right. More
+signifacant bits are further to the right.
 
 === Text
-
 This instruction
 
 [source, gdb]
@@ -421,7 +392,6 @@ rax            0x5452455000636261  6075995057182433889
 0x61 is a, 0x62 is b, and 0x63 is c.
 
 === Change a number from little endian to big endian in C
-
 [source, c]
 ----
 #include <stdio.h>
@@ -477,32 +447,6 @@ main:
 	mov  rax, 60
 	mov rdi, 0 
 	syscall
-----
-
-== Two's complement
-Two's complement is used to represent negative numbers.This is the steps to get
-the negative version of a number.
-
-1. Do a logical not to all the bits
-2. add 1
-
-Binary 4294967296 is zero, anything above this number is positive, anything
-below this is negative.
-
-For example, I can convert the number 500 into the negative version of the
-number in c.
-
-[source, c]
-----
-#include <stdio.h>
-
-#define NUM 500
-
-int
-main(void){
-    unsigned int a = (~NUM) + 1;
-    printf("%d\n", a);
-}
 ----
 
 == Instructions
@@ -581,6 +525,17 @@ second operand (source 2 operand) and sets the SF, ZF, and PF status flags
 according to the result. The result is then discarded.
 
 If the result of AND is zero then the ZF flag is set.
+
+=== https://www.felixcloutier.com/x86/nop[NOP]
+The x86-64 ISA includes several no-op (no operation) instructions, including
+`nop`, `nop A,` (no-op with an argument), and `data16`. No-ops do pretty much
+nothing, but do set the rflags. The main reason for no-ops is to optimize
+instruction memory (e.g., code size, alignment).
+
+=== What is the differnce between SAR and SHR?
+SAR sets or clears the most significant bit depending on the sign, While SHR
+just clears the most significant bit.
+
 
 == Flags
 [%header]
@@ -774,14 +729,6 @@ $ gdb -x next_asm.gdb <executable>
 ----
 
 
-== Real vs Protected vs long Mode
-- https://en.wikipedia.org/wiki/X86_memory_segmentation
-
-"A 386 CPU can be put back into real mode by clearing a bit in the CR0 control
-register, however this is a privileged operation in order to enforce security
-and robustness"
--- X86_memory_segmentation, Wikipedia
-
 == Segment Registers
 
 Logical addresses can be explicitly specified in *x86 assembly language
@@ -883,12 +830,6 @@ elf64::
 PIE::
     **P**osition-**I**ndependant **E**xecutables
 
-== NO-OP
-The x86-64 ISA includes several no-op (no operation) instructions, including
-`nop`, `nop A,` (no-op with an argument), and `data16`. No-ops do pretty much
-nothing, but do set the rflags. The main reason for no-ops is to optimize
-instruction memory (e.g., code size, alignment).
-
 == Modes
 Real mode::
 * the most ancient, 16-bit
@@ -910,6 +851,12 @@ System management mode::
 
 Long Mode::
 * Virtual memory
+
+"A 386 CPU can be put back into real mode by clearing a bit in the CR0 control
+register, however this is a privileged operation in order to enforce security
+and robustness"
+-- X86_memory_segmentation, Wikipedia
+
 
 == Memory 
 The memory size has a theoretical limit of 2^64 address.
@@ -1079,6 +1026,12 @@ From https://linux.die.net/man/5/elf[man elf] or `info elf` we can see that
 `e_entry` from the `ElfN_Ehdr` struct gives the virtual address to which the
 system first transfers control.
 
+=== What is that D Flag
+The "D" flag determines the size of each element in the stack. It can be
+changed, but changing it can result in an unaligned stack if you are not
+careful.
+
+
 == Strings and Symbol Tables
 From https://linux.die.net/man/5/elf[man elf] we see that `Elf32_Sym` or `Elf64_Sym` can hold these tables.
 
@@ -1144,11 +1097,81 @@ $ readelf --file-header ./memory
 The entry point from `readelf` is smaller then the entry point from `disass`.
 This is because their is a header for elf executables.
 
-== Checking if Signed Number is negative
-=== binary
+
+== Numerical
+=== What does the most significant bit mean in numbers?
+It can either be a part of the bit of the number or thing it is trying to
+represent if it is a unsigned number. Or it can represent whether a number is
+"signed" or "unsigned" if it is a signed number.
+
+=== Single vs. Double Precision
+I decimal number has three parts:
+
+SIGN::
+Specifies a negitive or positive number, 0 being positive and 1 being
+negative.
+
+EXPONENT::
+Takes the non-decimal version of the number and counts the first bit to the
+right of most signicant on bit all the way to the least significant bit and
+then adds 127 if it is single percision or 1023 if it is double percision.
+
+FRACTION::
+Takes the non-decimal version number and stores the first bit to the right
+of most signicant on bit all the way to the least significant bit.
+
+If the exponent part of a single percision number is above 127 it is a positive
+exponent, otherwise it is a negative exponent.
+
+If the exponent part of a double percision number is above 1023 it is a positive
+exponent, otherwise it is a negative exponent.
+
+A single-precision number is stored in 32 bits: 1 sign bit, 8 exponent bits,
+and 23 fraction bits
+
+----
+S   EEEEEEEE   FFFFFFFFFFFFFFFFFFFFFFF 
+0   1      8   9                     31
+----
+
+A double-percision number is stored in 64-bits: 1 sign bit, 11 exponent bits,
+and 52 fractin bits.
+
+----
+S  EEEEEEEEEEE   FFFFFFFFFFFFFF...FFFFFFFFFFFFFFF 
+0  1         11  12                             63
+----
+=== Two's complement
+Two's complement is used to represent negative numbers.This is the steps to get
+the negative version of a number.
+
+1. Do a logical not to all the bits
+2. add 1
+
+Binary 4294967296 is zero, anything above this number is positive, anything
+below this is negative.
+
+For example, I can convert the number 500 into the negative version of the
+number in c.
+
+[source, c]
+----
+#include <stdio.h>
+
+#define NUM 500
+
+int
+main(void){
+unsigned int a = (~NUM) + 1;
+printf("%d\n", a);
+}
+----
+
+=== Checking if Signed Number is negative
+==== binary
 check if the most significant bit is 1
 
-=== hexidecimal
+==== hexidecimal
 check if lefmost byte is 8, 9, A, B, C D, E, or F. Break number into multiple
 bytes or this will not work. For example 0xd12 would appear to be negative if
 you didn't break it up into byte chunks, doing so you get:
@@ -1174,46 +1197,6 @@ byte4 << 24 | byte3 << 16 | byte2 << 8 | byte1
 
 In this case I or'ed together 4 bytes to get a 24 bit number. bitshift right 8,
 16, 24 are offsets; shifting by one byte, two bytes, and then three.
-
-== Single vs. Double Precision
-I decimal number has three parts:
-
-SIGN::
-    Specifies a negitive or positive number, 0 being positive and 1 being
-    negative.
-
-EXPONENT::
-    Takes the non-decimal version of the number and counts the first bit to the
-    right of most signicant on bit all the way to the least significant bit and
-    then adds 127 if it is single percision or 1023 if it is double percision.
-
-FRACTION::
-    Takes the non-decimal version number and stores the first bit to the right
-    of most signicant on bit all the way to the least significant bit.
-
-If the exponent part of a single percision number is above 127 it is a positive
-exponent, otherwise it is a negative exponent.
-
-If the exponent part of a double percision number is above 1023 it is a positive
-exponent, otherwise it is a negative exponent.
-
-A single-precision number is stored in 32 bits: 1 sign bit, 8 exponent bits,
-and 23 fraction bits
-
-----
-S   EEEEEEEE   FFFFFFFFFFFFFFFFFFFFFFF 
-0   1      8   9                     31
-----
-
-A double-percision number is stored in 64-bits: 1 sign bit, 11 exponent bits,
-and 52 fractin bits.
-
-----
-S  EEEEEEEEEEE   FFFFFFFFFFFFFF...FFFFFFFFFFFFFFF 
-0  1         11  12                             63
-----
-
-
 
 == Books
 - "Learn to Program with Assembly by Jonathan Bartlett"
