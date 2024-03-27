@@ -843,14 +843,12 @@ details[open] > summary::before {
 <li><a href="#_opcodes">Opcodes</a></li>
 </ul>
 </li>
-<li><a href="#_whats_the_difference_between_the_cf_flag_and_of_flag">What&#8217;s the difference between the CF flag and OF flag.</a></li>
 <li><a href="#_what_is_that_d_flag">What is that D Flag</a></li>
 <li><a href="#_l_vs_h_in_registers">L vs H in registers</a></li>
 <li><a href="#_least_significant_vs_most_significant">Least significant vs Most significant</a></li>
 <li><a href="#_what_does_the_most_significant_bit_mean_in_numbers">What does the most significant bit mean in numbers?</a></li>
 <li><a href="#_data_types">Data types</a></li>
 <li><a href="#_lea_vs_mov">lea vs mov</a></li>
-<li><a href="#_getting_the_address_of_a_variable">Getting the address of a "variable"</a></li>
 <li><a href="#_registers">Registers</a>
 <ul class="sectlevel2">
 <li><a href="#_r_x_vs_e_x_vs_x_vs_h_vs_l">R_X vs E_X vs _X vs _H vs _L</a></li>
@@ -860,7 +858,6 @@ details[open] > summary::before {
 <li><a href="#_xmm_and_ymm_registers">xmm and ymm Registers</a></li>
 </ul>
 </li>
-<li><a href="#_how_to_get_bits_in_the_carry_flag">How to get bits in the carry flag</a></li>
 <li><a href="#_main">Main</a></li>
 <li><a href="#_labels">Labels</a></li>
 <li><a href="#_what_is_the_differnce_between_sar_and_shr">What is the differnce between SAR and SHR?</a></li>
@@ -897,11 +894,16 @@ details[open] > summary::before {
 <li><a href="#_mul">MUL</a></li>
 <li><a href="#_sub">SUB</a></li>
 <li><a href="#_idiv">IDIV</a></li>
+<li><a href="#_lea">LEA</a></li>
 <li><a href="#_div">DIV</a></li>
 <li><a href="#_test">TEST</a></li>
 </ul>
 </li>
-<li><a href="#_flags">Flags</a></li>
+<li><a href="#_flags">Flags</a>
+<ul class="sectlevel2">
+<li><a href="#_whats_the_difference_between_the_cf_flag_and_of_flag">What&#8217;s the difference between the CF flag and OF flag.</a></li>
+</ul>
+</li>
 <li><a href="#_nasm_and_gdb">NASM and GDB</a>
 <ul class="sectlevel2">
 <li><a href="#_looking_at_flags">Looking at flags</a></li>
@@ -1126,23 +1128,6 @@ Look at Intel 64 and IA-32 Architectures Software Developer&#8217;s Manual page
 </div>
 </div>
 <div class="sect1">
-<h2 id="_whats_the_difference_between_the_cf_flag_and_of_flag">What&#8217;s the difference between the CF flag and OF flag.</h2>
-<div class="sectionbody">
-<div class="dlist">
-<dl>
-<dt class="hdlist1">Carry Flag</dt>
-<dd>
-<p>bits that are carried over in <strong>UNSIGNED</strong> integer arithmetic</p>
-</dd>
-<dt class="hdlist1">Overflow Flag</dt>
-<dd>
-<p>bits that are carried over in <strong>SIGNED</strong> integer arithmetic</p>
-</dd>
-</dl>
-</div>
-</div>
-</div>
-<div class="sect1">
 <h2 id="_what_is_that_d_flag">What is that D Flag</h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -1242,28 +1227,6 @@ represent if it is a unsigned number. Or it can represent whether a number is
 <div class="paragraph">
 <p><code>lea</code> loads a pointer to the item you&#8217;re addressing wheras <code>mov</code> loads the
 actual value at that address.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_getting_the_address_of_a_variable">Getting the address of a "variable"</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>I put variable in quotes because there really isn&#8217;t variables in assembly.</p>
-</div>
-<div class="paragraph">
-<p>you can put brackets around a variable to get its address.</p>
-</div>
-<div class="paragraph">
-<p>ex.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="pygments highlight"><code data-lang="nasm"><span></span><span class="tok-nf">lea</span> <span class="tok-nb">rsi</span><span class="tok-p">,</span> <span class="tok-p">[</span><span class="tok-nv">variable</span><span class="tok-p">]</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>square brackets represent <strong>indirect addressing</strong>.</p>
 </div>
 </div>
 </div>
@@ -1520,14 +1483,6 @@ address of the next instruction in rip.</p>
 <div class="paragraph">
 <p>These registers are used for floating-point calculations and SIMD.</p>
 </div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_how_to_get_bits_in_the_carry_flag">How to get bits in the carry flag</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>?</p>
 </div>
 </div>
 </div>
@@ -2099,29 +2054,22 @@ Remember to set rdx to zero every time before you use idiv or the
 </div>
 </div>
 <div class="sect2">
+<h3 id="_lea"><a href="https://www.felixcloutier.com/x86/lea">LEA</a></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="nasm"><span></span><span class="tok-nf">lea</span> <span class="tok-nb">rsi</span><span class="tok-p">,</span> <span class="tok-p">[</span><span class="tok-nv">variable</span><span class="tok-p">]</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>square brackets represent <strong>indirect addressing</strong>.</p>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_div"><a href="https://www.felixcloutier.com/x86/div">DIV</a></h3>
 <div class="paragraph">
 <p>Divids unsigned the value in the AX, DX:AX, EDX:EAX, or RDX:RAX registers
 (dividend) by the source operand (divisor) and stores the result in AX (AH:AL),
 DX:AX, EDX:EAX, or RDX:RAX register</p>
-</div>
-<div class="paragraph">
-<p>example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="pygments highlight"><code data-lang="nasm"><span></span><span class="tok-c1">; Because the  dividend is RDX:RAX, we need to clear RDX and RAX</span>
-<span class="tok-nf">xor</span> <span class="tok-nb">rdx</span><span class="tok-p">,</span> <span class="tok-nb">rdx</span>
-<span class="tok-nf">xor</span> <span class="tok-nb">rax</span><span class="tok-p">,</span> <span class="tok-nb">rax</span>
-
-<span class="tok-nf">mov</span> <span class="tok-nb">rax</span><span class="tok-p">,</span> <span class="tok-mi">10</span> <span class="tok-c1">; dividend (top)</span>
-<span class="tok-nf">mov</span> <span class="tok-nb">rcx</span><span class="tok-p">,</span> <span class="tok-mi">5</span> <span class="tok-c1">; divisor (bottom)</span>
-<span class="tok-nf">div</span> <span class="tok-nb">rcx</span>  <span class="tok-c1">; result is stored in RDX:RAX</span>
-<span class="tok-nf">mov</span> <span class="tok-nb">rdi</span><span class="tok-p">,</span> <span class="tok-nb">rax</span> <span class="tok-c1">; returning the result as a exit number</span>
-
-<span class="tok-nf">mov</span> <span class="tok-nb">rax</span><span class="tok-p">,</span> <span class="tok-mi">60</span> <span class="tok-c1">; exit syscall</span>
-<span class="tok-nf">syscall</span></code></pre>
-</div>
 </div>
 </div>
 <div class="sect2">
@@ -2158,7 +2106,7 @@ according to the result. The result is then discarded.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Carry</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CR</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CF</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Previous instruction had a carry</p></td>
 </tr>
@@ -2196,6 +2144,21 @@ according to the result. The result is then discarded.</p>
 </tr>
 </tbody>
 </table>
+<div class="sect2">
+<h3 id="_whats_the_difference_between_the_cf_flag_and_of_flag">What&#8217;s the difference between the CF flag and OF flag.</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Carry Flag</dt>
+<dd>
+<p>bits that are carried over in <strong>UNSIGNED</strong> integer arithmetic</p>
+</dd>
+<dt class="hdlist1">Overflow Flag</dt>
+<dd>
+<p>bits that are carried over in <strong>SIGNED</strong> integer arithmetic</p>
+</dd>
+</dl>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -3165,7 +3128,7 @@ Hoey"</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-03-27 17:34:45 -0400
+Last updated 2024-03-27 17:39:09 -0400
 </div>
 </div>
 <script type="text/x-mathjax-config">

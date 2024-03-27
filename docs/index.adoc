@@ -98,12 +98,6 @@ ib, iw, id, io::
 NOTE: Look at Intel 64 and IA-32 Architectures Software Developer's Manual page
       2839
 
-== What's the difference between the CF flag and OF flag.
-Carry Flag::
-    bits that are carried over in *UNSIGNED* integer arithmetic
-
-Overflow Flag::
-    bits that are carried over in *SIGNED* integer arithmetic
 
 == What is that D Flag
 The "D" flag determines the size of each element in the stack. It can be
@@ -143,20 +137,6 @@ mov:: load value
 
 `lea` loads a pointer to the item you're addressing wheras `mov` loads the
 actual value at that address.
-
-== Getting the address of a "variable"
-I put variable in quotes because there really isn't variables in assembly.
-
-you can put brackets around a variable to get its address.
-
-ex.
-
-[source, nasm]
-----
-lea rsi, [variable]
-----
-
-square brackets represent *indirect addressing*.
 
 == Registers
 
@@ -216,8 +196,6 @@ address of the next instruction in rip.
 These registers are used for floating-point calculations and SIMD.
 
 
-== How to get bits in the carry flag
-?
 
 == Main
 One file in your assembly program needs "main" defined. This seems to be defined
@@ -583,27 +561,19 @@ The **modulo** can be found in rdx.
 WARNING: Remember to set rdx to zero every time before you use idiv or the
          resulting quotient may be wrong.
 
+
+=== https://www.felixcloutier.com/x86/lea[LEA]
+[source, nasm]
+----
+lea rsi, [variable]
+----
+
+square brackets represent *indirect addressing*.
+
 === https://www.felixcloutier.com/x86/div[DIV]
 Divids unsigned the value in the AX, DX:AX, EDX:EAX, or RDX:RAX registers
 (dividend) by the source operand (divisor) and stores the result in AX (AH:AL),
 DX:AX, EDX:EAX, or RDX:RAX register
-
-example:
-
-[source, nasm]
-----
-; Because the  dividend is RDX:RAX, we need to clear RDX and RAX
-xor rdx, rdx
-xor rax, rax
-
-mov rax, 10 ; dividend (top)
-mov rcx, 5 ; divisor (bottom)
-div rcx  ; result is stored in RDX:RAX
-mov rdi, rax ; returning the result as a exit number
-
-mov rax, 60 ; exit syscall
-syscall
-----
 
 === https://www.felixcloutier.com/x86/test[TEST]
 Computes the bit-wise logical AND of first operand (source 1 operand) and the
@@ -617,7 +587,7 @@ If the result of AND is zero then the ZF flag is set.
 |===
 | Name      | Symbol | Bit | Content
 
-| Carry     | CR     | 0   | Previous instruction had a carry
+| Carry     | CF     | 0   | Previous instruction had a carry
 
 | Parity    | PF     | 2   | Last Byte has even number of 1s
 
@@ -631,6 +601,13 @@ If the result of AND is zero then the ZF flag is set.
 
 | Overflow  | OF     | 11  | Previous Instruction resulted in overflow
 |===
+
+=== What's the difference between the CF flag and OF flag.
+Carry Flag::
+    bits that are carried over in *UNSIGNED* integer arithmetic
+
+Overflow Flag::
+    bits that are carried over in *SIGNED* integer arithmetic
 
 == NASM and GDB
 === Looking at flags
