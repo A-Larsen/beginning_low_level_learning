@@ -127,7 +127,7 @@ _L:: bottom 4 bits of last byte
 | rax    | eax    | ax     | al        | ah         |
 | rbx    | ebx    | bx     | bl        | bh         |
 | rcx    | ecx    | cx     | cl        | ch         |
-| rcx    | edx    | dx     | dl        | dh         |
+| rdx    | edx    | dx     | dl        | dh         |
 | rsi    | esi    | si     | sil       |            |
 | rdi    | edi    | di     | dil       |            |
 | rbp    | ebp    | bp     | bpl       |            | Base Pointer
@@ -586,6 +586,12 @@ Overflow Flag::
     bits that are carried over in *SIGNED* integer arithmetic
 
 == NASM and GDB
+=== Breaking at local labels
+[source, gdb]
+----
+b main.string_size
+----
+
 === Looking at flags
 To get flag values:
 [source, gdb]
