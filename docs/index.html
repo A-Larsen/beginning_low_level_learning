@@ -864,6 +864,7 @@ details[open] > summary::before {
 <ul class="sectlevel2">
 <li><a href="#_requirements">Requirements</a></li>
 <li><a href="#_locality">Locality</a></li>
+<li><a href="#_function_types">Function types</a></li>
 </ul>
 </li>
 <li><a href="#_syscalls">Syscalls</a></li>
@@ -1653,6 +1654,21 @@ some system calls also return values - be careful to read the docs!
 <div class="paragraph">
 <p>Functions can have their own sections, such as <code>.data</code>, <code>.bss</code>, and <code>.text</code>. A
 period before a variable means that variable is local to that function.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_function_types">Function types</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Branch Functions</dt>
+<dd>
+<p>Contain calls to other functions</p>
+</dd>
+<dt class="hdlist1">Leaf Functions</dt>
+<dd>
+<p>Execute some commands and then return to the parent function.</p>
+</dd>
+</dl>
 </div>
 </div>
 </div>
@@ -3071,7 +3087,7 @@ Hoey"</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-03-27 19:56:19 -0400
+Last updated 2024-03-27 20:17:49 -0400
 </div>
 </div>
 <script type="text/x-mathjax-config">

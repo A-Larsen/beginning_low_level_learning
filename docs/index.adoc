@@ -313,6 +313,13 @@ The stack has to have 16-byte alignment when you call a function.
 Functions can have their own sections, such as `.data`, `.bss`, and `.text`. A
 period before a variable means that variable is local to that function.
 
+=== Function types
+Branch Functions::
+    Contain calls to other functions
+
+Leaf Functions::
+    Execute some commands and then return to the parent function.
+
 == Syscalls
 syscall instructions implicitly uses rcx. System calls cannot accept more than
 six arguments.
