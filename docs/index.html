@@ -906,6 +906,7 @@ details[open] > summary::before {
 </li>
 <li><a href="#_nasm_and_gdb">NASM and GDB</a>
 <ul class="sectlevel2">
+<li><a href="#_breaking_at_local_labels">Breaking at local labels</a></li>
 <li><a href="#_looking_at_flags">Looking at flags</a></li>
 <li><a href="#_next_instruction">Next instruction</a></li>
 <li><a href="#_steping_into_a_function">Steping into a function</a></li>
@@ -1253,7 +1254,7 @@ Look at Intel 64 and IA-32 Architectures Software Developer&#8217;s Manual page
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">rcx</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">rdx</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">edx</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">dx</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">dl</p></td>
@@ -2088,6 +2089,14 @@ just clears the most significant bit.</p>
 <div class="sect1">
 <h2 id="_nasm_and_gdb">NASM and GDB</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_breaking_at_local_labels">Breaking at local labels</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="gdb"><span></span>b main.string_size</code></pre>
+</div>
+</div>
+</div>
 <div class="sect2">
 <h3 id="_looking_at_flags">Looking at flags</h3>
 <div class="paragraph">
@@ -3127,7 +3136,7 @@ Hoey"</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-03-28 08:18:01 -0400
+Last updated 2024-03-28 10:07:05 -0400
 </div>
 </div>
 <script type="text/x-mathjax-config">
