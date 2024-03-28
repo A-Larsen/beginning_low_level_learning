@@ -1,58 +1,34 @@
-global main
-extern printf
+extern pi
+
+global c_area
+global c_circum
 
 section .data
-    radius dq 10.0
-
 section .bss
-
 section .text
 
-area:
-section .data
-    .pi dq 3.141592654 ; local to area
-section .text
+c_area:
+    section .text
     push rbp
     mov rbp, rsp
-    movsd xmm0, [radius]
-    mulsd xmm0, [radius]
-    mulsd xmm0, [.pi]
-    leave
+
+    movsd xmm1, qword [pi]
+    mulsd xmm0, xmm0 ; radius in xmm0
+    mulsd xmm0, xmm1
+
+    mov rsp, rbp
+    pop rbp
     ret
 
-circum:
-section .data
-    .pi dq 3.14 ; local to circum
-section .text
+c_circum:
+    section .text
     push rbp
     mov rbp, rsp
-    movsd xmm0, [radius]
-    addsd xmm0, [radius]
-    mulsd xmm0, [.pi]
-    leave
-    ret
 
-circle:
-section .data
-    .fmt_area db "The area is %f",10, 0
-    .fmt_circum db "The circumference if %f",10, 0
-section .text
-    push rbp
-    mov rbp, rsp
-    call area
-    mov rdi, .fmt_area
-    mov rax, 1 ; area in xmm0
-    call printf
-    call circum
-    mov rdi, .fmt_circum
-    mov rax, 1 ; circumference in xmm0
-    call printf
-    leave
-    ret
+    movsd xmm1, qword [pi]
+    addsd xmm0, xmm0 ; radius in xmm0
+    mulsd xmm0, xmm1
 
-main:
-    push rbp
-    mov rbp, rsp
-    call circle
-    leave
+    mov rsp, rbp
+    pop rbp
     ret
