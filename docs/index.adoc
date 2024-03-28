@@ -354,6 +354,8 @@ _/usr/include/x86_64-linux-gnu/asm/unistd_64.h_.
 
 You can checkout https://www.man7.org/linux/man-pages/man2/syscalls.2.html[man syscalls] on links to lookup a syscall.
 
+checkout this https://hackeradam.com/x86-64-linux-syscalls/[syscall table] for
+linux
 
 == Different Addressing types
 
