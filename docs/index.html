@@ -906,6 +906,7 @@ details[open] > summary::before {
 </li>
 <li><a href="#_nasm_and_gdb">NASM and GDB</a>
 <ul class="sectlevel2">
+<li><a href="#_get_memory_allocated_on_the_heap">Get Memory Allocated On The Heap</a></li>
 <li><a href="#_get_type_of">Get type of</a></li>
 <li><a href="#_breaking_at_local_labels">Breaking at local labels</a></li>
 <li><a href="#_looking_at_flags">Looking at flags</a></li>
@@ -2091,6 +2092,73 @@ just clears the most significant bit.</p>
 <h2 id="_nasm_and_gdb">NASM and GDB</h2>
 <div class="sectionbody">
 <div class="sect2">
+<h3 id="_get_memory_allocated_on_the_heap">Get Memory Allocated On The Heap</h3>
+<div class="paragraph">
+<p>List memory regions mapped by the specified process
+- <a href="https://www.baeldung.com/linux/find-heap-memory-running-process">find-heap-memory-running-process</a></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="gdb"><span></span>(gdb) info proc mappings</code></pre>
+</div>
+</div>
+<details>
+<summary class="title">Details</summary>
+<div class="content">
+<div class="literalblock">
+<div class="content">
+<pre>(gdb) info proc mappings
+process 56173
+Mapped address spaces:</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>          Start Addr           End Addr       Size     Offset  Perms  objfile
+      0x555555554000     0x555555555000     0x1000        0x0  r--p   /usr/local/share/tst/c/tst
+      0x555555555000     0x555555556000     0x1000     0x1000  r-xp   /usr/local/share/tst/c/tst
+      0x555555556000     0x555555557000     0x1000     0x2000  r--p   /usr/local/share/tst/c/tst
+      0x555555557000     0x555555558000     0x1000     0x2000  r--p   /usr/local/share/tst/c/tst
+      0x555555558000     0x555555559000     0x1000     0x3000  rw-p   /usr/local/share/tst/c/tst
+      0x555555559000     0x55555557a000    0x21000        0x0  rw-p   [heap]
+      0x7fffb7d74000     0x7ffff7d78000 0x40004000        0x0  rw-p
+      0x7ffff7d78000     0x7ffff7da0000    0x28000        0x0  r--p   /usr/lib/x86_64-linux-gnu/libc.so.6
+      0x7ffff7da0000     0x7ffff7f35000   0x195000    0x28000  r-xp   /usr/lib/x86_64-linux-gnu/libc.so.6
+      0x7ffff7f35000     0x7ffff7f8d000    0x58000   0x1bd000  r--p   /usr/lib/x86_64-linux-gnu/libc.so.6
+      0x7ffff7f8d000     0x7ffff7f8e000     0x1000   0x215000  ---p   /usr/lib/x86_64-linux-gnu/libc.so.6
+      0x7ffff7f8e000     0x7ffff7f92000     0x4000   0x215000  r--p   /usr/lib/x86_64-linux-gnu/libc.so.6
+      0x7ffff7f92000     0x7ffff7f94000     0x2000   0x219000  rw-p   /usr/lib/x86_64-linux-gnu/libc.so.6
+      0x7ffff7f94000     0x7ffff7fa1000     0xd000        0x0  rw-p
+      0x7ffff7fbb000     0x7ffff7fbd000     0x2000        0x0  rw-p
+      0x7ffff7fbd000     0x7ffff7fc1000     0x4000        0x0  r--p   [vvar]
+      0x7ffff7fc1000     0x7ffff7fc3000     0x2000        0x0  r-xp   [vdso]
+      0x7ffff7fc3000     0x7ffff7fc5000     0x2000        0x0  r--p   /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.s
+o.2
+      0x7ffff7fc5000     0x7ffff7fef000    0x2a000     0x2000  r-xp   /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.s
+--Type &lt;RET&gt; for more, q to quit, c to continue without paging--
+o.2
+      0x7ffff7fef000     0x7ffff7ffa000     0xb000    0x2c000  r--p   /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.s
+o.2
+      0x7ffff7ffb000     0x7ffff7ffd000     0x2000    0x37000  r--p   /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.s
+o.2
+      0x7ffff7ffd000     0x7ffff7fff000     0x2000    0x39000  rw-p   /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.s
+o.2
+      0x7ffffffdd000     0x7ffffffff000    0x22000        0x0  rw-p   [stack]
+  0xffffffffff600000 0xffffffffff601000     0x1000        0x0  --xp   [vsyscall]</pre>
+</div>
+</div>
+</div>
+</details>
+<div class="paragraph">
+<p>From the heap memory addresses we can use <code>find</code> to find a string within the heap</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="gdb"><span></span>find 0x555555559000, 0x55555557a000, &#39;h&#39;, &#39;e&#39;, &#39;l&#39;, &#39;l&#39;, &#39;o&#39;, &#39;1&#39;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_get_type_of">Get type of</h3>
 <div class="listingblock">
 <div class="content">
@@ -3146,7 +3214,7 @@ Hoey"</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-04-01 16:04:31 -0400
+Last updated 2024-04-01 19:23:53 -0400
 </div>
 </div>
 <script type="text/x-mathjax-config">
