@@ -586,6 +586,13 @@ Overflow Flag::
     bits that are carried over in *SIGNED* integer arithmetic
 
 == NASM and GDB
+=== Get type of
+[source, gdb]
+----
+(gdb) ptype  0x404034
+type = int
+----
+
 === Breaking at local labels
 [source, gdb]
 ----
