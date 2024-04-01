@@ -586,6 +586,15 @@ Overflow Flag::
     bits that are carried over in *SIGNED* integer arithmetic
 
 == NASM and GDB
+== Get Process information
+
+List memory regions mapped by the specified process
+- https://www.baeldung.com/linux/find-heap-memory-running-process[find-heap-memory-running-process]
+
+----
+(gdb) info proc mappings
+----
+
 === Get type of
 [source, gdb]
 ----
